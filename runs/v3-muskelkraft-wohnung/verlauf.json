@@ -1,0 +1,95 @@
+[
+  {
+    "runde": 1,
+    "score": 5.0,
+    "punkte": {
+      "physik": 6.0,
+      "kondensationswaerme": 6.0,
+      "vorgaben": 7.0,
+      "machbarkeit": 6.0,
+      "quantifizierung": 6.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": false,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "5 Knoten, 5 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Speicher'",
+        "ok": true,
+        "detail": "rein 37 W, raus 37 W"
+      },
+      {
+        "check": "Energiebilanz 'Nachtstrahler'",
+        "ok": true,
+        "detail": "rein 49 W, raus 49 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Speicher",
+        "ok": true,
+        "detail": "27.5 °C -> 20.0 °C, 33 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luft -> Speicher",
+        "ok": true,
+        "detail": "26.0 °C -> 20.0 °C, 4 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Speicher -> Nachtstrahler",
+        "ok": true,
+        "detail": "20.0 °C -> 17.0 °C, 37 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luft -> Nachtstrahler",
+        "ok": true,
+        "detail": "26.0 °C -> 17.0 °C, 12 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Nachtstrahler -> Himmel",
+        "ok": true,
+        "detail": "17.0 °C -> 4.0 °C, 49 W (strahlung)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.014 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 33 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": false,
+        "detail": "Wohnung 26.2 °C, Luft 26.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Der Physik-Prüfer meldet [FEHLER] 'Nutztemperatur unter Außenluft' (Wohnung 26,2 °C < Luft 26,0 °C). Der Auslegungsfall hat 32 °C Außenluft. Die Lösung setzt stattdessen ein künstliches 24-h-Mittel von 26 °C als 'Luft' und speist damit auch die Konvektionsgewinne des Strahlers, die tatsächlich nachts bei ca. 20 °C anfallen. Behebung: Tag und Nacht getrennt bilanzieren (Nachtphase: Luft 20 °C, Strahler-Speicher; Tagphase: Luft 32 °C, Speicher-Wohnung) oder luft_T_C = 32 °C setzen und die Flüsse konsistent zuordnen.",
+      "Die Himmelstemperatur von ≈ 4 °C und die 'trockene Nacht' passen nicht zum Auslegungsfall. 32 °C / 40 % r. F. entsprechen einem Taupunkt von ≈ 17 °C, nachts bei 20 °C also ≈ 80 % r. F. Nach Berdahl-Martin liegt der Himmel dann bei ≈ 6 °C oder wärmer. Der Absorber mit 16–17 °C läge direkt am Taupunkt, Tau auf der LDPE-Folie würde die IR-Durchlässigkeit weiter senken. Netto sind eher ≈ 20–28 W/m² zu erwarten, also ≈ 0,5–0,65 kWh statt 0,8 kWh. Die Spanne 0,5–1,2 kWh nennt das zwar, den Basisfall setzt sie aber zu optimistisch an. Behebung: mit Taupunkt 17 °C rechnen und den Ertrag als ≈ 0,5–0,6 kWh angeben.",
+      "Der Schwerkraftumlauf trägt das ganze Konzept, funktioniert rechnerisch aber nicht. Nachts stehen 6 Pa Antrieb gegen 8 Pa Rohrreibung, tags 9 Pa gegen 8 Pa. Die Widerstände von Heizkörper (Typ 33), Kugelhähnen, Bögen, Durchführung und Entlüfter sind darin nicht enthalten. Realistisch steht der Kreis still, und der 'Fallback' mit Pumpe, PV und Akku wird zum Normalfall. Behebung: Speicher höher setzen, Rohre auf DN 32–40 vergrößern, den Widerstand des Konvektors einrechnen oder die Umwälzpumpe (4 W) direkt als Basisfall einplanen.",
+      "Der Kühlkonvektor soll 'möglichst tief' (0,1–0,5 m) hängen. Für Kühlung ist das ungünstig: Die kalte Luft sammelt sich am Boden und mischt sich kaum. Die 235 W nach Heizkörper-Exponent (1,3) sind für natürliche Konvektion im Kühlbetrieb bei tiefer Montage optimistisch. Behebung: das Register höher hängen, z. B. an die Decke oder Wand über 1,5 m, und den Speicher noch höher setzen oder einen kleinen Lüfter (1–3 W) verwenden.",
+      "Der Schwimmbad-Solarabsorber aus EPDM/PP ist für den Betrieb nicht ausgelegt. Er ist meist nur für ≈ 1 bar bzw. drucklos zugelassen, nicht für die vorgesehene 3-bar-Druckprobe oder ein MAG-Drucksystem. Bei Stagnation bis 80 °C unter Folie und Plane hält er nicht dauerhaft. Behebung: Absorber mit Druckfreigabe wählen (z. B. Kupfer- oder Alu-Flachkollektor ohne Selektivschicht oder mattschwarzes Rohrregister) oder den Kreis drucklos bzw. mit nur 0,5–1 bar auslegen.",
+      "Die Speicherverluste von 4 W sind zu niedrig. Ein 150-L-Speicher mit 15 cm Dämmung (≈ 2,5 m² Oberfläche, k ≈ 0,23 W/m²K) hat bei 32 °C Außen und ≈ 17 °C innen ≈ 6–10 W Verlust. Dazu kommen Rohrverluste und Sonneneinstrahlung auf Speicher und Rohre. Das kostet ein Viertel bis ein Drittel des Ertrags. Der Zimmereffekt von −1,3 K ist damit eher −0,8 bis −1 K.",
+      "Die Aussage, Pumpe oder Lüfter treten brauche 'hydraulisch 10 bis 20 W', ist um Größenordnungen zu hoch. 15 g/s bei < 100 Pa sind ≈ 0,002 W, selbst ein Lüfter braucht nur ein paar W. Das widerspricht der eigenen 4-W-Pumpe. Die Verwerfung von Muskelkraft ist im Ergebnis plausibel, die Zahl aber falsch begründet.",
+      "Das Kernthema der Aufgabe wird verlassen: Die Kondensationswärme spielt hier keine Rolle, und die Wärmeabfuhr per Strahlung zum Himmel wird nicht ausdrücklich als Antwort darauf benannt. Muskelkraft trägt gar nichts bei, und Nahrung/Mensch/Bad fehlen in der Energiebilanz. Die Zielmarke ≤ 26 °C wird verfehlt (26,2 °C im Mittel, nicht garantiert). Behebung: einen kleinen Lüfter oder eine Pumpe mit Muskelantrieb als Hilfe prüfen und den Wärmesenken-Mechanismus klar benennen.",
+      "Der Zimmereffekt (27,5 → 26,2 °C, Abendspitze −2 bis −3 K) beruht auf einem grob geschätzten UA von 25 W/K und einer unbelegten Speichermasse. Die Spitzenwerte sind nicht nachgerechnet. Der Speicher liefert bei 0,87 kWh über etwa 6 Nachmittagsstunden nur ≈ 145 W. Behebung: Tagesgang des Raums mit einem einfachen Zwei-Knoten-Modell (Luft + Speichermasse) rechnen."
+    ],
+    "staerken": [
+      "Sehr ehrliche und sauber nachgerechnete Bilanz des Tretenden: Stoffwechsel 435 W, Körperspeicherung 58 Wh, Abgabe an das Zimmer 54 Wh. Die COP_min-Staffel 1,6 / 2,2 / 2,7 nach Rundenlänge ist plausibel und nachvollziehbar.",
+      "Systematische Prüfung aller Muskelwege mit stimmigen Zahlen: Wasserdampfverdichter (Druckverhältnis 4,7, Isentropenarbeit ≈ 250 kJ/kg, ≈ 57–60 m³/h), Gewicht, Feder, Zeolith mit Reibungswärme, Peltier, barometrisches Vakuum. Die negative Schlussfolgerung wird klar und ohne Schönrechnen gezogen.",
+      "Die Alternative (Nachthimmel-Kältespeicher) ist vollständig ohne Vakuum, ohne Strom im Basisfall und mit reinem Wasser DIY-tauglich. Kosten (≈ 1,15 k€) und Gewicht (≈ 250 kg) sind gegenüber Durchlauf 2 stark verbessert. Speichergröße (0,87 kWh bei 5 K) und Strahlungsansatz passen größenordnungsmäßig.",
+      "Gute Klarheit und Ehrlichkeit über Grenzen: Wetterabhängigkeit, marginaler Schwerkraftumlauf, Zielmarke verfehlt. Es gibt eine Testanweisung mit Fallback, Sicherheitshinweise (Stagnation, Wind, Frost, Schimmel), eine Balkonlast-Begründung mit Lastverteilplatte, Stückliste und Bauanleitung.",
+      "Die Energiebilanz im JSON ist intern konsistent (Speicher und Strahler bilanziert, S_gen ≥ 0, geschlossener Kreis, 0 l/Tag Wasserverlust)."
+    ]
+  }
+]
