@@ -372,5 +372,156 @@
       "Der Kaltwasserspeicher mit Zwischenkreis löst mehrere Praxisprobleme zugleich: doppelte Trennung von Kältemittel und Trinkwasser, Frostabstand am Verdampfer, Entkopplung von Zapfung und Verdichter, Pufferung von Wolken und Legionellenrisiko. Auslauftabelle und Speicherverhalten ohne Verdichter sind konsistent gerechnet.",
       "Die Grenzen sind offen benannt: R290 brennbar mit 60–80 g Füllung und Normverweisen, diffusionsdichte Dämmung unter dem Taupunkt, Unsicherheiten von Stoffwerten, U-Werten und Wirkungsgrad, Kostenrahmen 3–5 k€. Die Auslegung ist klar strukturiert."
     ]
+  },
+  {
+    "runde": 4,
+    "score": 7.95,
+    "punkte": {
+      "physik": 8.0,
+      "kondensationswaerme": 9.0,
+      "machbarkeit": 7.0,
+      "quantifizierung": 8.0,
+      "klarheit": 7.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "12 Knoten, 18 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'PV'",
+        "ok": true,
+        "detail": "rein 912 W, raus 912 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdichter'",
+        "ok": true,
+        "detail": "rein 599 W, raus 599 W"
+      },
+      {
+        "check": "Energiebilanz 'Kondensator'",
+        "ok": true,
+        "detail": "rein 586 W, raus 586 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdampfer'",
+        "ok": true,
+        "detail": "rein 487 W, raus 487 W"
+      },
+      {
+        "check": "Energiebilanz 'Speicher'",
+        "ok": true,
+        "detail": "rein 355 W, raus 355 W"
+      },
+      {
+        "check": "Energiebilanz 'Pumpe_Zwischenkreis'",
+        "ok": true,
+        "detail": "rein 10 W, raus 10 W"
+      },
+      {
+        "check": "Energiebilanz 'Pumpe_Sole'",
+        "ok": true,
+        "detail": "rein 20 W, raus 20 W"
+      },
+      {
+        "check": "Energiebilanz 'Luefter_Regelung'",
+        "ok": true,
+        "detail": "rein 24 W, raus 24 W"
+      },
+      {
+        "check": "Wärmerichtung Sonne -> PV",
+        "ok": true,
+        "detail": "5500.0 °C -> 57.0 °C, 912 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung PV -> Luft",
+        "ok": true,
+        "detail": "57.0 °C -> 32.0 °C, 746 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luefter_Regelung -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 24 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Pumpe_Zwischenkreis -> Speicher",
+        "ok": true,
+        "detail": "14.0 °C -> 10.8 °C, 10 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Pumpe_Sole -> Erdreich",
+        "ok": true,
+        "detail": "18.0 °C -> 14.0 °C, 20 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Leitungswasser -> Erdreich",
+        "ok": true,
+        "detail": "24.0 °C -> 14.0 °C, 378 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Leitungswasser -> Speicher",
+        "ok": true,
+        "detail": "24.0 °C -> 10.8 °C, 320 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luft -> Speicher",
+        "ok": true,
+        "detail": "32.0 °C -> 10.8 °C, 25 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Speicher -> Verdampfer",
+        "ok": true,
+        "detail": "10.8 °C -> 4.5 °C, 355 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Verdichter -> Luft",
+        "ok": true,
+        "detail": "60.0 °C -> 32.0 °C, 13 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kondensator -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 454 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 2.851 W/K"
+      },
+      {
+        "check": "Wärme wird dem Leitungswasser entzogen",
+        "ok": true,
+        "detail": "netto 698 W"
+      },
+      {
+        "check": "Austritt kälter als Umgebungsluft",
+        "ok": true,
+        "detail": "Leitungswasser raus 12.0 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Kurzantwort beschriftet die 355 W als „Wärme aus dem Wasser“. Tatsächlich kommen nur 320 W aus dem Wasser, dazu 25 W Speichergewinn aus der Luft und 10 W Pumpenwärme. Die 378 W der Erdvorkühlung laufen gar nicht über den Kondensator. Die Formulierung „Kondensationswärme größer als Verdunstungswärme“ vergleicht 454 W mit nur einem Teil der 698 W Kühllast und ist damit irreführend. Beheben: Die Wärmepfade getrennt ausweisen (698 W Wasser = 378 W Erde + 320 W Kältemaschine; Kondensator = 320 + 25 + 10 + 99 W).",
+      "Der Verdampfer ist nicht konsistent gerechnet. Die Rechnung ergibt 0,12–0,15 m², gebaut werden 0,3 m². Te = 4,5 °C wird aber weiter mit der rechnerischen Fläche begründet (ΔT 5,2 K), während der Text sagt, die Reserve hebe Te um ~1 K. Im 10-°C-Fall gilt dagegen Te = 3,7 °C bei 0,3 m². Das sind drei Rechenbasen für dieselbe Komponente. Beheben: Eine Verdampferfläche festlegen und Te für alle Betriebspunkte daraus ableiten. Sonst ist nicht nachvollziehbar, ob 166 W stimmen.",
+      "Der Wärmeübergang in der Trinkwasser-Wendel ist zu optimistisch. Außen sind h = 220 W/m²K bei freier Konvektion in einem ruhenden 30-%-Glykol-Tank angesetzt. Bei ~5 mPa·s Viskosität sind eher 100–150 W/m²K realistisch. Innen liegt die Strömung mit Re ≈ 2100 im Übergangsbereich. Dann wären eher 45 m Wendel nötig, oder die Speichertemperatur läge ~1 K tiefer, mit tieferem Te und rund 5–8 % mehr Strom. Beheben: Den Speicher zwangsdurchmischen oder mit pumpendurchströmtem Gegenstromtauscher arbeiten und eine Sensitivität angeben.",
+      "Der Verdichterwirkungsgrad η = 0,52 ist für einen kleinen hermetischen Drehzahlverdichter mit 3–5 cm³ inkl. Umrichter eher an der oberen Grenze. Mit ~0,45 wären es ~130 W statt 112 W. Ein konkretes Serienteil fehlt. Außerdem passen die Verdichtergrößen nicht zusammen: Der Auslegungsfall braucht 0,6 m³/h Hubvolumen, der Grundausbau (2,64 g/s) rund 1,2 m³/h. Beides mit demselben Modell zu decken, würde ein Turndown von ≥ 2:1 bei Mindestdrehzahl 40 % verlangen. Beheben: Ein reales Kennfeld (Secop/Embraco) nehmen und die Stufen mit diesem Kennfeld nachrechnen.",
+      "Die Erdsondenauslegung ist eine Linienquellenrechnung für 90 Tage und geht von konstant 11,5 °C aus. Die im Sommer wärmeren oberen 10–15 m, Mehrjahresdrift (~1400 kWh Wärmeeintrag pro Saison auf 40 m), Bohrlochlänge/TRT und Genehmigungspflicht (Wasserrecht) sind nur angerissen. Die Kosten von 2,5–4 k€ sind knapp. Beheben: Mit 12–13 °C effektiver Ausgangstemperatur und Mehrjahresrechnung (z. B. g-Funktionen) rechnen, 60 m als Alternative bewerten und die Genehmigung ausdrücklich nennen.",
+      "Die JSON-Bilanz ist teils künstlich oder widersprüchlich. Erdreich steht mit 14 °C im Graph, im Text sind es 11,5 °C. „Sonne 5500 °C“ und die PV als Bilanzknoten blähen die Zufuhr auf (912 W Sonne, 746 W PV-Abwärme), obwohl die PV nicht zur Kälteleistung gehört. Die Stoffströme mit 487/586/132 W hängen an einer willkürlichen Enthalpiereferenz. Der Prüfer meldet daher OK, ohne dass die Aussagekraft gewachsen wäre. Beheben: Nur den Kältekreis bilanzieren (Wasser, Erde, Speicher, Kondensator) und die PV separat halten.",
+      "Die Aufgabe wollte einen Verdunstungs-Loop mit möglichst wenig Strom. Geliefert wird eine konventionelle Kältemaschine mit drei Kreisen (R290, Glykol, Sole) und 166–295 W Dauerstrom, nachts aus dem Netz. Das ist ehrlich benannt, aber die Ausgangsidee bleibt nur als Analogie. Sorption (Silikagel/Adsorptionskälte bei ~80–90 °C) wird pauschal mit COP 0,25 und ≥100 °C verworfen. Absorption oder ein Solar-Thermie-Ansatz mit Speicher wird nicht ernsthaft geprüft. Beheben: Mindestens eine Alternative (Adsorption mit Vakuumröhren) mit Zahlen gegenüberstellen.",
+      "Der passive Nachtloop (Wasser-Vakuum-Wärmerohr) ist nur skizziert. Die Dampfströmung ist mit ~12 l/s eher ~10 l/s. Vakuumdichtheit über Jahre, Nichtkondensierbare und die Rückströmung im Sommer-Tagbetrieb sind nicht bewertet. Der Abschnitt „Was sich gegenüber Runde 3 geändert hat“ ist für den Leser irrelevant und stört die Klarheit. Beheben: Skizze als Ausblick kennzeichnen, Änderungsprotokoll streichen."
+    ],
+    "staerken": [
+      "Das Kernproblem ist physikalisch korrekt gelöst: Ein Druckhub (Verdichter) macht den Kondensator wärmer als die Luft. Die Kondensationswärme geht bei 40 °C an die Umgebung. Die Bilanz 355 + 99 = 454 W plus 13 W Gehäuseverlust stimmt. Die Rolle der Antriebsarbeit ist klar erklärt.",
+      "Die Zahlen sind überwiegend stimmig und nachprüfbar: Sättigungsdrücke von R290 (5,3/13,7 bar), Carnot-COP 7,8, Wasserdampf-Saugvolumen ~80 m³/h gegenüber 0,42 m³/h, Kühlgrenze 22,1 °C, Taupunkt 17,2 °C, Ausläufe im Speicher (NTU-Formel), Erdsonden-Linienquelle (+3,2 K) und Kondensator-LMTD lassen sich nachrechnen.",
+      "Die untere Schranke nach dem 2. Hauptsatz (~34 W) wird mit dem realen Bedarf verglichen. Die drei Wege zu Kälte unter Umgebung (Arbeit, Hochtemperaturwärme, kalte Senke) sind sauber getrennt, und die frühere Absolutaussage wurde korrigiert.",
+      "Die Lösung ist praxisnah und ehrlich zu Grenzen und Risiken. Sie behandelt Trinkwasserhygiene (Doppeltrennung, Spülung, Entleerung im Winter), R290-Sicherheit (Füllmenge, Aufstellung), Taupunktdämmung, Wind und Rezirkulation am Kondensator mit Zahlen, Heißtag- und Nachtfall, Teillast/Takten sowie Kosten und Wirtschaftlichkeit der Erde („amortisiert sich allein nie“).",
+      "Die Stromangabe ist ehrlich bezifferrt (166 W mit Erde, 295 W ohne, mit Bandbreiten, Tagesbedarf, Netz-/Inselvarianten). Wasserverlust ist null, und die Tabelle der Auslauftemperaturen zeigt die Sensitivität (14/12/10 °C)."
+    ]
   }
 ]

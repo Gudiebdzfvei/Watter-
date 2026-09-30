@@ -30,12 +30,15 @@ unrealistischen Annahmen und geschönten Zahlen. Antworte ausschließlich mit
 einem JSON-Objekt, ohne Text davor oder danach."""
 
 RUBRIC = {
-    "physik": ("Physikalisch korrekt, keine verbotenen Wärmeflüsse, realistische Wirkungsgrade/COP", 0.30),
-    "kondensationswaerme": ("Löst das Kernproblem: wohin geht die Kondensationswärme, und warum funktioniert das", 0.25),
-    "machbarkeit": ("Baubar mit realen Materialien, Maße, Flächen, grobe Kosten, Wartung", 0.20),
+    "physik": ("Physikalisch korrekt, keine verbotenen Wärmeflüsse, realistische Wirkungsgrade/COP", 0.25),
+    "kondensationswaerme": ("Löst das Kernproblem: wohin geht die Kondensationswärme, und warum funktioniert das", 0.20),
+    "vorgaben": ("Hält ALLE harten Vorgaben der Aufgabe ein (z. B. Arbeitsmittel, Strom, Größe); jede Verletzung ergibt höchstens 3 Punkte", 0.15),
+    "machbarkeit": ("Baubar mit realen Materialien, Maße, Flächen, grobe Kosten, Wartung", 0.15),
     "quantifizierung": ("Nachvollziehbare Rechnung: Kühlleistung, Temperaturen, Flächen, Tag/Nacht", 0.15),
     "klarheit": ("Verständlich erklärt, ehrlich zu Grenzen und Risiken", 0.10),
 }
+# Unterhalb dieser Punktzahl bei "vorgaben" gilt die Lösung als Regelverstoß.
+MIN_VORGABEN = 6.0
 
 OUTPUT_FORMAT = """
 ## Ausgabeformat
@@ -96,7 +99,7 @@ Vergib für jedes Kriterium 0-10 Punkte:
 {criteria}
 
 Antworte als JSON:
-{{"punkte": {{"physik": n, "kondensationswaerme": n, "machbarkeit": n, "quantifizierung": n, "klarheit": n}},
+{{"punkte": {{{", ".join(f'"{k}": n' for k in RUBRIC)}}},
   "schwaechen": ["konkrete Schwäche + wie man sie behebt", ...],
   "staerken": ["...", ...]}}"""
     for attempt in range(2):
@@ -113,8 +116,10 @@ Antworte als JSON:
 
 def weighted_score(judgement: dict, physics_result: physics.CheckResult) -> float:
     score = sum(judgement["punkte"][k] * w for k, (_, w) in RUBRIC.items())
-    # Wer die Physik-Prüfung nicht besteht, kann nicht "gut genug" sein.
-    return score if physics_result.passed else min(score, 5.0)
+    # Wer die Physik-Prüfung nicht besteht oder Vorgaben verletzt, kann nicht "gut genug" sein.
+    if not physics_result.passed or judgement["punkte"]["vorgaben"] < MIN_VORGABEN:
+        return min(score, 5.0)
+    return score
 
 
 def generate(backend, task: str, best: Round | None) -> str:

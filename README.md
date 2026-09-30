@@ -17,7 +17,8 @@ Stopp: Zielpunktzahl erreicht | keine Verbesserung mehr | Rundenlimit
   Entropieerzeugung ≥ 0) und prüft, ob der Kreislauf geschlossen ist. Wer hier
   durchfällt, bekommt höchstens 5/10 Punkte.
 - **Gutachter**: ein getrennter Claude-Aufruf mit fester Rubrik (Physik,
-  Kondensationswärme, Machbarkeit, Rechnung, Klarheit).
+  Kondensationswärme, Einhaltung der harten Vorgaben, Machbarkeit, Rechnung,
+  Klarheit). Wer eine harte Vorgabe verletzt, bekommt höchstens 5/10.
 - **Abbruch**: Zielpunktzahl (Standard 8,5/10) oder 2 Runden ohne
   Verbesserung oder maximal 6 Runden.
 
