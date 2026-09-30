@@ -375,5 +375,78 @@
       "Sehr ehrliche Grenzen und Messprotokoll: Nachmessen per Q = 1,163 × l/h × ΔT mit klaren Schwellen (< 170 W schlechter, > 240 W Modell bestätigt). Die Aussagen, dass es für Dachgeschoss und Zulauf ≥ 20 °C nicht taugt und wann das Gerät aus bleibt, sind klar. Die Kosten pro kWh werden offen gegen Klimageräte verglichen.",
       "Die Stückliste mit Preisen summiert sich korrekt auf ≈ 560 €. Die Bauanleitung ist vollständig und schrittweise: Spülen, Dichtheitsprüfung, Kopfbehälter, Dosieren über die Ablauftemperatur 22–24 °C, Betrieb und Wartung. Die Anforderung an Durchfluss, Antrieb und Ausbaustufen ist nachvollziehbar. Die JSON-Bilanz erfüllt die Prüfregeln: 0 l/Tag Verdunstung, Wärmerichtung korrekt, Nutzknoten netto 204 W."
     ]
+  },
+  {
+    "runde": 6,
+    "score": 7.45,
+    "punkte": {
+      "physik": 7.0,
+      "kondensationswaerme": 8.0,
+      "vorgaben": 8.0,
+      "machbarkeit": 6.0,
+      "quantifizierung": 8.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "4 Knoten, 3 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Kuehler'",
+        "ok": true,
+        "detail": "rein 233 W, raus 233 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Kuehler",
+        "ok": true,
+        "detail": "26.7 °C -> 20.0 °C, 229 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kuehler -> Leitungswasser",
+        "ok": true,
+        "detail": "20.0 °C -> 15.0 °C, 233 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.045 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 229 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 26.7 °C, Luft 30.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Der Leitwert UA = 38 W/K je Kern bei 90 m³/h ist die tragende, aber ungemessene Annahme. Die Katalogherleitung (3–5 kW bei 80/20 °C, 70–120 W/K bei 400 m³/h) ist für einen 200×200×32-Kern optimistisch. Der Potenzansatz V^0,55 ist nur geschätzt. Die Robustheit über UA 15–57 W/K wird gezeigt, aber ohne Nachweis, dass der reale Luftstrom überhaupt erreicht wird. Abhilfe: Sparstufe (1 Kern) zuerst bauen, Hub und Luftmenge messen, erst dann den zweiten Kern kaufen.",
+      "Die Lüfterauslegung widerspricht sich. Ein 200-mm-Gehäuselüfter bei 600–700 U/min hat nur etwa 10 Pa Staudruckreserve, gefordert sind aber 10–15 Pa Kernverlust plus Gehäuseverluste bei 90 m³/h. Der Lüfter käme damit an die Abrisskante. Die 1,5 W und 20–25 dB(A) gelten nur für freien Ausblas. Abhilfe: Lüfter mit Druckkennlinie wählen (Axial-/Radiallüfter mit ≥ 20 Pa bei 90 m³/h), dann Leistung (2–3 W) und Lautstärke neu ansetzen.",
+      "Die Hydraulik ist zu knapp bemessen und geometrisch nicht eindeutig. Es stehen nur ≈ 0,03 bar (0,3 m) Antriebshöhe für das Dosierventil zur Verfügung. Die Kühlbox steht auf einer Kommode, der Hochpunkt mit Entlüfter liegt dadurch etwa so hoch wie der Trichter oder darüber. Dort kann Unterdruck entstehen und der Entlüfter Luft ansaugen, außerdem Heber- oder Gaslocheffekte. Beim Erwärmen von 15 auf 25 °C ausgasende Luft in den parallelen Flachrohren kann den Durchfluss bei 0,33 l/min stark stören. Die Höhenlage von Pegel, Kern-Hochpunkt und Trichter ist nicht durchgerechnet. Abhilfe: Höhenplan mit Zahlen, Trichter deutlich unter dem Kern-Hochpunkt, Kern tiefer setzen, Entlüfter nur bei Überdruck.",
+      "Die Zulauftemperatur von 15 °C wird bei nur 0,33 l/min Dauerfluss zu optimistisch angesetzt. Das Wasser verweilt lange in der Hausleitung und nähert sich der Wandtemperatur (Warmwasserleitung nebenan, Steigleitung). Das Hauptrisiko wird nur als Empfindlichkeitstabelle und mit „2–3 l ablaufen lassen“ behandelt, nicht mit einer Rechnung zur Leitungserwärmung. Abhilfe: Zulauftemperatur im Dauerbetrieb über mehrere Stunden messen und einen realistischen Mittelwert von 16–18 °C ansetzen.",
+      "Die Wärmelastbilanz ist günstig gewählt. Mittleres Geschoss ohne Dach, Nachbarräume gleich warm und ein Speicher von nur 1 kWh/K, während die Gleichgewichtstemperatur unrealistisch hoch wäre. Die Raumtemperaturen von ±0,3 K Annahmenunsicherheit sind zudem kaum belegt. Die Netto-Absenkung von −1,0 K im Mittel und −2,1 K an der Spitze ist ehrlich, aber das Ziel ≤ 26 °C wird nur mit Verschattung und Nachtlüftung erreicht. Das Gerät allein bringt 28,3 °C.",
+      "Die Kondensatzahlen sind in sich nicht ganz stimmig. < 10 g/h entspricht ≈ 7 W, nicht < 5 W. 30 g/h entspricht 20 W, nicht 15 W. Außerdem steht „Latentleistung kommt nicht obendrauf“, aber in der Tabelle „299 W (+ ≈ 15 W latent)“. Abhilfe: einheitlich in Gesamt-, sensibel- und latent-Leistung ausweisen.",
+      "Das Verschwendungsziel wird nur teilweise erfüllt. Es fließen 200 l/Tag, realistisch nutzbar sind 60–120 l/Tag, und die Kälte kostet 0,2–0,4 €/kWh, mehr als ein Klimagerät (≈ 0,14 €/kWh). Das Ergebnis ist ehrlich benannt, aber ohne Garten oder Gartenzähler bleibt es wirtschaftlich schwach. Zusätzlich ist der Aufbau mit Kopfbehälter (12 kg auf dem Regal), 40-l-Kübel (42 kg), drei Schlauchwegen und Wassermeldern im Wohnraum aufwendig und fehleranfällig, bei 365 €. Abhilfe: Sparstufe oder Variante B mit dem kleinsten Aufbau als Standardempfehlung.",
+      "Bei Hygiene und Material bleiben Lücken. Kfz-Heizungskühler sind oft weichgelötet, mit Flussmittel und Ölresten, und keine Trinkwasserprodukte. Das gewärmte Wasser (bis 25 °C) steht im Sammelkübel und Spülkasten, was Legionellen und Mücken begünstigt. Die Forderung nach WC-Füllventil Typ A (freier Auslauf) wird nicht als Bauteilanforderung spezifiziert. Abhilfe: Kerne mit bleifreiem Lot oder Edelstahl-Wärmetauscher wählen, Kübel täglich leeren und Füllventil ausdrücklich als AA-Bauart kaufen."
+    ],
+    "staerken": [
+      "Die Energiebilanz ist stimmig. 20 l/h × 1,163 × 10,3 K ≈ 239 W, l/kWh = 860/Hub, und der ε-NTU-Wert (ε = 0,62, 0,856 bei zwei Stufen) sowie die UA-Empfindlichkeit (175–255 W) lassen sich nachrechnen. Die harte Untergrenze von 72 l/kWh wird korrekt abgeleitet.",
+      "Die Lösung macht die Physik klar: Senke ist das Leitungswasser (Kondensator entfällt), ein Gebläse hebt den Luftwärmeübergang, das Wasser tritt fast raumwarm aus. Sie vergleicht ehrlich mit 3 Panelheizkörpern (211 W, 250 l/Tag, 95 kg) und rechnet den Lüfter-Strom (1,4 ct) gegen das gesparte Wasser (22 ct) auf.",
+      "Die Raumtemperatur wird stundenweise modelliert: Lastherleitung, Start- und Zulaufempfindlichkeit, Rangfolge der Maßnahmen. Außenverschattung ist so wirksam wie das Gerät, Nachtlüftung kommt dazu. Leistung, Netto-Leistung nach Lüfterwärme und Energiebilanz (JSON) sind konsistent, und der Physik-Prüfer meldet keine Verstöße.",
+      "Die Trinkwassersicherheit ist konsequent gelöst. Freier Auslauf im Kopfbehälter, zusätzlich ein Rückflussverhinderer EA, nur vorhandene Abgänge. Gegen ein hängendes Füllventil helfen Durchflussbegrenzer, Überlauf DN 25/DN 32 und Wassermelder. Dazu kommen tägliche Entleerung und der Hinweis auf Wasserstoppsysteme.",
+      "Die Kondensation wird sauber behandelt: Taupunkte korrekt, Teilbenetzung nur von Kern 1, Kondensatwanne, Dämmung gegen Schwitzwasser. Die Entfeuchtung wird als Komfort-, nicht als Temperaturgewinn gewertet.",
+      "Das Dokument ist ehrlich und praxisnah. Go/No-Go zuerst (Versorger, Vermieter, Trockenheit), ein Fallback ohne Durchlauf mit nachgerechnetem Speicherbetrieb (86 l/kWh, 628 Wh in 2,6 h), eine Sparstufe als Messaufbau, Stückliste mit Summe (365 €, rechnerisch korrekt), Bauanleitung mit Mess- und Erwartungswerten sowie klare Grenzen (Dachgeschoss, Zulauf ≥ 20 °C, Kosten pro kWh)."
+    ]
   }
 ]
