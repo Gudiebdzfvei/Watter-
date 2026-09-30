@@ -155,5 +155,79 @@
       "Die Wasser- und Kostenbilanz ist transparent: 350 l/Tag ≈ 1,58 €, ≈ 0,6 €/kWh Kälte gegen ≈ 0,10–0,20 €/kWh beim Klimagerät. Dazu kommen Sparstufen und eine realistische Weiterverwendung (WC, Pflanzen, Putzen). Die Ablehnung von Dusche und Waschmaschine wegen Kreuzverbindung und Netzdruck ist begründet. Rechtliche Hinweise (Vermieter, Abrechnung, Trockenheit, AVBWasserV) sind ausreichend.",
       "Die Stückliste mit Preisen stimmt rechnerisch (≈ 430–460 €) und ist mit einer schrittweisen Bauanleitung, Inbetriebnahme und Wartung konkret. Die Selbstkritik in Abschnitt 12 und die Grenzen in Abschnitt 13 zeigen eine nachvollziehbare Korrektur früherer Schwächen. Der Verbrauch von nur 4 W Strom bleibt im Rahmen der Vorgaben. Es gibt keine Brennbares und kein Giftiges, alles läuft drinnen. Der Physik-Prüfer meldet keine Verstöße (Energiebilanz, Wärmerichtung, S_gen > 0)."
     ]
+  },
+  {
+    "runde": 3,
+    "score": 7.45,
+    "punkte": {
+      "physik": 7.0,
+      "kondensationswaerme": 8.0,
+      "vorgaben": 7.0,
+      "machbarkeit": 7.0,
+      "quantifizierung": 8.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "3 Knoten, 2 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Heizkoerper'",
+        "ok": true,
+        "detail": "rein 243 W, raus 243 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Heizkoerper",
+        "ok": true,
+        "detail": "26.6 °C -> 19.2 °C, 243 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Heizkoerper -> Leitungswasser",
+        "ok": true,
+        "detail": "19.2 °C -> 15.0 °C, 243 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.033 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 243 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 26.6 °C, Luft 30.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Wärmeübertragung der Heizkörper im Kühlbetrieb ist ungemessen. Der Exponent 1,3 und die Normleistung stammen aus dem Heizbetrieb bei ΔT ≈ 50 K. Hier liegt ΔT bei 3–10 K mit umgekehrter Konvektionsrichtung und möglicher Schichtung im Wasser. Die ±30 %-Bandbreite wird genannt, die 256 W (und die Kette bis −2,3 K und 26,0 °C) stehen aber trotzdem als Hauptzahl. Behebung: Die Hauptzahl ausdrücklich als Annahme ausweisen. Nach dem Aufbau über Q = 1,163·V̇·ΔT_Wasser nachmessen. Die Basis- und Einstiegsauslegung konservativer mit etwa 70 % ansetzen.",
+      "Die 12-°C-Zeile rechnet doppelt: '331 W (+ 25–30 W latent)'. Die 331 W sind schon die volle Wasserbilanz (25 l/h · 1,163 · 11,4 K). Der Text sagt selbst, die Gesamtleistung sei vom Wasser begrenzt. Latente Leistung kann also nur dann zusätzlich kommen, wenn das Wasser wärmer austritt. Im 65-%-Fall (295 W gegenüber 281 W trocken) wird die Austrittstemperatur nicht nachgezogen. Behebung: Gesamtleistung = sensibel + latent über die Wasserbilanz abschließen und die Austrittstemperatur je Fall neu angeben.",
+      "Die Trinkwassersicherung ist zu optimistisch. Gebrauchte Heizkörper enthalten oft Inhibitoren, Schlamm und Biofilm aus Heizungswasser (eher Kategorie 3 als 2). Ein einfacher Rückflussverhinderer EA deckt nur Kategorie 2 ab. Der freie Auslauf AA sitzt erst am Ende, hinter den Heizkörpern. Eine jährliche Prüfung des EA (DIN EN 1717) fehlt. Wenn die Wanne verstopft und bis zum Rand steigt, taucht der Schlauch ein. Der Tauchfall ist als Risiko nicht genannt. Behebung: Neue Heizkörper oder nur gründlich gespülte, druckgeprüfte Gebrauchtteile verwenden. Eine Sicherungsarmatur für Kategorie 3 (z. B. Systemtrenner BA) vorsehen oder einen freien Auslauf direkt am Hahn mit Schwerkraft-Speisung. Den Ablaufschlauch über den Wannenrand führen, nicht nur über die Überlaufkante.",
+      "Wasserverschwendung und Weiterverwendung lösen die Vorgabe nur teilweise. Bei 250 l/Tag lassen sich nur ca. 100 l von Hand abholen, ca. 60 % gehen verloren. Die Lösung setzt eine Badewanne voraus, die tagsüber blockiert ist. Bei vielen Wohnungen mit reiner Dusche fehlt sie. Die Verwendung für Pflanzen ist bei Gebrauchtheizkörpern (Rost, Reste) nicht unbedenklich. Behebung: Den Auslauf direkt in den WC-Spülkasten oder in einen Eimer/Regentonne mit Überlauf führen. Optional die Laufzeit auf die Hitzestunden kürzen, statt pauschal 10 h zu fahren. Eine Variante ohne Wanne (Duschwanne, Waschbecken mit Überlauf) beschreiben.",
+      "Stagnation und Legionellen sind nur teilweise gelöst. Das T-Stück und das Doppel-Eckventil sind ein Totstrang der Trinkwasserinstallation. Der Schlauchabschnitt zwischen Geräteventil und Nadelventil steht nachts warm. Das tägliche Entleeren von etwa 30 l Heizkörperinhalt über einen Ablass ohne echten Tiefpunkt ist umständlich und wenig alltagstauglich. Die Korrosion von Stahl in sauerstoffreichem Frischwasser (Wechsel nass/trocken) kann über mehrere Saisons zur Perforation führen, das wird nur als Verfärbung erwähnt. Behebung: Totstrang-Länge begrenzen. Nach dem Entleeren den Heizkörper nicht offen stehen lassen. Gebrauchtheizkörper einer Druckprobe unterziehen. Wassermelder beibehalten.",
+      "Die Dosierung per Nadelventil bei 0,4 l/min ist fragil. Bei Netzdruck 3–5 bar neigt sie zu Verstopfen und Driften, und der Durchfluss schwankt um ±30 %. Die Regelgröße Ablauftemperatur ist sinnvoll, verlangt aber tägliches Nachstellen. Behebung: Einen Durchflussbegrenzer oder Feindosierventil mit Filter vorschalten, einen Schmutzfilter ergänzen und eine Schnellmessung mit Eimer und Uhr in die tägliche Routine aufnehmen.",
+      "Die Raumbelegung und das Gewicht sind unterschätzt. Drei Typ-22-Heizkörper à 1 m brauchen 3 m Wandlänge, stehen auf Bodenkonsolen, wiegen gefüllt ca. 100 kg und stehen nass (Kondensat, Kaltluftabfall) im 20-m²-Zimmer. Die Deckenlast und der Mieter-Aufwand sind nicht bewertet. Die Stufenkosten sind zu knapp: Basis 310 € und Einstieg 200 € sind rechnerisch eher ca. 335 € bzw. 240–250 €. Behebung: Aufstellfläche und Bodentraglast im Plan angeben und die Stufenkosten aus der Stückliste nachrechnen.",
+      "Der Abschnitt 'Was gegenüber der Vorversion geändert wurde' ist Meta-Text, der für die eigentliche Lösung nichts beiträgt und den Text verlängert. Die Laufzeit-Aussage (Start um 12 Uhr = +0,8 K) wirkt überschätzt, die Energiebilanz ergibt eher ≈ +0,6–0,7 K. Behebung: Den Abschnitt streichen und die Zahl nachrechnen.",
+      "Ein wirksamer Hebel fehlt. Das kälteste Leitungswasser (frühmorgens oder nachts nach Stagnation der Steigleitung) und die Vorkühlung der Speichermasse werden nicht genutzt. Die Startbedingung 25,5 °C wird nur durch Nachtlüftung angenommen. Behebung: Früh-/Nachtbetrieb mit Wasserreduktion prüfen und die Startwerte im Modell variieren."
+    ],
+    "staerken": [
+      "Die Zahlen sind intern sehr konsistent. Meine Nachrechnung ergibt: Reihenschaltung 140/74/42 W (Summe 256 W, deckt sich mit der Wasserbilanz 259 W), l/kWh = 860/ΔT, Zulauf-Empfindlichkeit für 12/18/20 °C und der stündliche Raumverlauf (30,4 °C ohne Gerät, 28,1 °C mit Gerät, 2,43 kWh). Die Zahlen sind ehrlich, nicht geschönt.",
+      "Die Wärmesenke ist klar benannt und physikalisch richtig. Die Wärme geht als sensible Wärme ins durchfließende Leitungswasser (15 → ≈ 24 °C) und bleibt ohne Kältemaschine ohne Druckhub. Die Kondensation ist nachvollziehbar gerechnet: Oberfläche je Heizkörper, Taupunkt, Kondensatmengen in drei Fällen, Dämmung der Zuleitung, Wanne für das Kondensat. Die Einordnung, dass Entfeuchtung nur Komfort ist und die Lufttemperatur nicht stärker senkt, ist richtig.",
+      "Die Lösung ist stromlos (0 W) und hat nur Wasser als Medium. Die Trinkwasseranbindung ist sinnvoll aufgebaut: eigener Kaltwasserabgang, EA-Geräteventil, kein Ventil hinter dem letzten Heizkörper, freier Auslauf, Leckageschutz, Aquastop und Wassermelder. Die Druckführung ist sauber begründet.",
+      "Die Lösung ist ehrlich zu ihren Grenzen. Sie benennt die Kosten von 0,46–0,62 €/kWh gegenüber dem Klimagerät, dass sie allein das Ziel ≤ 26 °C nicht erreicht und dass Außenverschattung und Nachtlüftung gleich wirksam bzw. billiger sind. Sie nennt den Leichtbau-Fall, die Zulauftemperatur als Hauptunsicherheit (≥ 20 °C: nicht betreiben) und den Wasserverlust von 60 %. Sie liefert die Messanleitung Q = 1,163·V̇·ΔT.",
+      "Die Wärmelast und das Raummodell sind offen dargelegt und nachrechenbar. Die Bilanz wird als Betriebsmittel (243 W) mit 24-h-Mittel (101 W) angegeben, die Stufen Einstieg/Basis/Voll/Turbo sind gestaffelt, und die Speicher-versus-Dauerdurchfluss-Frage ist mit Begründung beantwortet.",
+      "Stückliste, Preise, Bauanleitung, Dosierregel (Ablauftemperatur 23–24 °C) und Rechtshinweise (Mieter, Kommune, AVBWasserV) sind vollständig und praxisnah."
+    ]
   }
 ]
