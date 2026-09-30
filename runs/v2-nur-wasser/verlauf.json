@@ -1,0 +1,128 @@
+[
+  {
+    "runde": 1,
+    "score": 6.9,
+    "punkte": {
+      "physik": 6.0,
+      "kondensationswaerme": 8.0,
+      "vorgaben": 8.0,
+      "machbarkeit": 5.0,
+      "quantifizierung": 7.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "8 Knoten, 11 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Kollektor'",
+        "ok": true,
+        "detail": "rein 583 W, raus 583 W"
+      },
+      {
+        "check": "Energiebilanz 'Adsorber'",
+        "ok": true,
+        "detail": "rein 201 W, raus 201 W"
+      },
+      {
+        "check": "Energiebilanz 'Kondensator'",
+        "ok": true,
+        "detail": "rein 76 W, raus 76 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdampfer'",
+        "ok": true,
+        "detail": "rein 72 W, raus 72 W"
+      },
+      {
+        "check": "Energiebilanz 'Kaeltespeicher'",
+        "ok": true,
+        "detail": "rein 68 W, raus 68 W"
+      },
+      {
+        "check": "Wärmerichtung Sonne -> Kollektor",
+        "ok": true,
+        "detail": "5500.0 °C -> 80.0 °C, 583 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Adsorber",
+        "ok": true,
+        "detail": "80.0 °C -> 60.0 °C, 129 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Luft",
+        "ok": true,
+        "detail": "80.0 °C -> 32.0 °C, 454 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Adsorber -> Luft",
+        "ok": true,
+        "detail": "60.0 °C -> 32.0 °C, 125 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kondensator -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 72 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kaeltespeicher -> Verdampfer",
+        "ok": true,
+        "detail": "8.0 °C -> 6.0 °C, 68 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Leitungswasser -> Kaeltespeicher",
+        "ok": true,
+        "detail": "24.0 °C -> 8.0 °C, 59 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luft -> Kaeltespeicher",
+        "ok": true,
+        "detail": "32.0 °C -> 8.0 °C, 9 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 1.804 W/K"
+      },
+      {
+        "check": "Wärme wird dem Leitungswasser entzogen",
+        "ok": true,
+        "detail": "netto 59 W"
+      },
+      {
+        "check": "Austritt kälter als Umgebungsluft",
+        "ok": true,
+        "detail": "Leitungswasser raus 10.0 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Beladungsdifferenz Δx = 0,08 kg/kg ist zu optimistisch. Bei 30 °C Adsorbertemperatur und 1 kPa (p/p_s ≈ 0,22) liegt Silikagel RD nach üblichen Isothermen bei rund 0,10–0,12 kg/kg, nicht bei 0,15. Fällt der Verdampfer auf 2 °C, sinkt die Beladung weiter. Nach der Regeneration bleiben etwa 0,05 kg/kg. Realistisch sind Δx ≈ 0,04–0,06, also 30–50 % weniger Kälte (eher 45–60 L/Tag statt 87 L). Behebung: Isotherme des konkreten Sorbens ansetzen und Δx daraus ableiten. Sorbensmasse oder Kollektorfläche entsprechend erhöhen, oder die Zahlen ehrlich reduzieren.",
+      "Der Zyklus-COP von 0,52 (46 % Carnot) ist für ein einbettiges, intermittierendes Silikagel-System mit hohem fühlbarem Wärmeanteil und ohne Wärmerückgewinnung zu hoch. Typisch sind 0,25–0,40. Das Carnot-Vergleichsargument nimmt 40 °C als Abwärmetemperatur an. Nachts läuft die Adsorption aber bei 25–30 °C und tags die Kondensation bei 40 °C. Die Rechnung ist damit intern uneinheitlich, und die 'Literatur 30–60 %' passt eher zu kontinuierlichen Zweibettmaschinen. Behebung: COP 0,3–0,4 ansetzen oder Wärmerückgewinnung bzw. Zweibett-Betrieb begründen.",
+      "Die Auslauftemperaturen widersprechen der eigenen Wendelauslegung. Mit ε ≈ 0,78 (3 L/min) ergibt sich bei Bad 5 °C ein Auslauf von ca. 9 °C und bei Bad 14 °C ca. 16 °C. Der Mittelwert liegt bei etwa 12–13 °C, nicht bei 10 °C. Bei 5 L/min ist ε nur ≈ 0,58, der Auslauf bei Bad 14 °C also ca. 18 °C statt der genannten 14 °C. Die Mengenangabe '87 L bei 24 → 10 °C' und die Aussage '9–14 °C, Mittel 10 °C' passen so nicht zusammen. Behebung: Auslauftemperatur über dem Tagesgang berechnen (Bad 5 → 14 °C, Wendel-NTU je Zapfrate) und Liter und Temperatur konsistent angeben.",
+      "Der Ertrag bei Bewölkung ist falsch ('proportional zur Einstrahlung'). Ein einfach verglaster Flachkollektor mit ca. 6 W/m²K erreicht bei 150–200 W/m² nur ca. 55–60 °C. Das reicht nicht, um gegen einen 40-°C-Kondensator (7,4 kPa) zu desorbieren, weil dafür ca. 65–70 °C nötig sind. Der Ertrag bricht also unterproportional bis auf nahezu null ein, und '20–40 L/Tag' ist geschönt. Behebung: Schwellentemperatur der Desorption berücksichtigen, Strahlungsklassen einzeln rechnen, Vakuumröhren oder Doppelverglasung erwägen und den Ausfall bei Trübwetter offen nennen.",
+      "Der nächtliche Adsorber-Wärmeabfuhrpfad ist knapp dimensioniert. Um 30 °C zu halten, müssen bei 20 °C Luft (abends eher 25 °C) etwa 250–400 W bei nur 5–10 K Übertemperatur abgeführt werden. Das braucht UA ≈ 40 W/K oder mehr. Auf dem Balkon liefert der Kamineffekt (Höhe ≤ 2,5 m) nur ca. 1 Pa und < 1 m/s, was ohne große Rippenflächen nicht reicht. Steigt die Adsorbertemperatur auf 35 °C, sinkt Δx weiter. Zudem beginnt die Adsorption erst nach Abkühlung der heißen Masse (90 → 30 °C), das nutzbare Nachtfenster ist also kürzer als 8 h. Behebung: Rippen- bzw. Luftkanalfläche explizit auslegen, die Zeitachse (Abkühlung, Adsorption, Morgenerwärmung) berechnen und ein reduziertes Fenster ansetzen.",
+      "Der flache Vakuum-Adsorber (3 × 0,85 m) ist nicht baubar wie skizziert. Bei 100 kPa Außendruck wirken ca. 250 kN auf die Fläche. Ein Blechkasten implodiert, und die Steifigkeit wird nur mit 'druckfeste Behälter' abgetan. Zudem wird Alu-Lamellen im Wasser-Vakuum-System vorgeschlagen, obwohl Wasserstoffbildung selbst als Risiko genannt wird (Al + Wasser bei 90–100 °C). Behebung: Rohrbündel-Adsorber (z. B. Edelstahl- oder Kupferrohre DN80–150 mit Lamellen) oder Vakuumröhren-Design verwenden, Kupfer/Edelstahl statt Alu einsetzen und Wandstärke bzw. Gewicht angeben.",
+      "Die passive Ventilsteuerung ist der kritischste Punkt und wird nur als 'empfindlich' benannt. Rückschlagklappen mit < 30 Pa Öffnungsdruck müssen bei 1–7 kPa Differenz sehr dicht schließen. Leckage schließt den Zyklus kurz. Nichtkondensierbare Gase (H₂, Permeation, Mikroleckagen) sammeln sich unweigerlich, und es gibt keinen passiven Entlüftungs- oder Getter-Mechanismus. Auch die Frostgefahr für Verdampfer, Siphon und Speicher im Winter sowie ein Überdruckventil bei Stagnation (Adsorber > 130 °C, falls R1 klemmt) fehlen. Behebung: Gettermaterial bzw. passiven Gasfang, Dichtheitsanforderung in Pa·L/s, Frostschutzkonzept und Sicherheitsventil ergänzen und die Klappenbauart konkret spezifizieren.",
+      "Es gibt kleine Zahleninkonsistenzen. Die Fassade wird in der Tabelle mit 350 L/Tag angegeben, im Text mit 370 L. Skalierung ×4 ergibt 5,7 kWh statt 6,1 kWh (250 W). Der Verdampferdruckgradient ist mit ca. 80 Pa/K angesetzt, bei 6 °C sind es ca. 67 Pa/K. Die JSON-Bilanz nennt Kollektor 80 °C und Adsorber 60 °C, der Text 90–100 °C. Auch die Luftreferenz 32 °C wird für die nächtliche Adsorberwärme verwendet, obwohl nachts 20 °C herrschen. Dadurch bestehen die Prüferchecks trivial und sagen wenig aus. Behebung: Zahlen vereinheitlichen und die Bilanz getrennt für Tag- und Nachtphase mit realen Temperaturen führen.",
+      "Variante B ist zu optimistisch. Bei Panel 15 °C, Luft 20 °C und Taupunkt 17 °C liegt die Netto-Strahlungskühlung realistisch bei ca. 10–20 W/m², nicht bei 20–30 W/m². Die genannten 0,6–0,9 kWh/Nacht entsprächen 3 m² × 8 h × 25–35 W/m². Realistisch sind eher 0,3–0,4 kWh. Zudem passen 40 L nicht zu 0,75 kWh (8 K → ca. 80 L). Behebung: Strahlungsbilanz mit Taupunkt und Konvektion sauber rechnen.",
+      "Es fehlen Kosten, Gewichte (Fassade: ca. 130 kg Gel, Tragwerk), Aufstellbedingungen und eine Zeitprofil-Rechnung. Kosten fehlen ganz. Der Balkon muss nach Süden und unverschattet liegen. Kollektor (3 × 0,85 m, 35°), Kondensator (3–4 m² verrippt, 1,8 m hoch), 1 m Siphon und Speicher auf 1 × 3 m Grundfläche sind sehr eng. Behebung: Grobe Kostenschätzung, Gewichts- und Lastnachweis und Orientierungsannahme ergänzen."
+    ],
+    "staerken": [
+      "Die Grundaussage ist physikalisch richtig. Ein reiner Verdampfer-Kondensator-Loop kühlt nicht, weil Dampf nur zur kälteren Stelle strömt und der Kondensator kälter als der Verdampfer sein müsste. Die Lösung verlangt daher eine Wärmepumpe mit Antrieb.",
+      "Sorptionskühlung mit Silikagel und Wasser erfüllt die harten Vorgaben. Wasser ist das einzige Arbeitsmittel, das Sorbens ist ungiftig und nicht brennbar, und Salzlösungen werden begründet ausgeschlossen (Umwälzung, Korrosion, Kristallisation).",
+      "Die Kondensationswärme wird eindeutig verortet: 72 W am verrippten Kondensator bei ca. 40 °C an die Außenluft. Zusätzlich fallen ca. 125 W Adsorptionswärme nachts am Adsorber an. Die Trennung von Verdampfung und Kondensation in Ort und Zeit ist klar erklärt, und die Bilanz schließt (651 W rein = 651 W raus).",
+      "Die Steuerung kommt ohne Strom aus: Rückschlagklappen als Druckventile, Schwerkraft-Siphon mit nachgerechneter Höhe (6 kPa ≈ 0,6 m, ≥ 1 m Tiefe), Wachs-Dehnstoff-Klappen und Kamineffekt. Der Vakuum-Pumpenbedarf beim Bau wird ehrlich als Wartung benannt.",
+      "Beide Größen (Balkon und Fassade) sind mit Kälte, Litern pro Tag und Speicher beziffert. Die Rechnung ist nachvollziehbar: Sorbensmasse, Zyklusenergie, Carnot- und Solar-COP-Plausibilitätsprüfung sowie Speicher- und Wendelauslegung.",
+      "Der Abschnitt zu Grenzen und Risiken ist ehrlich. Er nennt Vakuumdichtheit, Klappen, Vereisung unter 0 °C, Wetterabhängigkeit, Berührungsschutz und ±30 % Unsicherheit, und verweist auf Prototypmessung. Auch die offene Verdunstung (Feuchtkugelgrenze, Wasserverlust ca. 1,5 L/kWh) ist korrekt eingeordnet.",
+      "Die stromfreie Rückfalloption (Variante B, Strahlungskühlung) und die Legionellen-Überlegung (kalter Speicher, getrennter Trinkwasserweg in Edelstahlwendel) zeigen Praxisbezug."
+    ]
+  }
+]
