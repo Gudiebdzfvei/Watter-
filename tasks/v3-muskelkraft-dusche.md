@@ -1,7 +1,7 @@
-# Aufgabe: Kühlkabine mit Fahrrad und kalter Dusche – geschlossener Wasserkreislauf, Muskelkraft erlaubt
+# Aufgabe: DIY-Kühlkabine für den Balkon mit Fahrrad und kalter Dusche – geschlossener Wasserkreislauf, Muskelkraft erlaubt
 
 ## Idee
-Ein Mensch steht in einer kleinen Anlage auf dem Balkon oder an der Fassade.
+Ein Mensch steht in einer kleinen, selbst gebauten Anlage auf dem Balkon.
 Er tritt auf einem Fahrrad (Ergometer) und erzeugt damit Antriebsenergie
 (mechanisch direkt oder als Strom). Mit dieser Energie – zusammen mit Sonne
 und Umgebung – wird Leitungswasser gekühlt. Danach duscht er sich mit dem
@@ -29,7 +29,9 @@ sein.
    ≈ 470 kg, grob 12–18 k€. Schwächen: Ertrag hängt an unbelegter
    Zeolith-Isotherme, schwache passive Nachtkühlung, heikle
    Dampf-Rückschlagklappe und hohe Dichtheitsanforderung, schwer, bei
-   Bewölkung kein Ertrag, Fassadenhöhe kaum genutzt.
+   Bewölkung kein Ertrag. Außerdem **nicht selbst baubar**: vollgeschweißter
+   Edelstahl-Vakuumaufbau mit Helium-Lecktest, Sonderklappen, Dichtheit
+   ≤ 5·10⁻⁸ mbar·l/s.
 
 Nutze diese Erkenntnisse. Wiederhole die Fehler nicht, und prüfe, ob
 Muskelkraft die Schwächen von Durchlauf 2 beheben kann (z. B. Pumpen,
@@ -46,10 +48,27 @@ eine ganz andere Lösung jetzt besser ist.
    Tag/Nacht-Wechsel und **menschliche Muskelkraft** (Fahrrad). Strom aus
    Solarmodulen an der Anlage nur, wenn es nachweislich nicht anders geht –
    dann so wenig wie möglich und ehrlich beziffert. Kein Netzstrom.
-3. **Größe:** Balkon (Grundfläche ca. 1 × 3 m, Höhe bis ca. 2,5 m) oder
-   Fassade eines vierstöckigen Gebäudes (Höhe ca. 12–14 m). Ein Mensch mit
-   Fahrrad und Duschplatz muss hineinpassen.
-4. **Der Kühlkreislauf bleibt geschlossen** (kein Verdunstungsverlust in die
+3. **Nur Balkon.** Grundfläche ca. 1 × 3 m, Höhe bis ca. 2,5 m, Brüstung
+   und Wand nutzbar. Ein Mensch mit Fahrrad und Duschplatz muss hineinpassen.
+   Gewicht betriebsbereit angeben und begründen, dass ein normaler
+   Wohnungsbalkon es trägt. Keine Fassadenvariante.
+4. **Selbst baubar (DIY).** Ein handwerklich geschickter Laie muss die
+   Anlage selbst bauen können:
+   - Teile aus Baumarkt, Sanitär-/Heizungshandel oder gängigen
+     Online-Shops; keine Sonderanfertigungen, die nur Industriebetriebe
+     herstellen können.
+   - Werkzeug für Heimwerker (Bohrmaschine, Rohrschneider, Pressfitting-
+     oder Lötzange, ggf. einfache Vakuumpumpe aus dem Klimatechnik-Bedarf);
+     kein Orbitalschweißen, keine Helium-Lecksuche, keine Druckbehälter-
+     Abnahme.
+   - Keine gefährlichen Drücke oder Temperaturen, die für Laien riskant
+     sind; Sicherheitsrisiken beim Selbstbau klar benennen.
+   - Eine Stückliste mit ungefähren Preisen und eine Bauanleitung in
+     Schritten mitliefern. Budget möglichst niedrig, ehrlich beziffert.
+   - Wenn ein Bauteil für DIY zu heikel ist (z. B. dauerhaft dichtes
+     Vakuum), eine einfachere Alternative wählen oder zeigen, wie man es mit
+     Hausmitteln prüft und nachbessert.
+5. **Der Kühlkreislauf bleibt geschlossen** (kein Verdunstungsverlust in die
    Atmosphäre). Das Duschwasser selbst ist Leitungswasser und darf ablaufen.
 
 ## Die entscheidende Frage: lohnt sich das für den Menschen?
@@ -83,6 +102,6 @@ Muskelkraft modellieren als Knoten "Nahrung" (rolle "umgebung") → "Mensch"
 Mensch gibt Arbeit an das Fahrrad/den Antrieb ab und Wärme an Luft und
 Duschwasser.
 
-Gesucht ist die bestmögliche, physikalisch korrekte und praktisch baubare
-Lösung, die alle harten Vorgaben einhält und die Frage nach der Wärmebilanz
+Gesucht ist die bestmögliche, physikalisch korrekte und selbst baubare
+Balkon-Lösung, die alle harten Vorgaben einhält und die Frage nach der Wärmebilanz
 des Menschen ehrlich beantwortet.
