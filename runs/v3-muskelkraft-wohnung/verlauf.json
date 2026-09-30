@@ -91,5 +91,140 @@
       "Gute Klarheit und Ehrlichkeit über Grenzen: Wetterabhängigkeit, marginaler Schwerkraftumlauf, Zielmarke verfehlt. Es gibt eine Testanweisung mit Fallback, Sicherheitshinweise (Stagnation, Wind, Frost, Schimmel), eine Balkonlast-Begründung mit Lastverteilplatte, Stückliste und Bauanleitung.",
       "Die Energiebilanz im JSON ist intern konsistent (Speicher und Strahler bilanziert, S_gen ≥ 0, geschlossener Kreis, 0 l/Tag Wasserverlust)."
     ]
+  },
+  {
+    "runde": 2,
+    "score": 5.0,
+    "punkte": {
+      "physik": 6.0,
+      "kondensationswaerme": 6.5,
+      "vorgaben": 5.0,
+      "machbarkeit": 6.0,
+      "quantifizierung": 6.5,
+      "klarheit": 7.5
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "12 Knoten, 13 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Mensch'",
+        "ok": true,
+        "detail": "rein 18 W, raus 18 W"
+      },
+      {
+        "check": "Energiebilanz 'Speicher'",
+        "ok": true,
+        "detail": "rein 70 W, raus 70 W"
+      },
+      {
+        "check": "Energiebilanz 'Absorber'",
+        "ok": true,
+        "detail": "rein 54 W, raus 54 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdampfer'",
+        "ok": true,
+        "detail": "rein 16 W, raus 16 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdichter'",
+        "ok": true,
+        "detail": "rein 20 W, raus 20 W"
+      },
+      {
+        "check": "Energiebilanz 'Kondensator'",
+        "ok": true,
+        "detail": "rein 20 W, raus 20 W"
+      },
+      {
+        "check": "Wärmerichtung Mensch -> Wohnung",
+        "ok": true,
+        "detail": "37.0 °C -> 25.6 °C, 7 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Mensch -> Bad",
+        "ok": true,
+        "detail": "37.0 °C -> 20.0 °C, 7 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Speicher",
+        "ok": true,
+        "detail": "25.6 °C -> 22.9 °C, 67 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luft -> Speicher",
+        "ok": true,
+        "detail": "32.0 °C -> 22.9 °C, 3 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Speicher -> Absorber",
+        "ok": true,
+        "detail": "22.9 °C -> 20.4 °C, 54 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Absorber -> Himmel",
+        "ok": true,
+        "detail": "20.4 °C -> 6.0 °C, 53 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Absorber -> Nachtluft",
+        "ok": true,
+        "detail": "20.4 °C -> 20.0 °C, 2 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Speicher -> Verdampfer",
+        "ok": true,
+        "detail": "22.9 °C -> 18.0 °C, 16 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kondensator -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 20 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.072 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 60 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 25.6 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Hauptkühlung (Stufe 1) kommt vom Nachthimmel über einen unverglasten, nicht selektiven Absorber, nicht von Muskelkraft. Der Beitrag der Muskelkraft ist mit −0,17 K für rund 2,5 k€ praktisch bedeutungslos. Die Aufgabe fragt nach der besten Nutzung von Muskelkraft. Besser wäre, die Muskelkraft für Aufgaben einzusetzen, die Stufe 1 tatsächlich verbessern (Umwälzpumpe, Lüfter am Absorber, Nachtspülung), statt eine Vakuum-Dampfverdichtung mit COP-Unsicherheit dranzuhängen.",
+      "Die Stufe-1-Pumpe läuft mit PV, Akku und Regler (≈ 32 Wh/Nacht, ≈ 90 € Elektrik). Die Vorgabe erlaubt Solarstrom nur, wenn es 'nachweislich nicht anders geht'. Dieser Nachweis fehlt. Ein Thermosiphon ist möglich, wenn der Absorber höher steht als die Speicher, und eine handbetriebene oder durch Schwerkraft angetriebene Umwälzung wäre denkbar. Der Thermosiphon wird nur als zweitägiger Test erwähnt. Zu beheben: Thermosiphon-Auslegung mit Höhendifferenz, Rohrquerschnitt und erreichbarer Leistung rechnen, oder begründen, warum sie bei ΔT von 1–3 K nicht reicht.",
+      "Die Nachtstrahlung ist optimistisch: Himmelstemperatur fest 6 °C, Abschlag pauschal 0,75. Das ergibt 52,7 W im 24-h-Mittel, also ≈ 125 W über ≈ 10 Nachtstunden bei nur 2,7 m². Bei Wind, Feuchte oder Dunst oder unter einem Balkon darüber bricht das ein. Konvektionsgewinne von der Luft (20 °C, 0–3 m/s) sind in der Bilanz nur mit 1,5 W angesetzt. Das ist nur konsistent, wenn der Absorber im Mittel wärmer als die Luft bleibt, und ein 24-h-Mittel der Knotentemperaturen (Absorber 20,4 °C, Speicher 22,9 °C) verdeckt die Tag/Nacht-Dynamik. Nötig wären eine stündliche Nachtbilanz mit Wind und variabler Himmeltemperatur sowie ein Worst-Case-Wert.",
+      "Die Raumkühlung ist an T₀ = 28 °C und UA = 25 W/K gekoppelt. 60,3 W ÷ 25 W/K ergibt genau die 2,4 K. Die Wärmelast ist damit nur geschätzt, und die Temperaturabsenkung hängt vollständig an diesen Zahlen. Die Wärmelast sollte aus Fläche, Verglasung, Solargewinn und Luftwechsel hergeleitet werden. Zusätzlich sollte ein Wert für schlechtere Bedingungen (UA 40 W/K, Sonneneintrag) angegeben werden.",
+      "Das Ziel ≤ 26 °C wird nur im 24-h-Mittel erreicht. In der Abendspitze liegt der Raum bei 26,8–27,4 °C, also gerade dann, wenn die Kühlung gebraucht wird. Die Speicher liegen im Mittel nur 2–3 K unter Raumtemperatur (22,9 °C gegen 25,6 °C) und haben mit 2 × 100 L nur ≈ 0,23 kWh/K. Das ist eine dünne Reserve. Größere Speicher, ein Gebläsekonvektor oder eine Kühlfläche mit besserem Wärmeübergang wären nötig.",
+      "Die Vakuum-Dampfverdichtung (Stufe 2) ist für DIY zu heikel. Ein Stahlzylinder mit ID 250 mm, eine Kolbenstangendichtung im Vakuum, Lüftungs-Rückschlagklappen als Ventile bei ≈ 20–70 mbar und ein Druckanstiegstest mit ≤ 0,02 mbar/h sind nicht nachweislich erreichbar. Der Test ist mit Wasser im Behälter kaum aussagekräftig, weil 1 K etwa 1,4 mbar bei 18 °C entspricht. Ein Eimertest und ein abgepumptes Kreislaufvolumen ersetzen keine Dichtheitsprüfung. Die Anleitung räumt selbst ein, es sei 'kein Laienprojekt'. Dazu passt das regelmäßige Abpumpen von Restluft (5–10 min, 8 Wh), das eine erwartete Undichtigkeit einpreist. Zu beheben: Stufe 2 als optionales Experiment kennzeichnen oder ganz streichen, und die Leckrate als Massenstrom (mbar·l/s) angeben.",
+      "Der COP von 3,8 (2,5–5,5) für einen Wasserdampf-Kolbenverdichter ist nicht belegt. Klappenverluste bei nur 2 kPa Saugdruck (schon 0,3 kPa sind 15 % des Drucks), Schadraum, Leckage und das Restluft-Problem am Kondensator drücken ihn. Die Obergrenze 5,5 ist unrealistisch. Die angesetzte Verdichtertemperatur 90 °C ist niedriger als die isentrope Endtemperatur (≈ 120 °C oder mehr), die Wärmebilanz am Verdichter also geschönt. Nötig sind eine Rechnung mit Schadraum, Ventilverlusten und isentropem Wirkungsgrad sowie ein Worst-Case-COP (≈ 2).",
+      "Zwei mechanische und thermische Risiken bleiben offen. Bei ID 250 mm und 2 kPa Saugdruck wirkt auf den Kolben ohne Druckausgleich der Rückseite eine Kraft von ≈ 4,5–5 kN. Das belastet Kurbel, Lager und Wellendurchführung stark und macht die Pedalkraft stoßartig. Außerdem verschiebt ein Sumpf mit Wassertiefe die Verdampfungstemperatur: 10 cm Wasser sind ≈ 10 mbar bei nur ≈ 20 mbar Absolutdruck. Zu beheben: doppelt wirkender Zylinder oder Rückseite ebenfalls im Vakuum, dazu Sprüh- oder Rieselfilmverdampfer statt eines gefluteten Registers.",
+      "Speicher und Boiler stehen im Zimmer: 2 × 115 kg auf 50 × 50 cm sind ≈ 4,5 kN/m² lokal, also weit über den üblichen Wohnraum-Nutzlasten von 1,5–2 kN/m². Dazu kommt Wasserschadenrisiko bei ungedämmten Speichern in Wohnräumen. Kondensat an den Speichern ist ebenfalls möglich, wenn sie bei 18–20 °C unter den Taupunkt eines feuchten Zimmers (≈ 17 °C bei 28 °C/50 % r. F.) kommen. Die Aussage 'Speicher wärmer als Taupunkt' gilt nur im Mittel. Die Statik der Decke muss geklärt und die Last auf mehr Fläche verteilt oder auf Balkon/Keller verlagert werden.",
+      "Die Energiebilanz (JSON) ist ein 24-h-Mittel und blendet die PV-Pumpenleistung aus. Ein Strompfad fehlt in den Strömen, obwohl er im Text steht. Der Prüfer kann die 4 W Pumpenwärme im Speicher nicht sehen. Ein Strom 'Luft → Speicher' mit 3 W ist unerklärt. Die Kälte aus Stufe 2 ist zudem im Mittel nur 15,9 W, sodass eine 20-min-Leistungsspitze (≈ 380 W) im JSON nicht sichtbar ist. Zu beheben: PV-Knoten und Pumpenstrom ergänzen, Mittel- und Spitzenbilanz getrennt ausweisen."
+    ],
+    "staerken": [
+      "Ehrliche Kernaussage: Muskelkraft ist ein Zusatz und kein Hauptantrieb der Kühlung, Stufe 2 bringt nur ≈ −0,2 K, und Stufe 1 liefert ≈ −2,2 K (−0,9 bis −2,2 K als Spanne). Der Ertrag wird klar als berechnet und nicht gemessen bezeichnet.",
+      "Die Körperwärme wird konsistent bilanziert: 54 Wh pro 20-min-Runde ans Zimmer und 58 Wh ins Bad passen zu 100 W mechanisch und einem Wirkungsgrad von ≈ 23 %. Der Mindest-COP von 1,6 / 2,2 / 2,7 ist nachvollziehbar (54 Wh ÷ 33 Wh ≈ 1,6). Dass er mit Reserve erreicht wird, hängt allerdings am optimistischen COP.",
+      "Das Kondensationswärme-Problem ist grundsätzlich richtig gelöst: Kondensator bei 40 °C gegen 32 °C Luft, Druckhub 2,06 kPa → 7,4 kPa (18 → 40 °C) durch Verdichtung, und ein Standrohr ≥ 0,8 m als Kondensatrückführung. Das entspricht 0,54 m Wassersäule Druckdifferenz.",
+      "Arbeitsmittel ist ausschließlich Wasser, der Kreis ist geschlossen (0 l/Tag), und es gibt keinen Netzstrom. Die Energiebilanz im JSON schließt an allen Knoten, und die Entropieerzeugung ist positiv (0,072 W/K).",
+      "Der gestufte Aufbau mit Abbruchkriterien ist praxisnah. Stufe 1 ist mit Baumarkt- und Solarthermie-Teilen selbst baubar, mit Druckprobe, 12-V-Elektrik, Frostentleerung und Stagnationsschutz.",
+      "Stückliste mit Preisen (Stufe 1 ≈ 1.460 €, Stufe 2 zusätzlich 2,4–2,8 k€), Gewichtsaufstellung mit Lastnachweis (≈ 270 kg, ≈ 0,9 kN/m²) und Sicherheitsabschnitt (Implosion, Windsog, Absturz, Stagnation) sind vorhanden. Die Grenzen werden ausdrücklich benannt (T₀ und UA geschätzt, Abendspitze über 26 °C, Pumpe nicht null)."
+    ]
   }
 ]
