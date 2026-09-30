@@ -485,5 +485,101 @@
       "Solide Umsetzungsdaten: Gewicht ≈ 100 kg Balkon mit Lastnachweis und Windsog, Stückliste ≈ 1,6 k€, 13-schrittige Bauanleitung mit Prototyp-Abbruchkriterium (< 20 W je Körper), Regler-Pseudocode, Druckprobe, Sicherheitskapitel.",
       "Klare Einordnung der Grenzen: das Ziel ≤ 26 °C wird im Basisfall nicht erreicht, Nachtlüften ist wirksamer, und ein 10-W-Solarmodul wäre technisch besser. Das macht das Ergebnis glaubwürdig statt geschönt."
     ]
+  },
+  {
+    "runde": 5,
+    "score": 7.35,
+    "punkte": {
+      "physik": 7.0,
+      "kondensationswaerme": 7.0,
+      "vorgaben": 8.0,
+      "machbarkeit": 7.0,
+      "quantifizierung": 7.0,
+      "klarheit": 9.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "6 Knoten, 5 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Raumkuehler'",
+        "ok": true,
+        "detail": "rein 44 W, raus 44 W"
+      },
+      {
+        "check": "Energiebilanz 'Kollektor'",
+        "ok": true,
+        "detail": "rein 53 W, raus 53 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Raumkuehler",
+        "ok": true,
+        "detail": "26.0 °C -> 23.3 °C, 44 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Raumkuehler -> Kollektor",
+        "ok": true,
+        "detail": "23.3 °C -> 22.8 °C, 44 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Balkonumfeld -> Kollektor",
+        "ok": true,
+        "detail": "24.5 °C -> 22.8 °C, 9 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Himmel",
+        "ok": true,
+        "detail": "22.8 °C -> 9.1 °C, 50 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Nachtluft",
+        "ok": true,
+        "detail": "22.8 °C -> 21.9 °C, 3 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.010 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 44 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 26.0 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Der Himmelssicht-Ansatz ist inkonsistent und wohl zu günstig. Die Rechnung nutzt pauschal 0,5. Das senkrechte Brüstungsmodul bekommt aber 60 % Sicht, obwohl eine senkrechte Fläche geometrisch höchstens 0,5 sieht, und die Horizontnähe ist dabei noch wärmer. Die Pergola in 2,2 m Höhe im „mittleren Geschoss“ liegt meist unter der Platte des oberen Balkons. Dort sind 0,1 bis 0,2 realistisch, nicht 0,3. Behebung: Sichtfaktor je Modul aus Geometrie und Horizontprofil rechnen, das Brüstungsmodul mit ≤ 0,45 ansetzen und die Standortprüfung als K.-o.-Kriterium vor den Kauf stellen.",
+      "Der Thermosiphon-Antrieb von 14 Pa (1,4 mm Wassersäule) mit ~20 % Reserve ist nur handgerechnet und nirgends belegt. Das Modell nimmt eine ideale Verteilung auf 3 Module × 30 Steigrohre à 8 mm und 3 parallele Heizkörper an. Bei Re ≈ 40 und 0,27 g/s je Rohr sind Fehlverteilung, Rückströmung in einzelnen Steigrohren und Gasblasen zu erwarten. Bei 20 → 45 °C gast VE-Wasser aus, und die Blasen sammeln sich an den Hochpunkten. Das Brüstungsmodul liegt mit Mitte ≈ 1 m nur ≈ 0,4 m über den Heizkörpern. Für dieses Modul gilt die Höhendifferenz von 1,6 m nicht, und tagsüber sind Störströmungen möglich. Behebung: Höhendifferenz und Widerstand je Zweig einzeln rechnen, Ventile je Modul, Vortest verpflichtend vor dem Hauptbau. Der Pumpen-Bypass mit Batterie ist im Kern ein Stromzusatz, das sollte als Regelfall eingeplant werden.",
+      "Der Heizkörper-Leitwert von 18 W/K je Körper bei ΔT ≈ 2 K stammt aus einer Extrapolation des Nennwerts (n = 1,3). Für einen gekühlten Typ-22-Konvektor mit umgekehrter Kaminwirkung gibt es keine Messgrundlage. Die Sensitivitätstabellen variieren G_a, Last und Himmelssicht, aber nicht UA_R und UA_A um ±30 %. Q ist aber direkt davon abhängig, und alles hängt an Q. Behebung: Tabelle für UA_R 12 bis 26 W/K und UA_A ±30 %, und den Vortest so auslegen, dass beide Leitwerte gemessen werden.",
+      "Das Ziel ≤ 26 °C wird nur im 24-h-Mittel erreicht (26,0 °C). Zur Abendspitze liegen 26,4 °C an, nach den Sensitivitäten in vielen Räumen 26,4 bis 26,9 °C. „Knapp erreicht“ ist zu wohlwollend. Die Annahmen für das Zimmer sind eher günstig: Last nur 72 W mit Außenrollo, effektive Außentemperatur 24,8 °C und damit unter dem Tagesmittel der Luft von 26 °C, obwohl Sonneneinstrahlung auf die Fassade dazukommt. Ohne Gerät ergibt das 28,1 °C. Behebung: Solluftrechnung für die Fassade, Spitzenwert statt Mittel als Zielgröße, Ergebnis als „−1 bis −2 K, Ziel meist verfehlt“ formulieren.",
+      "Die Muskelbilanz enthält Ungenauigkeiten. Die ganze Stoffwechselwärme (251 W) wird dem Treten angelastet, obwohl die Person ohnehin etwa 80 bis 100 W im Zimmer abgäbe. Der Lüfter-Fall wird „Nullsumme“ genannt, ist aber mit 147 Wh Gewinn gegen ≈ 193 Wh Zimmerwärme klar negativ. Die Schlussfolgerung „Muskel bringt nichts“ hält trotzdem. Die Aufgabe verlangt aber ausdrücklich, Muskelkraft zu prüfen, und die Lösung nutzt sie nur als Reserve. Zudem fehlen die Knoten Nahrung, Mensch und Bad in der JSON-Bilanz. Behebung: Gegenfaktisch nur die Zusatzwärme über der Ruhe ansetzen, den Lüfter-Fall korrekt als negativ ausweisen.",
+      "Die Wanddurchführung passt nicht. Zwei Cu-35-Rohre mit je 30 mm Dämmung haben Ø ≈ 95 mm, zusammen ≈ 190 mm, in eine Kernbohrung Ø 125 mm. Auch die sechs M10-Verbundanker in die Balkonplatte (Bewehrung, Abdichtung, Isokorb) werden nur beiläufig erwähnt. Behebung: Dämmung im Durchführungsbereich reduzieren oder Ø 200 mm bohren, Ankerpositionen mit Bewehrungsortung und Statik-Freigabe verlangen.",
+      "Die Energiebilanz im JSON wirkt teilweise auf Schließung getrimmt. Nachtluft steht mit 21,9 °C (flussgewichtet) gegen 22,8 °C im Text. Der Konvektionsstrom von 3,2 W liegt unter dem, was 5 W/m²K · 3,64 m² · ~0,9 K ergäbe (≈ 7 W im 24-h-Mittel). Die 24-h-gemittelten Ströme sind mit Nacht-Mitteltemperaturen kombiniert. Die Wärmerichtung ist deshalb formal richtig, die Zahlen sind aber nicht sauber nachvollziehbar. Behebung: Alle Ströme aus den drei Nachtblöcken einzeln herleiten und aufsummieren.",
+      "Die Kondensationsmarge ist knapp: Kühler-Eintritt 20,7 bis 21,8 °C gegen einen Raumtaupunkt von 18,5 bis 20 °C. Kondensat auf Stahl-Konvektorlamellen verursacht Rost, und die Latentlast ist in Q nicht enthalten. Der Taupunkt-Ansatz für den Schläfer ist geschätzt. Behebung: Lackierung oder Edelstahl-Lamellen, feste Regel „Eintritt ≥ Raumtaupunkt + 1,5 K“ mit Messung, Latentanteil in der Bilanz.",
+      "Das Kosten-Nutzen-Verhältnis ist schwach: ≈ 2,1 bis 2,3 k€ und 225 kg (90 kg Balkon, 135 kg Innenwand) für ≈ 1 kWh Nachtkälte und −2 K, und nur nachts bei klarem Himmel. In Tropennächten mit Bewölkung sinkt der Ertrag auf ≈ 10 %. Nächtliches Lüften wirkt in vielen Fällen mehr, wie das Dokument selbst einräumt. Die 30 L Wasser im Wohnraum bringen zudem ein Wasserschadenrisiko. Behebung: Nutzen gegen Fensterlüftung und einen einfachen Ventilator quantifizieren, Leckwächter und Auffangwanne ergänzen."
+    ],
+    "staerken": [
+      "Die Lösung ist ehrlich und quantifiziert: Muskelkraft ist mit Wasser und DIY kein Kälteerzeuger. Die COP_min (1,4 bis 2,6) ist sauber aus Körperspeicherung, Schweiß und Nachlauf hergeleitet, und der Wasserdampfverdichter wird nachgerechnet (13 m³/h stimmt).",
+      "Der Ansatzwechsel ist physikalisch stimmig. Es gibt keinen Phasenwechsel und keinen Druckhub, die Wärme fließt an die kältere Senke Nachthimmel. Die Kondensationswärme-Falle der früheren Runden wird dadurch vermieden, nicht umgangen.",
+      "Die Nachbeurteilung hält Stichproben stand. Der Thermosiphon-Antrieb (ρgβH ≈ 4 Pa/K) und die Laminarwiderstände (Cu 35: 0,47 Pa je g/s) sowie die ε-NTU-Werte (117 W bzw. 143 W) lassen sich nachrechnen. Die Nullfluss-Temperaturen aus dem Strahlungsbilanz-Ansatz sind konsistent.",
+      "Der freie Umlauf wirkt als thermische Diode: Der heiße Kollektor liegt oben, tagsüber gibt es keine Strömung, Regler und Ventil entfallen. Der Leckwärme-Ansatz von ≈ 0,7 W für die Cu-Rohre ist plausibel.",
+      "Die Zimmerwirkung ist mit Rückkopplung Raum ↔ Ertrag, Masse-Zeitkonstante und Aufbaudauer gerechnet. Es gibt Sensitivitäten (G_a, Last, Himmelssicht, Wetterverteilung). Der Erwartungswert von −2 K wird ehrlich als knapp und mit ±30 % Unsicherheit ausgewiesen.",
+      "Die Vorgaben sind eingehalten: nur Wasser, Kreislauf geschlossen (0 l/Tag), kein Netzstrom, Balkonmaße und Gewicht (~90 kg) mit Lastnachweis. Windsog und Verankerung werden gerechnet. Es gibt keine Vakuumteile und keine Sonderanfertigungen.",
+      "Sehr gute DIY-Unterlagen: Stückliste mit Preisen, Bauanleitung, Vortest mit einem Modul, Abnahmetest mit Erwartungswerten und Fehlersuche, Verlegeregeln für die Strömung, Sicherheits- und Winterhinweise.",
+      "Der Physik-Prüfer meldet keine Verletzung (Energiebilanzen, Wärmerichtungen, S_gen ≥ 0, Nutztemperatur unter Außenluft)."
+    ]
   }
 ]
