@@ -73,5 +73,87 @@
       "Die Frage Speicher oder Dauerdurchfluss ist mit Zahlen beantwortet (100 l ≈ 0,9 kWh). Der Gegenstrom-Durchlauf mit Speicher nur am Ausgang ist physikalisch richtig.",
       "Die natürliche Konvektion wird realistisch eingeordnet: Kühldecke tropft bei 15 °C, Heizkörper sind schwer, brauchen Platz und Bohrungen, und Rost wird genannt. Nur Strom für 3 W Lüfter, alles drinnen, kein Brennbares oder Giftiges, vollständige Stückliste (≈ 260 €) und Bauanleitung, Rechtshinweise zu Vermieter und Trockenheit."
     ]
+  },
+  {
+    "runde": 2,
+    "score": 7.4,
+    "punkte": {
+      "physik": 7.0,
+      "kondensationswaerme": 7.0,
+      "vorgaben": 8.0,
+      "machbarkeit": 7.0,
+      "quantifizierung": 8.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "5 Knoten, 4 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Kuehlregister'",
+        "ok": true,
+        "detail": "rein 281 W, raus 281 W"
+      },
+      {
+        "check": "Energiebilanz 'Luefter'",
+        "ok": true,
+        "detail": "rein 4 W, raus 4 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Kuehlregister",
+        "ok": true,
+        "detail": "27.1 °C -> 18.5 °C, 281 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kuehlregister -> Leitungswasser",
+        "ok": true,
+        "detail": "18.5 °C -> 15.0 °C, 281 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luefter -> Wohnung",
+        "ok": true,
+        "detail": "30.0 °C -> 27.1 °C, 4 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.053 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 277 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 27.1 °C, Luft 30.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die luftseitige Kontrollrechnung ist geschönt. Sie nennt h ≈ 40 W/(m²K) und luftseitig ≈ 300 W/K. Bei nur 0,25 m/s Anströmung liegt h realistisch bei ≈ 10–15 W/(m²K). Die Lamellenfläche eines 3-reihigen 500×300-Registers (grob 8–10 m²) gibt dann luftseitig nur ≈ 80–110 W/K. Zusammen mit der laminaren Wasserseite (≈ 150 W/K) und den Kontaktwiderständen ergibt das UA ≈ 45–60 W/K. Der Ansatz 65 W/K liegt damit am oberen Rand und nicht 'bewusst niedrig'. Fix: UA aus der Geometrie (Rohr- und Lamellenfläche, Reynolds-Zahlen) nachvollziehbar herleiten oder den pessimistischen Fall (215 W) als Planungswert nehmen.",
+      "Der Luftstrom von 130 m³/h bei < 1 Pa Druckverlust und 4 W ist optimistisch. Ein 3-reihiger Kern mit 2,5 mm Lamellenteilung, dazu Plenum und Austrittsöffnung, kostet eher 3–8 Pa. PC-Lüfter mit 0,3–0,5 W bei ≈ 1.000 U/min erreichen keine '≥ 2 mmH₂O Statikdruck', das schaffen nur 2–4 W je Lüfter bei höherer Drehzahl. Zudem geht Verlust im 7–12-V-Regler dazu. Fix: Lüfterkennlinie und Anlagenkennlinie gegenüberstellen, 6–10 W ehrlich buchen oder einen Zweireiher mit geringerem Widerstand wählen.",
+      "Die Wärmeübertragung ohne Strom wird abgetan. Die eigene Rechnung gibt für zwei Panel-Heizkörper ≈ 240 W, fast so viel wie mit Lüfter (≈ 280 W). Sie brauchen keinen Strom, sind gebraucht billig (≈ 50–100 €) und unkritisch beim Taupunkt, solange die Oberfläche ≥ 18 °C bleibt. Sie werden aber nur mit Gewicht und Rost verworfen. Fix: die stromlose Variante als gleichwertige Hauptoption mit Kosten und Stückliste ausarbeiten. Die Zuleitung mit 15 °C muss dabei isoliert werden, weil sie beschlägt.",
+      "Die Kondensationsfrage wird zu knapp behandelt. Der Taupunkt im Auslegungsfall liegt bei 28 °C / 50 % bei ≈ 17 °C, und der Wassereintritt mit 15 °C liegt an der Luftaustrittsseite darunter. Die Annahme, die Oberfläche liege wegen des Wasserwiderstands bei 17–19 °C, ist nicht belegt. Die Lamellenfüße am kalten Ende dürften bei 15–16 °C liegen, es kondensiert dort also bei Schwüle oder 12 °C Zulauf sicher. Die Entfeuchtung wird als Nutzen pauschal verneint, statt die latente Leistung wenigstens als Bandbreite zu quantifizieren, zum Beispiel bei 28 °C / 60 %. Fix: Oberflächentemperatur je Registerabschnitt rechnen und einen feuchten Fall mit Kondensatmenge und Zusatzleistung angeben.",
+      "Das Wassermanagement passt nicht zusammen. Der 60-l-Behälter ist bei 35 l/h nach ≈ 1,7 h voll, und 'täglich leeren' reicht nicht. Der Großteil der 350 l läuft über den Überlauf in die Badewanne, nur ≈ 100–150 l/Tag werden von Hand als Brauchwasser abgeholt. Fix: Behältergröße und Schleppaufwand ehrlich ansetzen, etwa ≥ 200 l oder einen Direktablauf in ein WC-Spülkasten-Bypass-Konzept prüfen. Alternativ die Laufzeit auf die Stunden mit dem höchsten Nutzen kürzen.",
+      "Das Kosten-Nutzen-Verhältnis ist schwach. Rund 450 € und 350 l/Tag bringen nur ≈ 2,4 K Spitzenabsenkung. Bei Zulauf 18 °C sind es nur noch ≈ 1,7 K, und Kälte kostet dann ≈ 0,6 €/kWh. Das wird zwar genannt, aber die Empfehlung bleibt dennoch ein 450-€-Gerät. Fix: klar formulieren, dass Außenverschattung und Nachtlüftung vorrangig sind, und ein Low-Cost-Variante (gebrauchter Gebläsekonvektor oder Heizkörper) als Einstieg anbieten.",
+      "Die Zulauftemperatur ist der größte Hebel, wird aber nur als Messempfehlung behandelt. Die Kaltwasserleitung erwärmt sich im Sommer, und der 15-°C-Auslegungswert ist für Wohnungen in Obergeschossen oft unrealistisch. Dass der 18-°C-Fall 'Normalfall' sein könnte, fließt nicht in die Hauptzahlen (Preis, Tabelle, JSON) ein. Fix: die Hauptzahlen auf 18 °C auslegen oder beide Fälle gleichrangig ausweisen.",
+      "Die JSON-Bilanz ist eine Momentaufnahme um 16 Uhr mit 277 W. Die Kühlleistung der Betriebszeit liegt im Mittel bei ≈ 260 W, im 24-h-Mittel bei ≈ 108 W. Die Mischung aus Spitzenwert im JSON und Tagesmittel im Text kann Leser verwirren. Die Knotentemperatur 'Luefter 30 °C' ist beliebig gewählt. Fix: im JSON den Mittelwert der Betriebszeit (≈ 260 W, T_ein ≈ 29 °C) verwenden."
+    ],
+    "staerken": [
+      "Die Senke ist sauber benannt: Wärme geht per Wärmetauscher ins durchfließende Leitungswasser, das mit 15 → 22 °C nur ≈ 1,163 Wh/(l·K) aufnimmt. Sie wird sauber über Kapazitätsströme und ε-NTU (NTU 1,6, ε ≈ 0,57, Q = 23,2 W/K × ΔT) hergeleitet und rechnerisch nachvollziehbar mit Durchflussvarianten geprüft (25/35/50 l/h).",
+      "Die Leistungszahlen sind ehrlich und mehrstufig gegengerechnet. Es gibt eine Leistungsbandbreite (215–340 W), eine stündliche Raumtemperaturrechnung mit T-abhängiger Leistung und eine Empfindlichkeitstabelle für die Speichermasse. Außerdem wird die Leistung am Wasser messbar gemacht (1,163 × l/h × ΔT). Das Zielverfehlen (≤ 26 °C nur mit Sonnenschutz, Dachzimmer unerreichbar) wird offen gesagt.",
+      "Trinkwassersicherheit ist konsequent durchdacht. Dazu gehören eigener Kaltwasserabgang, Rückflussverhinderer EA, freier Auslauf Typ AA, kein Ventil hinter dem Register, Druckminderer, Hinweis auf KTW-Zulassung und Bleifreiheit, Spülen, tägliches Entleeren, Legionellenschwelle ≤ 18–20 °C sowie Wasserschadenprävention mit Meldern und Wanne.",
+      "Die Wasser- und Kostenbilanz ist transparent: 350 l/Tag ≈ 1,58 €, ≈ 0,6 €/kWh Kälte gegen ≈ 0,10–0,20 €/kWh beim Klimagerät. Dazu kommen Sparstufen und eine realistische Weiterverwendung (WC, Pflanzen, Putzen). Die Ablehnung von Dusche und Waschmaschine wegen Kreuzverbindung und Netzdruck ist begründet. Rechtliche Hinweise (Vermieter, Abrechnung, Trockenheit, AVBWasserV) sind ausreichend.",
+      "Die Stückliste mit Preisen stimmt rechnerisch (≈ 430–460 €) und ist mit einer schrittweisen Bauanleitung, Inbetriebnahme und Wartung konkret. Die Selbstkritik in Abschnitt 12 und die Grenzen in Abschnitt 13 zeigen eine nachvollziehbare Korrektur früherer Schwächen. Der Verbrauch von nur 4 W Strom bleibt im Rahmen der Vorgaben. Es gibt keine Brennbares und kein Giftiges, alles läuft drinnen. Der Physik-Prüfer meldet keine Verstöße (Energiebilanz, Wärmerichtung, S_gen > 0)."
+    ]
   }
 ]
