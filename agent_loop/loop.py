@@ -1,0 +1,202 @@
+"""Der eigentliche Agent Loop: erzeugen -> prüfen -> bewerten -> verbessern.
+
+Pro Runde:
+  1. Generator schreibt eine (verbesserte) Lösung.
+  2. physics.check() rechnet die Energiebilanz objektiv nach.
+  3. Ein getrennter Bewerter vergibt Punkte nach einer festen Rubrik.
+  4. Beste Lösung merken; stoppen bei Zielpunktzahl, Plateau oder Rundenlimit.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import time
+from dataclasses import dataclass
+from pathlib import Path
+
+from . import physics
+
+GENERATOR_SYSTEM = """Du bist ein erfahrener Ingenieur für Thermodynamik und Kältetechnik.
+Du entwirfst reale, baubare Anlagen und rechnest ehrlich. Du erfindest keine
+Physik: Energie bleibt erhalten, Wärme fließt von selbst nur von warm nach
+kalt, und jede Kühlung unter Umgebungstemperatur braucht eine kältere Senke
+oder einen Antrieb (Arbeit oder Wärme hoher Temperatur). Antworte auf Deutsch,
+verständlich für einen interessierten Laien, aber mit Zahlen."""
+
+JUDGE_SYSTEM = """Du bist ein strenger, unabhängiger Gutachter für Thermodynamik und
+Anlagenbau. Du hast die Lösung NICHT geschrieben. Suche aktiv nach Fehlern,
+unrealistischen Annahmen und geschönten Zahlen. Antworte ausschließlich mit
+einem JSON-Objekt, ohne Text davor oder danach."""
+
+RUBRIC = {
+    "physik": ("Physikalisch korrekt, keine verbotenen Wärmeflüsse, realistische Wirkungsgrade/COP", 0.30),
+    "kondensationswaerme": ("Löst das Kernproblem: wohin geht die Kondensationswärme, und warum funktioniert das", 0.25),
+    "machbarkeit": ("Baubar mit realen Materialien, Maße, Flächen, grobe Kosten, Wartung", 0.20),
+    "quantifizierung": ("Nachvollziehbare Rechnung: Kühlleistung, Temperaturen, Flächen, Tag/Nacht", 0.15),
+    "klarheit": ("Verständlich erklärt, ehrlich zu Grenzen und Risiken", 0.10),
+}
+
+OUTPUT_FORMAT = """
+## Ausgabeformat
+1. Lösung als Markdown (Prinzip, Aufbau mit Skizze in ASCII, Rechnung, Grenzen).
+2. Ganz am Ende GENAU EIN ```json-Block mit der Energiebilanz im stationären
+   Betrieb (Auslegungsfall Tag). Format:
+
+```json
+{
+  "knoten": {
+    "<name>": {"T_C": <°C>, "rolle": "komponente" | "umgebung"}
+  },
+  "stroeme": [
+    {"von": "<name>", "nach": "<name>", "W": <Leistung, positiv>, "art": "waerme" | "strahlung" | "arbeit" | "stoff"}
+  ],
+  "nutzen": {"knoten": "<Leitungswasser-Knoten>", "T_ein_C": <°C>, "T_aus_C": <°C>, "kuehlleistung_W": <W>},
+  "luft_T_C": <°C>,
+  "wasserverlust_l_pro_tag": <Liter>
+}
+```
+Regeln für die Bilanz: "umgebung" sind unendlich große Reservoire (Luft,
+Himmel, Sonne, Erdreich, das Leitungswasser). "komponente" sind deine Bauteile;
+für jede muss rein = raus gelten. "waerme" und "strahlung" müssen von warm nach
+kalt zeigen (Netto-Strahlung). Latente Wärme, die mit Dampf/Kondensat zwischen
+Bauteilen wandert, ist "stoff". Die Bilanz wird automatisch nachgerechnet.
+"""
+
+
+@dataclass
+class Round:
+    number: int
+    answer: str
+    physics: physics.CheckResult
+    judge: dict
+    score: float
+
+
+def _extract_json(text: str) -> dict:
+    match = re.search(r"\{.*\}", text, flags=re.DOTALL)
+    if not match:
+        raise ValueError("Bewerter hat kein JSON geliefert")
+    return json.loads(match.group(0))
+
+
+def judge(backend, task: str, answer: str, physics_report: str) -> dict:
+    criteria = "\n".join(f'- "{k}": {desc} (Gewicht {w:.0%})' for k, (desc, w) in RUBRIC.items())
+    prompt = f"""# Aufgabe
+{task}
+
+# Zu bewertende Lösung
+{answer}
+
+# Ergebnis des automatischen Physik-Prüfers
+{physics_report}
+
+# Bewertung
+Vergib für jedes Kriterium 0-10 Punkte:
+{criteria}
+
+Antworte als JSON:
+{{"punkte": {{"physik": n, "kondensationswaerme": n, "machbarkeit": n, "quantifizierung": n, "klarheit": n}},
+  "schwaechen": ["konkrete Schwäche + wie man sie behebt", ...],
+  "staerken": ["...", ...]}}"""
+    for attempt in range(2):
+        raw = backend.complete(JUDGE_SYSTEM, prompt)
+        try:
+            data = _extract_json(raw)
+            data["punkte"] = {k: float(data["punkte"][k]) for k in RUBRIC}
+            return data
+        except (ValueError, KeyError, TypeError):
+            if attempt == 1:
+                raise
+    raise AssertionError("unreachable")
+
+
+def weighted_score(judgement: dict, physics_result: physics.CheckResult) -> float:
+    score = sum(judgement["punkte"][k] * w for k, (_, w) in RUBRIC.items())
+    # Wer die Physik-Prüfung nicht besteht, kann nicht "gut genug" sein.
+    return score if physics_result.passed else min(score, 5.0)
+
+
+def generate(backend, task: str, best: Round | None) -> str:
+    if best is None:
+        prompt = f"# Aufgabe\n{task}\n{OUTPUT_FORMAT}"
+    else:
+        weaknesses = "\n".join(f"- {s}" for s in best.judge.get("schwaechen", []))
+        prompt = f"""# Aufgabe
+{task}
+
+# Bisher beste Lösung (Runde {best.number}, Punktzahl {best.score:.2f}/10)
+{best.answer}
+
+# Automatischer Physik-Prüfer
+{best.physics.report()}
+
+# Kritik des Gutachters
+{weaknesses}
+
+# Auftrag
+Schreibe eine vollständig überarbeitete, bessere Lösung. Behebe jeden Fehler
+des Physik-Prüfers und jede Schwäche des Gutachters. Wenn ein Ansatz
+grundsätzlich nicht funktioniert, wechsle den Ansatz, statt ihn zu schönen.
+Gib die komplette Lösung aus, nicht nur die Änderungen.
+{OUTPUT_FORMAT}"""
+    return backend.complete(GENERATOR_SYSTEM, prompt)
+
+
+def run(
+    backend,
+    task: str,
+    out_dir: Path,
+    max_rounds: int = 6,
+    target: float = 8.5,
+    patience: int = 2,
+    log=print,
+) -> Round:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    best: Round | None = None
+    stale = 0
+    history = []
+
+    for n in range(1, max_rounds + 1):
+        t0 = time.time()
+        log(f"\n=== Runde {n}/{max_rounds}: Generator schreibt ...")
+        answer = generate(backend, task, best)
+        phys = physics.check(answer)
+        log(f"Physik-Prüfer: {'bestanden' if phys.passed else 'NICHT bestanden'}\n{phys.report()}")
+        log("Gutachter bewertet ...")
+        judgement = judge(backend, task, answer, phys.report())
+        score = weighted_score(judgement, phys)
+        rnd = Round(n, answer, phys, judgement, score)
+        log(f"Punkte: {judgement['punkte']} -> gewichtet {score:.2f}/10 ({time.time() - t0:.0f}s)")
+
+        (out_dir / f"runde_{n}.md").write_text(answer, encoding="utf-8")
+        history.append(
+            {
+                "runde": n,
+                "score": round(score, 2),
+                "punkte": judgement["punkte"],
+                "physik_bestanden": phys.passed,
+                "physik": [{"check": c, "ok": ok, "detail": d} for c, ok, d in phys.checks],
+                "schwaechen": judgement.get("schwaechen", []),
+                "staerken": judgement.get("staerken", []),
+            }
+        )
+        (out_dir / "verlauf.json").write_text(json.dumps(history, indent=2, ensure_ascii=False), encoding="utf-8")
+
+        if best is None or score > best.score:
+            best, stale = rnd, 0
+        else:
+            stale += 1
+
+        if best.score >= target and best.physics.passed:
+            log(f"Ziel erreicht ({best.score:.2f} >= {target}).")
+            break
+        if stale >= patience:
+            log(f"Keine Verbesserung seit {patience} Runden - Stopp.")
+            break
+    else:
+        log("Rundenlimit erreicht.")
+
+    (out_dir / "beste_loesung.md").write_text(best.answer, encoding="utf-8")
+    log(f"\nBeste Lösung: Runde {best.number}, {best.score:.2f}/10 -> {out_dir / 'beste_loesung.md'}")
+    return best
