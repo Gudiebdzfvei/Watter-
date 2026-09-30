@@ -375,5 +375,128 @@
       "Ehrlich zu Grenzen: ±30 % Unsicherheit, Wetterabhängigkeit (Klar/Dunst/bedeckt), Ausfall nach mehreren Regentagen, Kosten 14–18 k€ und Unterlegenheit gegenüber der Kompressoranlage, Prototyprisiko der Klappen. Runde-2-Werte werden als Obergrenze verworfen, und es gibt eine stromfreie Rückfallvariante B mit Nachtstrahlung.",
       "Nennt Bandbreiten und Grenzfälle wie warme Nacht, Hitzewelle und Wind statt Einzelwerten. Der Auslauf ist realistisch: nur bei sparsamer Zapfung deutlich unter 24 °C."
     ]
+  },
+  {
+    "runde": 4,
+    "score": 7.65,
+    "punkte": {
+      "physik": 7.0,
+      "kondensationswaerme": 9.0,
+      "vorgaben": 8.0,
+      "machbarkeit": 6.0,
+      "quantifizierung": 8.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "9 Knoten, 11 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Kollektor'",
+        "ok": true,
+        "detail": "rein 498 W, raus 498 W"
+      },
+      {
+        "check": "Energiebilanz 'Adsorber'",
+        "ok": true,
+        "detail": "rein 227 W, raus 227 W"
+      },
+      {
+        "check": "Energiebilanz 'Kondensator'",
+        "ok": true,
+        "detail": "rein 56 W, raus 56 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdampfer'",
+        "ok": true,
+        "detail": "rein 58 W, raus 58 W"
+      },
+      {
+        "check": "Energiebilanz 'Kaeltespeicher'",
+        "ok": true,
+        "detail": "rein 54 W, raus 54 W"
+      },
+      {
+        "check": "Wärmerichtung Sonne -> Kollektor",
+        "ok": true,
+        "detail": "5500.0 °C -> 85.0 °C, 498 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Adsorber",
+        "ok": true,
+        "detail": "85.0 °C -> 60.0 °C, 169 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Luft_Tag",
+        "ok": true,
+        "detail": "85.0 °C -> 32.0 °C, 329 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Adsorber -> Luft_Nacht",
+        "ok": true,
+        "detail": "60.0 °C -> 21.0 °C, 171 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kondensator -> Luft_Tag",
+        "ok": true,
+        "detail": "41.0 °C -> 32.0 °C, 52 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kaeltespeicher -> Verdampfer",
+        "ok": true,
+        "detail": "8.0 °C -> 6.0 °C, 54 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Leitungswasser -> Kaeltespeicher",
+        "ok": true,
+        "detail": "24.0 °C -> 8.0 °C, 41 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luft_Tag -> Kaeltespeicher",
+        "ok": true,
+        "detail": "32.0 °C -> 8.0 °C, 13 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 1.563 W/K"
+      },
+      {
+        "check": "Wärme wird dem Leitungswasser entzogen",
+        "ok": true,
+        "detail": "netto 41 W"
+      },
+      {
+        "check": "Austritt kälter als Umgebungsluft",
+        "ok": true,
+        "detail": "Leitungswasser raus 11.0 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Nachtwärmeabfuhr ist inkonsistent. Die Bilanz in Abschnitt 8 setzt Adsorber→Nachtluft mit 171 W an, das sind 4,1 kWh pro Tag. Abschnitt 4.4 nennt nur 2,9 kWh (1,37 sensibel + 1,56 Adsorption). Die Differenz von etwa 1,2 kWh ist offenbar der Nachmittagsverlust des heißen Betts über das Glas an die Tagluft. In der Bilanz steht er fälschlich bei der Nachtluft. Der automatische Prüfer kann das nicht erkennen, weil er nur Richtung und Summe prüft. Abhilfe: Ströme nach Tageszeit trennen (Bett→Tagluft nachmittags, Bett→Nachtluft nachts) und die Entropiebilanz neu rechnen.",
+      "Der ganze Ertrag hängt an einer selbst abgeschätzten Zeolith-Isotherme (Δx = 0,05). Ein Herstellerdatenblatt und eine Messung fehlen. Die Adsorptionsenthalpie wird pauschal mit 2,8 MJ/kg angesetzt. Für Zeolithe bei niedriger Beladung ist sie eher 3,0–3,3 MJ/kg, das senkt COP und Menge etwas. Kinetik (LDF-Modell, Korngröße, Zykluszeit) und Stagnationsstabilität bei 110–130 °C fehlen. Das Ergebnis 65 L/Tag ist damit nur eine Hypothese. Abhilfe: Isotherme von AQSOA Z02 oder einem vergleichbaren Typ aus dem Datenblatt verwenden, Sensitivität Δx = 0,03–0,08 zeigen und die Kinetik abschätzen.",
+      "Die passive Nachtkühlung des Betts über den Kamin ist wackelig. Der thermische Auftrieb beträgt am Balkon nur etwa 0,15 Pa bei 0,75 m Höhe. Wind von 0–3 m/s erzeugt Staudrücke von bis zu etwa 5 Pa und kann die Strömung drosseln oder umkehren. Der Wert ζ ≈ 5 für Lamellen, Insektengitter, Rippenpaket und Umlenkungen ist optimistisch. Strömt nur die Hälfte der Luft, liegt das Bett eher 10 K statt 5–6 K über der Luft, und Δx sinkt deutlich. Abhilfe: ζ realistisch mit Rippenreibung ansetzen, Windfall und Halbierung als Sensitivität rechnen, Kaminaufsatz windgeschützt auslegen.",
+      "Die Tag-Rückverluste sind zu optimistisch. Die Verluste des geschlossenen Rückkanals mit 22 m² heißen Rippen sind nur mit etwa 3 W/K in a₁ eingerechnet. Ein undichter Lamellenverschluss erzeugt bei 60–70 K Übertemperatur einen starken Kamineffekt und kann den Rückverlust verdoppeln. Die Kondensator-Wärmeübertragung (h ≈ 6 W/m²K, ohne Rippenwirkungsgrad, bei Windstille) und der Wärmeeintrag von nur 4 W über Dampfleitung, R2 und Strahlung sind ebenfalls knapp. Abhilfe: Leckage- und Rippenwirkungsgrad-Sensitivität rechnen, Dichtlippen an den Lamellen vorsehen.",
+      "Die Dampfdiode R2 (PTFE-Folie 0,1 mm, Öffnungsdruck 2 Pa) und die Leckrate von ≤ 5·10⁻⁸ mbar·L/s sind für ein Gerät mit Klappen, Berstscheibe, Bimetallteller und großer Rohrbündelfläche sehr ambitioniert. Der Text nennt R2 selbst als wichtigste Prototypfrage. Die Folge sind Filmhaftung, Undichtigkeit und Gasansammlung, und die Anlage arbeitet dann gar nicht. Abhilfe: einen Vorversuch mit R2 im Labor fordern, eine Nachevakuier-Schnittstelle vorsehen und eine Ausfallwahrscheinlichkeit nennen.",
+      "Die Balkonlösung ist schwer und raumgreifend: etwa 470 kg, ein Kollektor von 1 × 2,8 m außen vor der Plattenkante, dazu 12 m² Kondensator und 22 m² Rippen, alles auf 1 × 3 m Grundfläche. Für 65 L/Tag bei nur 41 W Nutzkälte sind das 12–18 k€ Einzelstück. Die Kostenschätzung ist ±40 % ohne Angebote und die Zeolithkosten sind knapp angesetzt. Die Statik ist offen. Abhilfe: Massenreduktion durch dünnere Rohre (die Edelstahlrohre allein machen 52 kg und 26 kJ/K aus) und Wärmerückgewinnung oder ein Zweibett-Prinzip, die den Anteil der sensiblen Wärme (58 % der Solarwärme) senken.",
+      "Die Fassadenvariante ist eine reine Vervierfachung des Balkonmoduls. Die Höhe wird nur für einen gemeinsamen Kamin und die Reihenschaltung der Wendel genutzt, und der Kamingewinn wird nicht angesetzt. Nur 10,8 m² Kollektor auf einer viel größeren Fassade sind wenig. Außerdem heizt sich die Kaminluft von unten nach oben auf, sodass obere Module wärmere Zuluft bekommen, das ist nicht bewertet. Abhilfe: mehr Fläche pro Geschoss oder Wärmerückgewinnung zwischen zwei Betten, und den Kaminvorheizeffekt quantifizieren.",
+      "Die Robustheit des Ertrags ist gering. 65 L/Tag gelten nur für den Klartag. Bei Dunst sind es 18 L, bei Bedeckung 0 L, bei Hitzewelle 38 L. Drei Regentage sind ein echtes Ausfallrisiko. Die Bezeichnung 'konservativ' ist irreführend, weil viele Annahmen (a₁ = 3,6, R2, Kamin, 4 W Verlust) eher optimistisch sind. Abhilfe: einen Jahres- oder Saisonertrag mit Wetterstatistik angeben und die Trinkwasserhygiene (Wendel mit 16 L Stagnationsvolumen, Legionellen zwischen 20 und 45 °C) ansprechen."
+    ],
+    "staerken": [
+      "Die Lösung erkennt sofort, dass der reine Verdunster-Kondensator-Loop netto nicht kühlt, und begründet das über Druck, Feuchtkugeltemperatur (etwa 22 °C) und den Zweiten Hauptsatz.",
+      "Die Kondensationswärme wird klar zugeordnet: tags am Rippenrohr-Kondensator bei etwa 41 °C an die 32 °C warme Luft, nachts im Adsorber an die Nachtluft. Zeitliche Trennung und Temperaturhub durch Sonnenwärme sind sauber erklärt (Sorptions-Wärmepumpe mit drei Temperaturen, COP_Carnot 1,57 gegen COP_th 0,34).",
+      "Die Vorgaben werden eingehalten: nur Wasser mit Zeolith (ungiftig, nichtbrennbar), 0 W Strom mit passiver Steuerung über Wachselemente, Schwerkraft-Siphon, 0 L Wasserverlust, und beide Größen (Balkon und Fassade) mit Zahlen.",
+      "Die Rechnung ist weitgehend nachvollziehbar und intern stimmig: stündliche Kollektorbilanz, Massenliste (125 kJ/K), Regenerationswärme 14,6 MJ, Nutzkälte 0,99 kWh, 65 L bei 24 → 11 °C, Nachtprofil, Wendel-ε (NTU 1,91 → 0,85) und Auslauftemperaturen. Kollektor, Adsorber, Kondensator und Verdampfer sind in der Energiebilanz geschlossen, und die Entropieerzeugung ist positiv.",
+      "Die Lösung ist ehrlich zu Grenzen und Risiken: Isotherme nur abgeschätzt, Dunst-, Bedeckt- und Hitzewelle-Fälle, Silikagel-Fallback mit nur etwa 34 L/Tag, wirtschaftlich nicht sinnvoll, Fassade ohne echten Höhengewinn, offene Prototypfragen. Die Kritikpunkte aus Runde 2 werden gezielt abgearbeitet.",
+      "Die Konstruktionsdetails sind durchdacht: zentrales Dampfrohr gegen Druckverlust im Bett, Beulnachweis der Rohre, Alu nur außerhalb des Vakuums, Filz-Verdampfer statt Wasserfilm, zweistufiger Siphon mit Reserve, Gassammler in den Sackgassen, Frostschutz, Berstscheibe und Sicherheitskonzept."
+    ]
   }
 ]
