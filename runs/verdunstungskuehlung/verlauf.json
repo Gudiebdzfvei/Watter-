@@ -1,0 +1,129 @@
+[
+  {
+    "runde": 1,
+    "score": 6.2,
+    "punkte": {
+      "physik": 5.0,
+      "kondensationswaerme": 8.0,
+      "machbarkeit": 5.0,
+      "quantifizierung": 6.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "10 Knoten, 12 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Kollektor'",
+        "ok": true,
+        "detail": "rein 2400 W, raus 2400 W"
+      },
+      {
+        "check": "Energiebilanz 'Desorber'",
+        "ok": true,
+        "detail": "rein 2000 W, raus 2000 W"
+      },
+      {
+        "check": "Energiebilanz 'Adsorber'",
+        "ok": true,
+        "detail": "rein 1960 W, raus 1960 W"
+      },
+      {
+        "check": "Energiebilanz 'Kondensator'",
+        "ok": true,
+        "detail": "rein 777 W, raus 777 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdampfer'",
+        "ok": true,
+        "detail": "rein 737 W, raus 737 W"
+      },
+      {
+        "check": "Energiebilanz 'Hilfsantriebe'",
+        "ok": true,
+        "detail": "rein 65 W, raus 65 W"
+      },
+      {
+        "check": "Wärmerichtung Sonne -> Kollektor",
+        "ok": true,
+        "detail": "5500.0 °C -> 90.0 °C, 2400 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Desorber",
+        "ok": true,
+        "detail": "90.0 °C -> 85.0 °C, 2000 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Luft",
+        "ok": true,
+        "detail": "90.0 °C -> 32.0 °C, 400 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Leitungswasser -> Verdampfer",
+        "ok": true,
+        "detail": "18.0 °C -> 8.0 °C, 697 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Desorber -> Adsorber",
+        "ok": true,
+        "detail": "85.0 °C -> 40.0 °C, 1223 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Adsorber -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 1960 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kondensator -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 737 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Hilfsantriebe -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 65 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 7.552 W/K"
+      },
+      {
+        "check": "Wärme wird dem Leitungswasser entzogen",
+        "ok": true,
+        "detail": "netto 697 W"
+      },
+      {
+        "check": "Austritt kälter als Umgebungsluft",
+        "ok": true,
+        "detail": "Leitungswasser raus 12.0 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Sorptionsgleichgewichte, auf denen die ganze Auslegung ruht, sind unbelegt und sehr wahrscheinlich falsch. Bei 40 °C und 1,07 kPa ist p/p_s ≈ 0,145. Bei 85 °C und 7,4 kPa ist p/p_s = 7,4/57,8 ≈ 0,128. Silikagel folgt näherungsweise einer Kennlinie über p/p_s, also sind beide Beladungen fast gleich. Der behauptete Hub von 0,055 kg/kg (0,09 → 0,035) ist damit stark überschätzt, real wohl 0,01 bis 0,03. Dann braucht man 10 bis 30 kg Gel pro Bett, oder der Zyklus läuft mit luftgekühltem 40-°C-Kondensator und 85 °C Antrieb kaum. Behebung: Isothermendaten eines konkreten Gels (z. B. RD/Fuji) angeben und den Hub daraus rechnen. Antrieb auf ≥100–110 °C anheben oder ein anderes Sorbens wählen (Zeolith, AQSOA, LiCl-Komposit). Alternativ den Kondensator kühler betreiben.",
+      "Der thermische COP von 0,35 ist für luftgekühlten Betrieb bei 32 °C, 8 °C Verdampfer und 85 °C Antrieb zu optimistisch. Die 28 % vom Carnot-COP sind für Adsorptionsmaschinen großzügig; real liegen sie bei etwa 15–25 %, also COP ≈ 0,15–0,25. Die Vorheiz- und Vorkühlphasen (isostere Phasen) und die Wärmekapazität von Bett und Wärmetauscher, ohne Wärmerückgewinnung, sind nicht bilanziert. Die Antriebswärme steigt dann auf 3–4,5 kW und der Kollektor auf 7–10 m². Behebung: Zyklus mit Temperaturen und Massen durchrechnen und 0,2 als Basisfall ansetzen.",
+      "Die Kollektorbilanz ist inkonsistent. 3200 W einfallend und 2000 W nutzbar bedeuten 1200 W Verlust. In der Bilanz stehen aber nur 2400 W absorbiert und 400 W Verlust, also fehlen 800 W optische Verluste. Bei 400 W/m² sinkt der Wirkungsgrad bei 90 °C auf etwa 0,5 und die Nutzleistung auf ca. 40 % statt „die Hälfte“. Ein Kollektor bei 90 °C Mitteltemperatur schafft im Bett realistisch keine 85 °C mit sinnvoller Grädigkeit. Behebung: Kennlinie η(ΔT/G) mit a1/a2 verwenden und Bett-Wärmeübertrager mit Rücklauftemperatur auslegen.",
+      "Die Nachtlösung trägt nicht. Der 500-l-Speicher mit ΔT = 30 K ist unrealistisch, weil die Desorption mindestens ≈80–85 °C braucht. Nutzbar sind nur etwa 5–10 K, also ca. 3–6 kWh und 1,5–3 h Betrieb statt 8 h. Der Strom (65 W) fällt nachts ebenfalls aus, Batterie oder Netz fehlen in der Bilanz. Die Aufgabe nennt die kühle Nacht (20 °C), sie wird nur als „Ergänzung“ per Strahlung erwähnt. Behebung: Kältespeicher (Eis oder Kaltwassertank) tagsüber laden oder Nachthimmelsstrahlung als Kältequelle ausarbeiten. Eine 24-h-Bilanz aufstellen.",
+      "Weg A ist in sich widersprüchlich. Ein Wärmerohr vom 8-°C-Verdampfer in Erdreich von 10–12 °C kann keine Wärme abgeben, weil das Erdreich wärmer ist als der Verdampfer. Auch direkt gekühlt kommt das Wasser nur auf ca. 13–15 °C, nicht auf 12 °C. „Erdreich ist die einfachste Lösung“ stimmt für 12 °C Auslauf daher nicht. Behebung: Zieltemperatur für Erdkühlung realistisch angeben (ca. 14 °C, ohne Verdampfung, direkter Erdwärmetauscher). Die Erdreichlösung dann nur als Vorkühlung oder als Alternative mit anderem Ziel führen.",
+      "Der Strombedarf ist beschönigt. 0,5 m³/s durch ein 15-m²-Lamellenregister bei Δp ≈ 80–120 Pa ergeben 50–60 W Luftleistung. Mit EC-Ventilator-Wirkungsgrad von ca. 40 % sind das 120–150 W, nicht 40 W. Hinzu kommen Vakuumpumpe zum Absaugen nicht kondensierbarer Gase und Ventilantriebe. Damit liegt der Strom bei ca. 150–200 W und ist nicht besser als die Kompressionsvariante (175 W). Die Leistungszahl 10 gegenüber COP 4 ist dann nicht haltbar.",
+      "Die Bilanz im JSON ist zurechtgebogen, um den Prüfer zu bestehen. „Desorber → Adsorber 1223 W Wärme“ ist kein realer Wärmestrom, sondern fühlbare Bettwärme, die beim Rollentausch an die Luft geht. Die beiden Betten wechseln alle 10 min, sind aber als getrennte, stationäre Knoten modelliert. Die Sonne hat 5500 °C, das Leitungswasser ist mit 18 °C statt 24 °C Eintritt angesetzt. Verdampfer-Ein- und -Ausgang sind sonst nur pauschal (737 W) angesetzt. Behebung: Betten als einen Knoten mit zeitlichem Wechsel modellieren, Wärme- und Stoffströme sauber trennen.",
+      "Praktische Details der Vakuumtechnik fehlen. Klappenventile brauchen Öffnungsdruck (~20–100 Pa), bei 1 kPa und 80 Pa/K sind das 0,3–1 K Verdampfertemperatur. Die Rieselfilmpumpe saugt gesättigte Flüssigkeit bei 1 kPa an und braucht NPSH (Sumpf ≥0,5–1 m über der Pumpe, Kavitationsgefahr). Die Bettwärmeübertragung (Silikagel λ ≈ 0,2 W/mK, 10-min-Zyklus) ist nicht dimensioniert. Es gibt zwei Kreise pro Bett (Heißwasser und Luft), aber nur Umschaltventile für Wasser, und der Luftkühler muss verschattet werden (Sonne). Behebung: UA-Werte, Lamellengeometrie, Ventilkonzept und Sumpfhöhe ergänzen.",
+      "Es gibt keine groben Kosten, keinen Wartungsplan und keine Lebensdauerabschätzung. Zwei Silikagel-Betten mit Vakuum-Lamellen-Wärmetauschern, 4 m² Vakuumröhren, Vakuumventile und Regelung sind ein Sonderbau im mittleren vierstelligen bis niedrigen fünfstelligen Euro-Bereich. Undichtigkeiten bei 1 kPa (Leckrate) und Luftansammlung sind nur ein Nebensatz. Behebung: Kostenrahmen, Dichtheitsanforderung (z. B. <1e-6 mbar·l/s) und Wartungsintervalle angeben. Zeigen, dass für 0,7 kW die Kompressionsmaschine (oder Erdreich/Strahlung) wirtschaftlich klar überlegen ist.",
+      "Die Evaporator-Auslegung ist knapp. U = 600 W/m²K ist bei 50 l/h im Rohr (laminar/Übergangsbereich, Re ≈ 1500–2000 bei 10 mm) nicht gegeben. Erst dünne parallele Rohre (~4 mm) oder Mikrostrukturen bringen h ≈ 600 innen. Dann ist U ≈ 350–450 und die 0,2 m² reichen nur knapp. Die Aussage „10 cm Wassersäule würden den Siedepunkt fast verdoppeln“ meint den Druck (1 → ~2 kPa, Tsat ≈ 17,5 °C). Behebung: Innenwärmeübergang mit Nu-Korrelation nachrechnen, Fläche auf ≥0,3–0,4 m² erhöhen."
+    ],
+    "staerken": [
+      "Das Kernproblem ist physikalisch korrekt benannt. Bei einem Druck ist der Kreislauf ein Wärmerohr ohne Nettokühlung, deshalb braucht es zwei Druckniveaus und einen „Verdichter“, hier thermisch. Der Kondensator muss oberhalb der Lufttemperatur liegen, der Verdampfer darunter. Die Kondensationswärme geht bei ca. 40 °C an die 32-°C-Luft, bezahlt wird mit Sonnenwärme und Sorption. Damit ist der zweite Hauptsatz sauber eingehalten und das ursprüngliche Zwei-Turm-Konzept sinnvoll umgedeutet.",
+      "Die Zahlen sind überwiegend korrekt und nachvollziehbar. Sättigungsdrücke (1,07 / 7,4 kPa), Kühlgrenze ≈ 22 °C, Taupunkt ≈ 17 °C, Kühllast 697 W, LMTD 8,7 K, Dampfvolumen 121 m³/kg (~130 m³/h), Kondensatrücklauf-Abzug 134 kJ/kg, Siphonhöhe 0,64 m und Luftstrom mit ΔT_log ≈ 5 K rechnen sich alle nach.",
+      "Die Lösung ist ehrlich in wesentlichen Grenzen: nur bei Sonne, Wolken, kein Serienprodukt bei 0,7 kW, Eigenbau, Vakuumdichtheit, Frostgrenze. Sie nennt Alternativen (Erdreich, Strahlung, Kompressor mit R290 bei ≈175 W) und rät bei Strom-Akzeptanz zum Kompressor. Ein Rieselfilm statt Tauchverdampfer und die Druckschleuse per U-Siphon sind praxisnahe Details.",
+      "Die Struktur ist klar, die Kurzantwort beantwortet die Kernfrage direkt, und ein Blockschema sowie Energiebilanz-Tabellen helfen beim Nachvollziehen. Wasserverlust ist null, das Kältemittel bleibt im geschlossenen Kreis."
+    ]
+  }
+]
