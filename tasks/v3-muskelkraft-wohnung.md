@@ -1,13 +1,29 @@
-# Aufgabe: Wohnung kühlen mit Muskelkraft – DIY-Balkongerät, geschlossener Wasserkreislauf
+# Aufgabe: Zimmer kühlen mit Muskelkraft (mechanisch) – DIY-Balkongerät, geschlossener Wasserkreislauf
 
 ## Idee
-Ein Mensch sitzt **in seiner Wohnung** auf einem Fahrrad (Ergometer) und
-erzeugt per Muskelkraft Strom (oder mechanische Leistung über eine Welle,
-einen Seilzug o. Ä.). Diese Energie treibt ein selbst gebautes **Außengerät
-auf dem Balkon** an, das nach dem Prinzip der Verdunstungskälte arbeitet und
-die **Wohnung kühlt**. Die Kälte wird z. B. über einen Wasserkreislauf mit
-Gebläsekonvektor, Kühldecke/-wand oder einen Kältespeicher in die Wohnung
-gebracht. Es gibt keine Kabine draußen – der Mensch bleibt drinnen.
+Ein Mensch sitzt **in seiner Wohnung** (im Zimmer, das gekühlt werden soll)
+auf einem Fahrrad (Ergometer) und treibt damit ein selbst gebautes
+**Außengerät auf dem Balkon** an, das nach dem Prinzip der Verdunstungskälte
+arbeitet und das **Zimmer kühlt**. Es gibt keine Kabine draußen – der Mensch
+bleibt drinnen.
+
+**Antrieb: mechanisch ist ausdrücklich erlaubt und oft besser.** Was der
+Mensch tritt, muss nicht in Strom umgewandelt werden. Die Tretbewegung darf
+direkt etwas bewegen, damit die Kühlung funktioniert – z. B. über Kette,
+Welle, Riemen, Seilzug oder Hydraulik eine Kolben- oder Membranpumpe, ein
+Gebläse, eine Vakuumpumpe, einen Dampfverdichter antreiben, ein Gewicht
+heben oder eine Feder spannen (mechanischer Speicher, der danach weiter
+antreibt), Wasser hochpumpen usw. Strom (Generator) nur, wenn er klar
+besser ist; Umwandlungsverluste dann mitrechnen.
+
+**Ablauf:** Der Mensch tritt eine Runde (z. B. 20–60 min). Danach verlässt
+er das Zimmer, geht ins Bad und kühlt sich dort mit normalem Leitungswasser
+ab (Dusche). Die Körperwärme, die er während des Tretens im Körper
+speichert und im Bad abgibt, belastet das Zimmer also nicht. Nur was er
+während des Tretens im Zimmer abgibt (Wärmestrahlung, Konvektion, Schweiß
+als Luftfeuchte), zählt für das Zimmer. Die Kälte kann über einen
+Wasserkreislauf (Gebläsekonvektor, Kühldecke/-wand) oder einen
+Kältespeicher ins Zimmer kommen und darf nach dem Treten weiter wirken.
 
 ## Was wir aus zwei früheren Durchläufen schon wissen
 1. **Ein geschlossener Verdunsten-Kondensieren-Kreislauf auf einem Druck
@@ -71,25 +87,30 @@ eine ganz andere Lösung jetzt besser ist.
 5. **Der Kühlkreislauf bleibt geschlossen** (kein Verdunstungsverlust in die
    Atmosphäre).
 
-## Die entscheidende Frage: wird die Wohnung wirklich kühler?
-Der Mensch sitzt in der Wohnung. Er wandelt Nahrungsenergie nur mit etwa
-20–25 % Wirkungsgrad in mechanische Leistung um; der Rest (das 3- bis
-4-Fache der Tretleistung) wird als Körperwärme und Schweiß **in der
-Wohnung** frei. Rechne ehrlich die **Wärmebilanz der Wohnung** durch:
-- Wie viel Wärme (fühlbar und latent) gibt der Tretende zusätzlich an die
-  Wohnung ab?
-- Wie viel Kälte liefert das Gerät pro Wattstunde Tretarbeit (Leistungszahl
-  inkl. aller Verluste: Generator, Leitungen, Verdichter/Pumpe, Lüfter)?
-- Welche Leistungszahl ist mindestens nötig, damit netto überhaupt Wärme
-  aus der Wohnung entfernt wird? Erreicht das Gerät sie?
-- Wird die Wohnung am Ende kühler als ohne Treten? Um wie viel, für welchen
-  Raum, bei welcher Tretdauer?
+## Die entscheidende Frage: wird das Zimmer wirklich kühler?
+Der Mensch wandelt Nahrungsenergie nur mit etwa 20–25 % Wirkungsgrad in
+mechanische Leistung um; der Rest (das 3- bis 4-Fache der Tretleistung)
+wird Körperwärme. Ein Teil davon geht während des Tretens ins Zimmer
+(Konvektion, Strahlung, verdunsteter Schweiß), ein Teil wird im Körper
+gespeichert (Körpertemperatur steigt) und im Bad mit Leitungswasser
+abgeführt. Rechne ehrlich:
+- Wie viel Wärme gibt der Tretende während der Runde an das Zimmer ab
+  (fühlbar und latent), wie viel nimmt er mit ins Bad? Mit realistischen
+  Werten (Speicherfähigkeit des Körpers, zumutbarer Anstieg der
+  Körpertemperatur, Schweißrate) – nicht schönrechnen.
+- Wie viel Kälte liefert das Gerät pro Wattstunde Tretarbeit (inkl. aller
+  Verluste: Mechanik, Pumpe/Verdichter, Lüfter)? Wirkt ein mechanischer
+  oder Kältespeicher nach, wenn der Mensch schon im Bad ist?
+- Welche Leistungszahl ist mindestens nötig, damit dem Zimmer über den
+  ganzen Ablauf (Treten + Nachwirkzeit) netto Wärme entzogen wird?
+  Erreicht das Gerät sie?
+- Um wie viel wird das Zimmer kühler als ohne Gerät, bei welcher Tretdauer
+  und wie oft am Tag?
 
 Wenn die Bilanz negativ ist, sag das klar und zeig die beste Variante, die
-trotzdem Sinn ergibt (z. B. Treten in den kühlen Nachtstunden bei offenem
-Fenster und Kälte im Speicher sammeln, Sonne als Hauptantrieb und
-Muskelkraft nur als Hilfe für Pumpen/Lüfter, mehrere Personen, Treten nur
-zur Überbrückung von Wolken).
+trotzdem Sinn ergibt (z. B. Treten in den kühlen Nachtstunden und Kälte
+speichern, Sonne als Hauptantrieb und Muskelkraft nur als Hilfe,
+mehrere kurze Runden).
 
 ## Auslegungsfall (zum Rechnen)
 - Sommertag, Außenluft 32 °C, relative Luftfeuchte 40 %
@@ -98,8 +119,8 @@ zur Überbrückung von Wolken).
   heißen Tag selbst begründet abschätzen. Ziel: spürbar kühler als ohne
   Gerät, idealerweise ≤ 26 °C
 - Eine erwachsene Person, untrainiert bis mäßig trainiert: Dauerleistung
-  ca. 75–100 W mechanisch über 30–60 min, kurzzeitig mehr; realistisch
-  vielleicht 1–2 Stunden Treten pro Tag
+  ca. 75–100 W mechanisch über 20–60 min pro Runde, kurzzeitig mehr;
+  realistisch 1–3 Runden pro Tag, danach jeweils Dusche im Bad
 
 ## Hinweis zur Energiebilanz (JSON)
 - Die Wohnung ist der Nutz-Knoten: `"nutzen": {"knoten": "Wohnung", "T_ein_C":
@@ -107,9 +128,11 @@ zur Überbrückung von Wolken).
   "kuehlleistung_W": <netto>}`; die Wohnung als rolle "umgebung".
 - Muskelkraft: Knoten "Nahrung" (rolle "umgebung") → "Mensch" (rolle
   "komponente", ca. 37 °C) mit art "arbeit" (chemische Energie). Der Mensch
-  gibt Arbeit an den Antrieb ab und seine Körperwärme als "waerme" an die
-  **Wohnung**. Der automatische Prüfer rechnet nach, ob der Wohnung netto
-  Wärme entzogen wird – die Körperwärme des Tretenden zählt dabei mit.
+  gibt Arbeit an den Antrieb ab, Körperwärme als "waerme" an die
+  **Wohnung** (nur der Anteil während des Tretens im Zimmer) und den Rest an
+  einen Knoten "Bad" (rolle "umgebung", Leitungswasserdusche). Der
+  automatische Prüfer rechnet nach, ob der Wohnung netto Wärme entzogen
+  wird – die im Zimmer abgegebene Körperwärme zählt dabei mit.
 - Bilanz als Mittel über die Tretzeit oder über 24 h, klar angeben.
 
 Gesucht ist die bestmögliche, physikalisch korrekte und selbst baubare
