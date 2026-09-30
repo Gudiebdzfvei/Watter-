@@ -1,0 +1,77 @@
+[
+  {
+    "runde": 1,
+    "score": 6.7,
+    "punkte": {
+      "physik": 6.0,
+      "kondensationswaerme": 7.0,
+      "vorgaben": 8.0,
+      "machbarkeit": 6.0,
+      "quantifizierung": 6.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "4 Knoten, 3 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Kuehlregister'",
+        "ok": true,
+        "detail": "rein 283 W, raus 283 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Kuehlregister",
+        "ok": true,
+        "detail": "27.0 °C -> 19.0 °C, 280 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kuehlregister -> Leitungswasser",
+        "ok": true,
+        "detail": "19.0 °C -> 15.0 °C, 283 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.049 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 280 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 27.0 °C, Luft 30.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die latente Leistung von 60 W (≈ 0,9 l Kondensat pro Tag) ist kaum haltbar. Der Raumtaupunkt bei 27 °C / 50 % r. F. liegt bei ≈ 15,7 °C, das Wasser tritt mit 15 °C ein. Im Gegenstrom liegt die Oberfläche am kalten Ende (Luftaustritt, Register B) bei ≈ 16–17 °C, also über dem Taupunkt. Kondensation gibt es höchstens lokal und minimal, bei 12 °C Zulauf etwas mehr. Die Summe von 280 W und die Aussage 'Entfeuchtung ≈ 5 %-Punkte' sind damit geschönt. Fix: Kondensation über die Oberflächentemperatur pro Registerabschnitt bilanzieren. Ohne Nachweis nur ≈ 0–20 W latent ansetzen und die Gesamtleistung auf ≈ 220–240 W senken.",
+      "Der Luftvolumenstrom von 70 m³/h ist unplausibel. Zwei 1,5-W-PC-Lüfter haben nur wenige Pascal Gegendruck, und zwei dichte Kfz-Heizungskerne in Reihe setzen ihnen deutlich mehr entgegen. Realistisch sind ≈ 25–40 m³/h. Dann sinkt C_L auf ≈ 10–13 W/K und die sensible Leistung auf ≈ 120–150 W. Die Unsicherheit wird nur für UA (±30 %) genannt, nicht für den Luftstrom. Fix: Lüfterkennlinie gegen Register-Druckabfall prüfen, Lüfter mit hohem Statikdruck nehmen (oder 4 Stück) und den Luftstrom messen.",
+      "Die 280 W gelten für 27 °C Raumluft, werden aber als Mittel über 10 h angesetzt. Der Raum startet morgens bei 25,5 °C. Dort liefert das Gerät nur ≈ 190 W sensibel und praktisch kein Kondensat. Die Raumtemperatur von 27 °C (bzw. 26 °C mit Folie) ergibt sich aus einer zu hohen Durchschnittsleistung. Fix: stundenweise Simulation mit T_Raum(t), Q(T_Raum) und der Wärmelast. Ohne diese Korrektur ist eher ≈ 28 °C zu erwarten.",
+      "Latente Kühlung wird gegen die Temperaturbilanz gerechnet. Die 60 W Kondensationswärme senken die Lufttemperatur nicht. In der Last stecken 40 W latent der Person, die Bilanz 4,5 − 2,8 kWh mischt aber gesamt und sensibel. Die Speichermasse von 1 kWh/K für 20 m² ist zudem eine freie Annahme ohne Sensitivität. Fix: sensible und latente Bilanz trennen und eine Bandbreite der Raumtemperatur angeben (Speichermasse 0,5–1,5 kWh/K).",
+      "Die 3 W Lüfterabwärme werden als Zufuhr ins Register und als Wärme ans Leitungswasser gebucht. Der Lüfter sitzt aber auf der Austrittsseite und erwärmt die Luft nach dem Register, also den Raum. Netto ist die Kühlung ≈ 277 W, das Wasser nimmt 280 W auf. Die Bilanz ist damit geringfügig inkonsistent. Fix: Lüfterwärme als Raumlast zurückbuchen.",
+      "Druck und Material der Kfz-Heizungskerne sind nicht geklärt. Sie sind meist für ≈ 1,5–2 bar ausgelegt, und viele sind Aluminium mit Kunststoffkästen und keine Kupfer/Messing-Teile. Die Leitung hat 3–6 bar. Die Drossel sitzt zwar am Zulauf, bei versehentlich voll geöffnetem Ventil oder Verstopfung am Auslauf besteht aber Berstgefahr. Die Trinkwasserzulassung (Blei, Lot, Beschichtung, DVGW/KTW) fehlt. Fix: Druckminderer oder Sicherheitsventil vor dem Register und ein Register mit Druckprüfung (z. B. Kupfer-Lamellen-Register für Heizung/Lüftung mit Trinkwasser-Eignung).",
+      "Die Annahme 15 °C Zulauf bei 30 l/h ist optimistisch. Bei 0,5 l/min erwärmt sich Wasser in Steigleitung, Schacht oder Wand auf dem Weg deutlich. Das Vorlaufen von 5 l deckt das nicht ab, und bei ≥ 20 °C bringt das Gerät nur ≈ 130 W. Fix: Zulauftemperatur im Dauerbetrieb nach 30 min und nach 3 h messen, als Hauptunsicherheit führen und die Leistung für 18 °C als Standardfall mitrechnen.",
+      "Die Dosierung ist praktisch schwer. Ein Regulierventil auf stabile 30 l/h einzustellen (Kugelhahn oder Nadelventil, Schwankungen des Netzdrucks, Verkalkung, Verstopfung) ist ohne Durchflussbegrenzer unzuverlässig. Dazu kommt Stagnation im 30-l-Behälter bei 23 °C, wenn die 220 l Überschuss nicht abfließen. Die 'stromlose' Bewässerungsuhr braucht eine Batterie. Fix: Durchflussbegrenzer (Regler 0,5 l/min) einbauen und den Behälter täglich leeren.",
+      "Die Weiterverwendung ist konservativ gerechnet, aber ein Teil des Potenzials fehlt. Waschmaschine (Kaltwäsche, 23 °C) und Duschvorwärmung werden ausgeschlossen, obwohl das Wasser nach einem neuen, gespülten Kupferregister kaum kontaminiert ist. Der größte Teil der 220 l/Tag (≈ 1 €) geht trotzdem in den Abfluss. Fix: Prüfen, ob eine saubere Rückführung möglich ist, etwa Speicher mit Rückflusssicherung und Anschluss an die Waschmaschine.",
+      "Der Nachweis des Solar-Lüfter-Vorschlags und der natürlichen Konvektion ist dünn. Die Werte für Heizkörper im Kühlbetrieb (Exponent 1,3 aus dem Heizbetrieb, hoch montiert) sind ungeprüft, und 10 W Solarmodul plus Lüfter ohne Regler bei Wolken fehlen in der Rechnung."
+    ],
+    "staerken": [
+      "Die Wärmesenke ist klar benannt und korrekt. Das Leitungswasser trägt die Wärme ab, es braucht keinen Druckhub, und die Bilanz besteht den Physik-Check (283 W rein/raus, S_gen > 0).",
+      "Die Basisrechnung ist sauber: 1,163 Wh/(l·K), C_L und C_W, NTU und ε im Gegenstrom sind rechnerisch richtig. Die Tabelle Liter pro kWh (107 l/kWh bei 8 K) und die Empfindlichkeit für 12/15/20 °C sind nachvollziehbar.",
+      "Ehrliche Wirtschaftlichkeit: 0,48 €/kWh Kälte, ein Klimagerät ist ≈ 4-mal günstiger, die Lösung ist nur als Spitzenkappung sinnvoll. Der Wasserverbrauch (300 l/Tag, 1,35 €/Tag, netto ≈ 1 €/Tag) wird offen genannt.",
+      "Gute Trinkwasserhygiene: eigener Hahn, Rückflussverhinderer (Typ EA), freier Auslauf (Typ AA) mit ≥ 20 mm Abstand, Stagnationsvermeidung, Brauchwasser-Kennzeichnung, Wassermelder und Aquastop. Die Hinweise auf DIN 1988-200 (≤ 25 °C) und DIN EN 1717 sind sachgerecht.",
+      "Die Frage Speicher oder Dauerdurchfluss ist mit Zahlen beantwortet (100 l ≈ 0,9 kWh). Der Gegenstrom-Durchlauf mit Speicher nur am Ausgang ist physikalisch richtig.",
+      "Die natürliche Konvektion wird realistisch eingeordnet: Kühldecke tropft bei 15 °C, Heizkörper sind schwer, brauchen Platz und Bohrungen, und Rost wird genannt. Nur Strom für 3 W Lüfter, alles drinnen, kein Brennbares oder Giftiges, vollständige Stückliste (≈ 260 €) und Bauanleitung, Rechtshinweise zu Vermieter und Trockenheit."
+    ]
+  }
+]
