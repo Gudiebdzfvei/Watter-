@@ -229,5 +229,78 @@
       "Die Wärmelast und das Raummodell sind offen dargelegt und nachrechenbar. Die Bilanz wird als Betriebsmittel (243 W) mit 24-h-Mittel (101 W) angegeben, die Stufen Einstieg/Basis/Voll/Turbo sind gestaffelt, und die Speicher-versus-Dauerdurchfluss-Frage ist mit Begründung beantwortet.",
       "Stückliste, Preise, Bauanleitung, Dosierregel (Ablauftemperatur 23–24 °C) und Rechtshinweise (Mieter, Kommune, AVBWasserV) sind vollständig und praxisnah."
     ]
+  },
+  {
+    "runde": 4,
+    "score": 7.15,
+    "punkte": {
+      "physik": 7.0,
+      "kondensationswaerme": 8.0,
+      "vorgaben": 7.0,
+      "machbarkeit": 6.0,
+      "quantifizierung": 7.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "3 Knoten, 2 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Heizkoerper'",
+        "ok": true,
+        "detail": "rein 218 W, raus 218 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Heizkoerper",
+        "ok": true,
+        "detail": "26.7 °C -> 19.5 °C, 218 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Heizkoerper -> Leitungswasser",
+        "ok": true,
+        "detail": "19.5 °C -> 15.0 °C, 218 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.030 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 218 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 26.7 °C, Luft 30.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Der Kernwert von 228 W beruht auf einer ungemessenen Heizkörper-Leistung im Kühlbetrieb. Die Normleistung für Typ 22 600×1000 wird mit 1.200 W bei ΔT 50 K angesetzt, Katalogwerte liegen eher bei 1.600–1.900 W. Die 75 %-Abminderung und der Exponent 1,3 stammen aus dem Heizbetrieb und sind nicht begründet. Geschichtetes Wasser im Panel, ein Lüftungsgitter oben statt unten und der kleine Strahlungsanteil sind nicht modelliert. Das „robuste“ Band von 180–255 W ist nicht hergeleitet; der Wert 255 W liegt sogar über dem Planwert. Abhilfe: Normleistung korrekt angeben und mit Katalogwert rechnen. Für den Kühlbetrieb ein UA-Band von z. B. 40–75 % rechnen und die Leistung danach mit Durchfluss und Temperaturen messen.",
+      "Die Zulauftemperatur von 15 °C wird bis zur Heizkörperseite als konstant angenommen. Das ist optimistisch. Die 25 l/h sind ein sehr kleiner Dauerfluss durch eine Stichleitung im warmen Schacht oder Bad. Die Gartenbewässerungsteile, der Eimer (ca. 10 l, offene Oberfläche, Wand im 28-°C-Raum) und der Schlauch erwärmen das Wasser zusätzlich. Überschlag: rund 18 W Eimerverlust bei 29 W/K ergeben ≈ +0,6 K. Der Eimer ist nicht gedämmt und schwitzt. Abhilfe: Eimer dämmen und abdecken. Als Basisfall 17–18 °C rechnen und 15 °C nur als Bestfall zeigen. Die Zulauftemperatur am Heizkörpereintritt messen, nicht am Hahn.",
+      "Überlauf- und Überschwemmungsrisiko am Standrohr: Die Oberkante des Standrohrs liegt bei 0,75–0,9 m. Das ist niedriger als der Wasserstand im Eimer (Boden ≥ 0,9 m, Überlauf bei ca. 1,05 m). Bei einem geknickten oder verstopften Ablaufschlauch oder einer vollen Tonne läuft das Standrohr über, bevor der Eimerüberlauf anspricht. Es fließen bis zu ≈ 24 l/h auf den Boden. Der Eimerüberlauf schützt davor nicht, und das Standrohr ist nicht zum Abfluss geführt. Die Höhenangaben widersprechen sich außerdem (Skizze 0,75 m, Bauanleitung 0,9 m). Abhilfe: Standrohr-Oberkante verbindlich unter die Eimerüberlaufkante legen und zusätzlich in Wanne/Abfluss leiten. Nur einen Wassermelder reicht nicht, ein Zulauf-Absperrventil mit Melder-Kopplung ergänzen.",
+      "Trinkwasser-Hygiene wird zu günstig dargestellt. Die Trinkwasserseite besteht aus Gartenbewässerungsteilen (Uhr, Filter, Druckminderer, PE-Verteilrohr, Tropfer), die vermutlich kein DVGW-/KTW-Zertifikat für Trinkwasser haben. Dieses Wasser steht nachts rund 14 h im warmen Zimmer (25–28 °C). Die Behauptung „bleibt ≤ 20 °C“ gilt nur im Durchfluss, nicht in der Stagnation. Die Legionellenfrage ist damit offen. Abhilfe: zertifizierte Komponenten für das Stück bis zum Luftspalt verwenden, Verteilrohr kurz halten und möglichst im kühlen Bad führen, nachts Hahn schließen und Reststrecke entleeren. Die Wasserversorger-Vorgaben dazu nennen.",
+      "Die Weiterverwendung ist schwach. Rund 140–155 l/Tag (≈ 60 %) laufen ungenutzt ab, und Dusche und Waschmaschine sind ausgeschlossen. Das verfehlt den Wunsch der Aufgabe nach sinnvoller Nutzung des erwärmten Wassers, und die Tagesrechnung von ≈ 0,6–0,7 €/Tag netto ist ernüchternd. Rostwasser aus Gebrauchtheizkörpern verschmutzt außerdem WC und Wanne. Abhilfe: Ein Trinkwasser-taugliches Tauscherelement (Edelstahl/Kupfer) unter Druck würde Warmwasser-Vorwärmung oder Waschmaschinen-Zulauf erlauben. Alternativ die Nutzung konkret mit Stückzahlen pro Person belegen und Rostfärbung im WC einplanen.",
+      "Die Zahlen im Text sind nicht ganz konsistent. „Die Messung bestätigt es: Q = 1,163·V̇·ΔT“ ist nur die Energiebilanz, keine Bestätigung der Plan-Leistung, und es gibt noch keine Messung. Die mittlere Heizkörpertemperatur im JSON (19,5 °C) passt nicht zu Zulauf 15 und Ablauf 22,5 °C (Mittel ≈ 18,8 °C). „Mehr Durchfluss bringt kaum noch etwas“ widerspricht +16 % Leistung bei 35 l/h. Die Sonnenwerte enthalten wohl schon den Innenvorhang, und die 75 % Außenverschattung sind darauf nochmal angesetzt. Das überschätzt −2,3 K leicht. Abhilfe: Annahmen sauber trennen und Zahlen angleichen.",
+      "Das Modell ist eintägig (C = 1,0 kWh/K, Start immer 25,5 °C nach Nachtlüftung). Mehrtägige Wärmespeicherung in der Masse und die Frage, ob die Nachtlüftung wirklich auf 25,5 °C kommt, bleiben offen. Die Latentleistung ist in der Tabelle im Gesamtwert enthalten, in der Temperaturbilanz wird aber nur die sensible Leistung angesetzt. Abhilfe: 3-Tage-Hitzewelle simulieren und die Nachtlüftung als Randbedingung prüfen.",
+      "Das Kosten-Nutzen-Verhältnis ist sehr ungünstig und widerspricht „Budget möglichst niedrig“: ≈ 570 € (gebraucht) bis ≈ 765 € (neu), ≈ 130 kg, 3 m Wand. Dafür gibt es ≈ −2 K Spitze und nur ≈ −1 K im Mittel; das Ziel ≤ 26 °C erreicht erst die Kombination mit Außenverschattung, und die ist im Mietobjekt rechtlich nicht einfach. Abhilfe: Die Einstiegsstufe als Empfehlung hervorheben und die Stückliste gegen Alternativen (Kühldecke aus Schlauch/Matte, 1 Wärmetauscher plus Lüfter mit wenigen Watt) abwägen."
+    ],
+    "staerken": [
+      "Der Wasserweg ist grundsätzlich sicher gedacht: freier Auslauf Typ AA (≥ 30 mm) mit Rückflussverhinderer, Brauchwasserkreis drucklos dahinter, sodass Gebrauchtheizkörper keine Rückwirkung auf die Trinkwasserinstallation haben. Leckagemenge und Leckdruck sind begrenzt, und Tauchfall, Wassermelder, Aquastop und Zeitbegrenzung sind genannt.",
+      "Die Energiebilanz ist konsistent und nachrechenbar. Q = 1,163·V̇·ΔT mit 29,08 W/K, die Reihenrechnung HK1–HK3 geht auf (113 + 70 + 45 ≈ 228 W), und die Werte bei 12/18/20 °C Zulauf stimmen. Die Wärme geht eindeutig ans durchfließende Wasser, dessen Abwasserweg ist benannt. Der Physik-Prüfer hat keinen Verstoß gefunden.",
+      "Die Kondensation wird quantitativ behandelt: Taupunkt, nasse Fläche je Fall, latent/sensibel getrennt, Kondensatmenge ≈ 0,05–0,7 l/Tag, Wannen, gedämmte Schläuche. Die Entfeuchtung wird als kleiner Komfortbonus richtig eingeordnet und nicht überverkauft.",
+      "Die Leistung kommt ohne Strom aus natürlicher Konvektion, und die Lüfteroption (2–3 W) ist ehrlich als Option mit Nachteil bewertet. Liter pro kWh (110 bzw. 154), Wasserkosten pro kWh (0,51–0,71 €) und der Vergleich mit dem Klimagerät sind offen genannt. Die Spreizung (Turbo: +16 % Leistung für +40 % Wasser) und die Zulauftemperatur als Haupthebel sind klar herausgearbeitet.",
+      "Die Rangfolge der Maßnahmen ist ehrlich: Nachtlüftung und Außenverschattung zuerst, das Wassergerät bringt ≈ −2 K an der Spitze und ≈ −1 K im Mittel. Das Ziel ≤ 26 °C wird knapp verfehlt, und das steht im Text. Speicher gegen Dauerdurchfluss ist mit einer nachprüfbaren Rechnung (≈ 1,1 kWh in 10 h) entschieden.",
+      "Der Text enthält Stückliste (Summe stimmt ≈ 570 €), Ausbaustufen, Bauanleitung, Messroutine (Regelgröße T_aus), Saisonende, Korrosionsaspekte und Hinweise zu Vermieter, Satzung, Trockenheitsverbot und Abrechnung."
+    ]
   }
 ]
