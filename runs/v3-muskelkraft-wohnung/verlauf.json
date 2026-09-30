@@ -357,5 +357,133 @@
       "Die Machbarkeit ist deutlich besser als bei Durchlauf 2: ~100 kg statt 470 kg, ~1,7 k€ statt 12–18 k€, kein Vakuum, Kleinspannung, Baumarkt-Bauteile. Stückliste (Summe stimmt), Bauanleitung, Druckprobe, Test-Erwartungswerte und Sicherheitskapitel (Wind, Wandlast, Stagnation, Kondensschutz per Regler) sind vorhanden.",
       "Der Schwerkraftumlauf wurde nachgerechnet und ehrlich verworfen (Laminarreibung ~100 Pa gegen ~6 Pa Auftrieb). Ein Testvorschlag zeigt zudem, wie man die Annahmen selbst überprüfen kann."
     ]
+  },
+  {
+    "runde": 4,
+    "score": 6.65,
+    "punkte": {
+      "physik": 6.0,
+      "kondensationswaerme": 6.0,
+      "vorgaben": 7.0,
+      "machbarkeit": 7.0,
+      "quantifizierung": 7.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "11 Knoten, 12 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Mensch'",
+        "ok": true,
+        "detail": "rein 11 W, raus 11 W"
+      },
+      {
+        "check": "Energiebilanz 'Tretgenerator'",
+        "ok": true,
+        "detail": "rein 2 W, raus 2 W"
+      },
+      {
+        "check": "Energiebilanz 'Pumpe_Regler'",
+        "ok": true,
+        "detail": "rein 1 W, raus 1 W"
+      },
+      {
+        "check": "Energiebilanz 'Raumkuehler'",
+        "ok": true,
+        "detail": "rein 44 W, raus 44 W"
+      },
+      {
+        "check": "Energiebilanz 'Nachtstrahler'",
+        "ok": true,
+        "detail": "rein 49 W, raus 49 W"
+      },
+      {
+        "check": "Wärmerichtung Mensch -> Wohnung",
+        "ok": true,
+        "detail": "37.0 °C -> 26.3 °C, 6 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Mensch -> Bad",
+        "ok": true,
+        "detail": "37.0 °C -> 15.0 °C, 2 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Tretgenerator -> Wohnung",
+        "ok": true,
+        "detail": "40.0 °C -> 26.3 °C, 1 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Pumpe_Regler -> Nachtstrahler",
+        "ok": true,
+        "detail": "30.0 °C -> 23.8 °C, 1 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Raumkuehler",
+        "ok": true,
+        "detail": "26.3 °C -> 24.4 °C, 44 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Raumkuehler -> Nachtstrahler",
+        "ok": true,
+        "detail": "24.4 °C -> 23.8 °C, 44 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Balkonumfeld -> Nachtstrahler",
+        "ok": true,
+        "detail": "25.2 °C -> 23.8 °C, 4 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Nachtstrahler -> Himmel",
+        "ok": true,
+        "detail": "23.8 °C -> 9.9 °C, 42 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Nachtstrahler -> Nachtluft",
+        "ok": true,
+        "detail": "23.8 °C -> 22.8 °C, 8 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.045 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 37 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 26.3 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Muskelkraft ist netto schädlich und ersetzbar. Für 5 mW Hydraulikleistung werden 60 Wh Tretarbeit eingesetzt, davon landen ≈175 Wh Körper- und Kettenwärme im Zimmer. Das kostet ≈ 4 W der 43,8 W Kälte im 24-h-Mittel plus 40 min Sport pro Tag. Ein Gewichts- oder Handpumpen-Antrieb (0,5 Wh ≈ 50 kg × 3,6 m) wird als „Bastelei“ abgetan, obwohl er die Zimmerlast fast auf null senken würde. Beheben: Gewichtsantrieb mit Zahnstangenhemmung oder Handpumpe mit Hydrospeicher ernsthaft auslegen und als Variante mitliefern. Alternativ die Tretarbeit dort einsetzen, wo sie Zimmerwärme nach draußen bringt (Morgen-Lüften, Gebläse).",
+      "Die Kälte kommt zu 100 % vom Nachthimmel, nicht von einem Kreisprozess. Die Aufgabe fragt nach Muskelkraft als Antrieb der Kühlung, die Lösung beantwortet das mit „geht nicht“. Das ist ehrlich, aber der Kern der Aufgabe (Kondensationswärme, Druckhub) bleibt ungelöst und wird nur umgangen. Beheben: eine hybride Stufe rechnen, in der Muskelarbeit zusätzlich einen Druckhub oder eine Spülung liefert. Oder klar begründen, warum ein Phasenwechsel bei diesen Randbedingungen nie besser ist.",
+      "Das Ziel ≤ 26 °C wird im Basisfall verfehlt (26,3 °C, im Wochenmittel 26,7 °C). Der Effekt von −1,3 bis −1,7 K kostet ≈ 1,6 k€ und erfordert ein Außenrollo als Voraussetzung. Nachtlüften wäre wirksamer und praktisch gratis. Das Ergebnis ist dünn und stark von G_a und der Last abhängig. Beheben: Vergleich mit Nachtlüftung samt Ventilator quantifizieren und den Grenzfall (geschlossene Fenster, Hitzewelle) klar herausarbeiten.",
+      "Der Bilanzschluss ist bei der Pumpenabwärme inkonsistent. Der Text zieht nur ≈ 10 Wh Pumpenabwärme im Wasser ab. Das JSON führt 1,3 W ≈ 31 Wh in den Strahlerknoten. Eine Nassläuferpumpe gibt fast alle 2,5 W an das Wasser ab (≈ 26 Wh je Nacht). Dazu kommen Reglerverluste. Die Netto-Kälte ist damit um etwa 2 % zu hoch. Beheben: einheitlich ≈ 26 bis 31 Wh ansetzen und Q_netto neu ausweisen.",
+      "Die thermische Masse des Außenteils fehlt in der Nachtbilanz. Der Strahler (≈ 36 kg Stahl plus 12 L Wasser ≈ 65 bis 70 kJ/K) heizt sich tagsüber auf 45 bis 55 °C auf. Er muss abends erst auf ≈ 26 °C abkühlen (grob 100 Wh Wärmeinhalt), bevor die Pumpe anlaufen darf. Block A rechnet aber schon ab 20:30 mit 25,5 °C Plattentemperatur. Der Ertrag in Block A ist damit eher optimistisch. Beheben: einen Abkühlvorlauf simulieren und den Pumpenstart erst danach ansetzen.",
+      "Die Schlüsselannahmen sind schwach belegt und liegen eher auf der günstigen Seite: Himmelssichtfaktor 0,5 am Balkon (Wand, Brüstung, Balkon darüber), h = 6 W/m²K, ein Anteil von 15 % nicht durchströmter Fläche, Heizkörperexponent 0,3 bei ΔT 2,5 K und die Zimmerlast von nur 70 W. Die Unsicherheit wird mit ±30 % benannt, aber das Zimmermodell (T₀ = 28 °C) ist nicht unabhängig belegt. Beheben: Lastbilanz aufschlüsseln und den Prototyp-Messwert als Pflichtkriterium vor dem Kauf der Innenkörper festlegen.",
+      "Ein Standard-Stahlheizkörper (Typ 10) im geneigten Außenbetrieb ist nicht freigegeben. Bei 20° liegen die Wasserkanäle fast waagerecht. Das birgt Risiken bei Luftpolstern, Kanalverteilung, Korrosion und Außenlackierung, gleichzeitig steckt ein 4-Punkt-Windsog von ≈ 1,6 kN im Rahmen. Die Lösung benennt das nur als Prototyp-Test. Beheben: Roll-Bond- oder Kollektorabsorber als Hauptvariante vorsehen (Kanäle in Fließrichtung, außentauglich).",
+      "Die Muskelseite ist als DIY heikel. Ein Reibrad auf dem Rollentrainer mit einem 24-V-PM-Motor als Generator, CC/CV-DC/DC-Wandler und AGM-Batterie ist anspruchsvoll. Bei schwankender Drehzahl und Last sind 90 W konstant nicht leicht zu halten. Der Kettenwirkungsgrad von 0,52 ist plausibel, aber nicht gemessen. Beheben: fertigen Fahrrad-Nabendynamo oder Ergometer-Generator mit Ladeautomat einplanen und den Ladestrom im Betrieb messen."
+    ],
+    "staerken": [
+      "Große Ehrlichkeit über die Rolle der Muskelkraft. Die irreführende Kennzahl „Wh Kälte je Wh Tretarbeit“ wird gestrichen. Die nötigen COP-Schwellen (2,3 bis 3,7) werden ausgewiesen und die Alternativen (Dampfverdichter, Sorption, Peltier, Lüfter, Gewicht, Feder) durchgerechnet.",
+      "Physikalisch sauberes Grundprinzip. Ein reiner Wasserkreis ohne Phasenwechsel und ohne Vakuum kommt ohne Druckhub aus. Die Wärme fließt von selbst zur kälteren Senke. Das erfüllt Wasser-only, geschlossenen Kreis und DIY-Baubarkeit weit besser als die Zeolith-Lösung.",
+      "Die Nachtsenke ist blockweise nachvollziehbar gerechnet. Der Taupunkt bleibt konstant, der Himmel wird nach Berdahl-Martin pro Block bestimmt, die Strahlungsgegenprobe schließt, und die NTU-Reihenschaltung für den Kreislauf ist korrekt (17,4 W/K). Der Kondensschutz am Raumkühler (Vorlauf ≥ 19 °C bei Taupunkt 17 °C) ist berücksichtigt.",
+      "Die Bilanz des Tretenden ist realistisch aufgeschlüsselt: Körperspeicher 65 Wh, Schweiß 100 g latent, Nachlauf und Kettenverluste im Zimmer, jeweils mit Spannen. Die JSON-Bilanz stimmt mit dem Text überein, alle Prüfer-Checks sind bestanden, und die Zimmerkopplung mit Rückkopplung und Sensitivitäten ist geschlossen.",
+      "Solide Umsetzungsdaten: Gewicht ≈ 100 kg Balkon mit Lastnachweis und Windsog, Stückliste ≈ 1,6 k€, 13-schrittige Bauanleitung mit Prototyp-Abbruchkriterium (< 20 W je Körper), Regler-Pseudocode, Druckprobe, Sicherheitskapitel.",
+      "Klare Einordnung der Grenzen: das Ziel ≤ 26 °C wird im Basisfall nicht erreicht, Nachtlüften ist wirksamer, und ein 10-W-Solarmodul wäre technisch besser. Das macht das Ergebnis glaubwürdig statt geschönt."
+    ]
   }
 ]
