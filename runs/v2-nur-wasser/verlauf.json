@@ -249,5 +249,131 @@
       "Die Ehrlichkeit über Grenzen ist hoch: Trübwetter-Tabelle mit 25 L bzw. 0 L, ±30 % Unsicherheit, Nachtwärmeabfuhr als 'knappes Ergebnis', Hinweis auf den Prototypbedarf bei Klappendichtheit und Nichtkondensierbaren. Auslauftemperatur und Menge sind über NTU-ε-Tabellen konsistent verknüpft, und der Kältespeicher mit seiner Schwingung von ca. 6,5 K ist nachvollziehbar.",
       "Die passive Rückfallvariante B (Nachthimmelsstrahlung) ist mit realistischen 10–20 W/m² und ca. 0,36 kWh/Nacht gerechnet und wird korrekt als für <15 °C ungeeignet eingestuft."
     ]
+  },
+  {
+    "runde": 3,
+    "score": 7.5,
+    "punkte": {
+      "physik": 7.0,
+      "kondensationswaerme": 9.0,
+      "vorgaben": 8.0,
+      "machbarkeit": 6.0,
+      "quantifizierung": 7.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "9 Knoten, 11 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Kollektor'",
+        "ok": true,
+        "detail": "rein 530 W, raus 530 W"
+      },
+      {
+        "check": "Energiebilanz 'Adsorber'",
+        "ok": true,
+        "detail": "rein 235 W, raus 235 W"
+      },
+      {
+        "check": "Energiebilanz 'Kondensator'",
+        "ok": true,
+        "detail": "rein 44 W, raus 44 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdampfer'",
+        "ok": true,
+        "detail": "rein 45 W, raus 45 W"
+      },
+      {
+        "check": "Energiebilanz 'Kaeltespeicher'",
+        "ok": true,
+        "detail": "rein 43 W, raus 43 W"
+      },
+      {
+        "check": "Wärmerichtung Sonne -> Kollektor",
+        "ok": true,
+        "detail": "5500.0 °C -> 85.0 °C, 530 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Adsorber",
+        "ok": true,
+        "detail": "85.0 °C -> 60.0 °C, 190 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kollektor -> Luft_Tag",
+        "ok": true,
+        "detail": "85.0 °C -> 32.0 °C, 340 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Adsorber -> Luft_Nacht",
+        "ok": true,
+        "detail": "60.0 °C -> 21.0 °C, 191 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kondensator -> Luft_Tag",
+        "ok": true,
+        "detail": "42.0 °C -> 32.0 °C, 42 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kaeltespeicher -> Verdampfer",
+        "ok": true,
+        "detail": "8.4 °C -> 6.4 °C, 43 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Leitungswasser -> Kaeltespeicher",
+        "ok": true,
+        "detail": "24.0 °C -> 8.4 °C, 35 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Luft_Tag -> Kaeltespeicher",
+        "ok": true,
+        "detail": "32.0 °C -> 8.4 °C, 8 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 1.665 W/K"
+      },
+      {
+        "check": "Wärme wird dem Leitungswasser entzogen",
+        "ok": true,
+        "detail": "netto 35 W"
+      },
+      {
+        "check": "Austritt kälter als Umgebungsluft",
+        "ok": true,
+        "detail": "Leitungswasser raus 11.0 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Fassaden-Verschattung ist falsch begründet. Die Module haben 50° Neigung, 2,75 × 1,3 m, also gut 1,7 m Ausladung und etwa 2,1 m Höhe. Die Verschattungsprüfung rechnet aber mit einer 'Unterkante, die 1,5 m nach unten wirft', was nur für senkrechte Module stimmt. Mit 50° Neigung, 3 m Geschosshöhe und 63° Sonnenhöhe verschattet das obere Modul das untere schon mittags zu rund 40–50 %, morgens und nachmittags noch stärker. Zudem würden 2,1 m hohe Module auf Brüstungshöhe die Fenster verdecken, was der Text ausschließt. Behebung: Verschattung stündlich für Azimut und Höhe rechnen. Alternativ Module senkrecht, mit flach geneigten Spiegeln oder Lamellen, oder nur jedes zweite Geschoss belegen. Die 260 L/Tag sind bis dahin nicht belastbar.",
+      "Die Skalierung der Fassade auf 4× Balkon plus 'UA_eff ≈ 85 W/K' ist nicht belegt. Es fehlt die Querschnittsauslegung des gemeinsamen 12-m-Kamins für 4× 0,1 m³/s. Auch der Vorwärmeeffekt fehlt: Die Abluft der unteren Module strömt an den oberen vorbei. Der Text räumt selbst ein, dass Höhe allein nur etwa 15 % bringt, nennt den Kamin aber gleichzeitig 'den einzigen Weg'. Ebenso unklar ist, ob jedes Modul einen eigenen Verdampfer hat oder alle am Keller-Bad hängen. Behebung: Kaminnetz mit Schachtquerschnitt, Reihenschaltung der Luft und Verdampferanordnung explizit rechnen und zeichnen.",
+      "Die Desorptionsschwelle von 79 °C ist falsch begründet. Sie gilt nur bei bereits auf 8,2 kPa (42 °C) aufgeheiztem Kondensator. Morgens liegt der Kondensator bei Luft 22–27 °C und damit bei 3–4 kPa. Die Desorption beginnt dann schon bei etwa 55–65 °C, was der von Runde 2 genannte Wert war. Die 'Korrektur' ist also eine Fehlkorrektur. Sie ist zwar konservativ, macht aber das Stundenprofil (Tabelle 4.3, Bett-Temperaturen und Zeitpunkt des Desorptionsendes) unglaubwürdig. Behebung: Kondensatordruck als Funktion der Tageszeit (T_Luft + ΔT) ansetzen und die Desorption dynamisch rechnen.",
+      "Isotherme, Kinetik und Nachtprofil sind intern inkonsistent. Bei Bett 23,5 °C und Verdampfer 6 °C ergibt die eigene Isotherme x_eq ≈ 0,116, das Profil endet aber bei 0,073. Mit τ = 1,5 h müsste das Bett nach 10 h viel näher am Gleichgewicht liegen. Auch morgens adsorbiert das Bett noch bis etwa 34 °C weiter, während R2 schon 'schließt'. Die Begründung 'Kinetik und Frostwächter begrenzen' ist nicht gerechnet. Dass das Ergebnis konservativ ist, ändert nichts an der Inkonsistenz. Die Bandbreite 30–75 L/Tag wirkt damit willkürlich. Behebung: ein konsistentes Ein-Knoten-Modell (LDF-Kinetik + Isotherme + Energiebilanz) durchrechnen und das Δx daraus ableiten. Die Messwerte einer echten RD-Isotherme verwenden statt x = 0,02 + 0,3φ.",
+      "Der Kondensator ist nicht konsistent gerechnet. Mit UA ≈ 55 W/K und 260 W ergibt sich ΔT ≈ 4,7 K, im Text stehen aber 8 K bzw. 40–42 °C. Die 55 W/K für 8 m² verrippte Fläche mit Naturkonvektion sind eher optimistisch. Der Kondensator steht 'im Schatten hinter dem Kollektor', also in Abluftnähe des heißen Kollektors und des Rückkanals. Bei Windstille und Hitzewelle steigt der Kondensationsdruck und damit der Siphonbedarf. Behebung: Rippenberechnung mit h_nat und Vorwärmung der Umgebungsluft, T_kond als Ergebnis statt als Vorgabe.",
+      "Die Vakuumdichtheit ist unrealistisch optimistisch. Das Budget von 5·10⁻⁸ mbar·L/s für das Gesamtsystem soll auch mit Faltenbalg-Durchführung, PTFE-Folienklappen, Flanschen, 30 Rohren und 3650 Temperaturzyklen von 25 auf 110 °C über 10 Jahre gelten. Das ist am Balkon ohne Fachbetrieb kaum zu halten. Dazu kommt 'Nachevakuieren alle 2 Jahre' mit einem Servicegerät, das in der Praxis eine Elektropumpe ist und nicht bilanziert wird. Behebung: Ganzmetall-Design mit wenigen Dichtstellen. Realistische Leckrate (10⁻⁶–10⁻⁷) ansetzen und die Auswirkung auf Δx und Wartungsintervall rechnen. Den Strombedarf des Serviceeinsatzes ehrlich benennen.",
+      "Die Wärmepfade im Kollektor sind unvollständig. Der Widerstand Bett → Rohrwand → Absorberblech → Rippe wird in UA_eff ≈ 50 W/K nicht berücksichtigt. Ebenso fehlt die Rückwärtsdämmung: Tagsüber soll der Rückkanal mit Rippen geschlossen und isoliert wirken, nachts aber Wärme abführen. Die Rückverluste des Kastens mit Rippen im geschlossenen Kanal stecken vermutlich nicht in a₁ = 3,3. Behebung: Wärmewiderstandskette (Bett, Kontakt, Blech, Rippe, Luft) und Rückverlust im Tagbetrieb berechnen und den Kollektorwirkungsgrad daran anpassen.",
+      "Die Hydraulik ist nur skizziert. Es fehlt der Nachweis der Docht-Verteilung von 1,57 L Kondensat auf 12 Verdampferrohre, gegen Austrocknung und Ungleichverteilung. Auch der Dampfdruckverlust im 2,6 m langen Bett mit Zentral-Lochrohr fehlt: Bei 1 kPa liegen Geschwindigkeiten im Rohr im Bereich von 10–30 m/s, mit Druckverlusten von mehreren Pa, entsprechend etwa 1–2 K. Auch die Siphongeometrie (welche Höhenlage von Kondensator und Verdampfer relativ zueinander nötig ist) ist nicht dargestellt. Behebung: Verteilungskonzept (Überlaufrinne) und Druckverlustrechnung im Bett ergänzen. Bei Bedarf Sammler mittig statt endseitig anordnen.",
+      "Der Nutzen ist im Verhältnis zum Aufwand gering. 35 W Mittelleistung und 55 L/Tag liegen am unteren Rand des Bedarfs (50–200 L), bei 14–18 k€ und rund 800 kg auf 3 m². Bei Dunst sind es 8 L/Tag, bei bedecktem Himmel und drei Regentagen 0. Das ist ehrlich benannt, aber die Anlage liefert kein zuverlässig verfügbares Kaltwasser. Behebung: größeren Speicher oder den Vakuumröhren-Absorber als Standard prüfen und die Gesamtwirtschaftlichkeit ehrlich gegen Kühlung im Keller oder Erdkühlung abwägen.",
+      "Die Sicherheitsauslegung ist knapp. Das Sicherheitsventil bei 150 kPa abs. bedeutet bei Stagnation Verlust von Arbeitsmittel und Vakuum, und der Ventilabblasweg fehlt. Die Isotherme ist bei 150 °C nur extrapoliert. Auch Hygiene (Kaltwasser-Wendel, Stillstand, Bad-Wasserqualität) und die Brennbarkeit von PU-Dämmung und Wachselementen an der Fassade werden nur gestreift. Behebung: Abblaseleitung, Wasserqualität und A1-Dämmung als Standard festlegen."
+    ],
+    "staerken": [
+      "Löst das Kernproblem korrekt und physikalisch sauber: Die Kondensationswärme wird dank Sonnenheizung auf ca. 42 °C gehoben und an die 32 °C warme Tagluft abgegeben. Die Adsorptionswärme geht nachts an die Kühlluft. Das Silikagel wirkt als thermischer Kompressor, mit klarem Dreitemperatur-Modell und plausiblem Carnot-Vergleich (COP_th 0,24 ≈ 16 % von Carnot).",
+      "Der einfache Verdunster-Kondensator-Loop wird richtig als wirkungslos (Feuchtkugel ~22 °C, kein Druckgefälle) widerlegt.",
+      "Hält die harten Vorgaben ein: nur Wasser plus Silikagel, 0 W Strom (wachsgesteuerte Klappen, Schwerkraft-Siphon, Kamineffekt), 0 L Wasserverlust. Die Balkon-Grundfläche von 1 × 3 m und die Höhe von 2,4 m passen. Für beide Größen liegen Kühlleistung, Liter pro Tag und Auslauftemperatur vor.",
+      "Die Rechnung ist transparent und größtenteils nachprüfbar: Massenliste (C ≈ 160 kJ/K), Stundenbilanz des Kollektors, gekoppelte Kamin-Iteration, Nachtprofil, Auslauftemperaturen je Zapfrate. Die Energiebilanz schließt (Zufuhr = Abfuhr = 572,9 W), und der Physik-Prüfer meldet keine Verstöße.",
+      "Konstruktive Details sind ungewöhnlich gründlich: Siphonhöhe aus Δp berechnet (0,73 m, Auslegung 1,4 m plus Schwimmerableiter), Docht-Verdampfer gegen Siedeverzug, Dampfdioden R1/R2, Sammler für nichtkondensierbare Gase, Frost- und Überhitzungsschutz, Stagnationsdruck unter 1 bar.",
+      "Ehrlich zu Grenzen: ±30 % Unsicherheit, Wetterabhängigkeit (Klar/Dunst/bedeckt), Ausfall nach mehreren Regentagen, Kosten 14–18 k€ und Unterlegenheit gegenüber der Kompressoranlage, Prototyprisiko der Klappen. Runde-2-Werte werden als Obergrenze verworfen, und es gibt eine stromfreie Rückfallvariante B mit Nachtstrahlung.",
+      "Nennt Bandbreiten und Grenzfälle wie warme Nacht, Hitzewelle und Wind statt Einzelwerten. Der Auslauf ist realistisch: nur bei sparsamer Zapfung deutlich unter 24 °C."
+    ]
   }
 ]
