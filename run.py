@@ -21,6 +21,10 @@ def main() -> int:
     parser.add_argument("--backend", choices=["auto", "sdk", "cli"], default="auto")
     parser.add_argument("--effort", default="high", choices=["low", "medium", "high", "xhigh", "max"])
     parser.add_argument("--out", type=Path, default=None, help="Ausgabeordner (Standard: runs/<aufgabe>-<zeit>)")
+    parser.add_argument(
+        "--max-new-rounds", type=int, default=None,
+        help="Höchstens so viele Runden in diesem Aufruf; mit gleichem --out erneut starten setzt fort",
+    )
     args = parser.parse_args()
 
     task = args.task.read_text(encoding="utf-8")
@@ -31,6 +35,7 @@ def main() -> int:
     best = loop.run(
         backend, task, out,
         max_rounds=args.max_rounds, target=args.target, patience=args.patience,
+        max_new_rounds=args.max_new_rounds,
         log=lambda msg: print(msg, flush=True),
     )
     return 0 if best.physics.passed else 1

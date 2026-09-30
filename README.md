@@ -27,8 +27,12 @@ Stopp: Zielpunktzahl erreicht | keine Verbesserung mehr | Rundenlimit
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=...        # oder: eingeloggtes Claude Code (--backend cli)
-python run.py tasks/verdunstungskuehlung.md --max-rounds 6 --target 8.5
+python run.py tasks/v3-muskelkraft-dusche.md --out runs/v3 --max-rounds 6 --target 8.5
 ```
+
+Mit `--max-new-rounds N` läuft ein Aufruf höchstens N Runden. Derselbe Befehl
+mit demselben `--out` setzt danach bei der nächsten Runde fort (nützlich bei
+Zeitlimits).
 
 Die Ergebnisse landen in `runs/<aufgabe>-<zeit>/`:
 `runde_N.md` (jede Runde), `verlauf.json` (Punkte, Prüfergebnisse, Kritik) und

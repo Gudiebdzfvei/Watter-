@@ -148,6 +148,26 @@ Gib die komplette Lösung aus, nicht nur die Änderungen.
     return backend.complete(GENERATOR_SYSTEM, prompt)
 
 
+def _resume(out_dir: Path, log) -> tuple[Round | None, int, list]:
+    """Lädt einen unterbrochenen Lauf aus verlauf.json und runde_N.md."""
+    path = out_dir / "verlauf.json"
+    if not path.exists():
+        return None, 0, []
+    history = json.loads(path.read_text(encoding="utf-8"))
+    best: Round | None = None
+    stale = 0
+    for h in history:
+        if best is None or h["score"] > best.score:
+            answer = (out_dir / f"runde_{h['runde']}.md").read_text(encoding="utf-8")
+            judgement = {"punkte": h["punkte"], "schwaechen": h["schwaechen"], "staerken": h["staerken"]}
+            best, stale = Round(h["runde"], answer, physics.check(answer), judgement, h["score"]), 0
+        else:
+            stale += 1
+    if best is not None:
+        log(f"Setze fort nach Runde {len(history)} (beste bisher: Runde {best.number}, {best.score:.2f}/10).")
+    return best, stale, history
+
+
 def run(
     backend,
     task: str,
@@ -155,14 +175,19 @@ def run(
     max_rounds: int = 6,
     target: float = 8.5,
     patience: int = 2,
+    max_new_rounds: int | None = None,
     log=print,
 ) -> Round:
     out_dir.mkdir(parents=True, exist_ok=True)
-    best: Round | None = None
-    stale = 0
-    history = []
+    best, stale, history = _resume(out_dir, log)
+    first = len(history) + 1
+    last = max_rounds if max_new_rounds is None else min(max_rounds, first + max_new_rounds - 1)
 
-    for n in range(1, max_rounds + 1):
+    if best is not None and (best.score >= target and best.physics.passed or stale >= patience):
+        log("Lauf ist bereits abgeschlossen.")
+        last = first - 1  # keine neuen Runden
+
+    for n in range(first, last + 1):
         t0 = time.time()
         log(f"\n=== Runde {n}/{max_rounds}: Generator schreibt ...")
         answer = generate(backend, task, best)
@@ -200,8 +225,13 @@ def run(
             log(f"Keine Verbesserung seit {patience} Runden - Stopp.")
             break
     else:
-        log("Rundenlimit erreicht.")
+        if last >= max_rounds:
+            log("Rundenlimit erreicht.")
+        elif last >= first:
+            log(f"Pause nach Runde {last} - mit denselben Argumenten erneut starten, um fortzusetzen.")
 
+    if best is None:
+        raise RuntimeError("Keine Runde gelaufen.")
     (out_dir / "beste_loesung.md").write_text(best.answer, encoding="utf-8")
     log(f"\nBeste Lösung: Runde {best.number}, {best.score:.2f}/10 -> {out_dir / 'beste_loesung.md'}")
     return best
