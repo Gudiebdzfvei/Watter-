@@ -125,5 +125,113 @@
       "Die Lösung ist ehrlich in wesentlichen Grenzen: nur bei Sonne, Wolken, kein Serienprodukt bei 0,7 kW, Eigenbau, Vakuumdichtheit, Frostgrenze. Sie nennt Alternativen (Erdreich, Strahlung, Kompressor mit R290 bei ≈175 W) und rät bei Strom-Akzeptanz zum Kompressor. Ein Rieselfilm statt Tauchverdampfer und die Druckschleuse per U-Siphon sind praxisnahe Details.",
       "Die Struktur ist klar, die Kurzantwort beantwortet die Kernfrage direkt, und ein Blockschema sowie Energiebilanz-Tabellen helfen beim Nachvollziehen. Wasserverlust ist null, das Kältemittel bleibt im geschlossenen Kreis."
     ]
+  },
+  {
+    "runde": 2,
+    "score": 8.05,
+    "punkte": {
+      "physik": 8.0,
+      "kondensationswaerme": 9.0,
+      "machbarkeit": 7.0,
+      "quantifizierung": 8.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "8 Knoten, 10 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'PV'",
+        "ok": true,
+        "detail": "rein 1280 W, raus 1280 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdichter'",
+        "ok": true,
+        "detail": "rein 1142 W, raus 1142 W"
+      },
+      {
+        "check": "Energiebilanz 'Kondensator'",
+        "ok": true,
+        "detail": "rein 1142 W, raus 1142 W"
+      },
+      {
+        "check": "Energiebilanz 'Verdampfer'",
+        "ok": true,
+        "detail": "rein 948 W, raus 948 W"
+      },
+      {
+        "check": "Energiebilanz 'Hilfsantriebe'",
+        "ok": true,
+        "detail": "rein 30 W, raus 30 W"
+      },
+      {
+        "check": "Wärmerichtung Sonne -> PV",
+        "ok": true,
+        "detail": "5500.0 °C -> 60.0 °C, 1280 W (strahlung)"
+      },
+      {
+        "check": "Wärmerichtung PV -> Luft",
+        "ok": true,
+        "detail": "60.0 °C -> 32.0 °C, 1056 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Hilfsantriebe -> Luft",
+        "ok": true,
+        "detail": "40.0 °C -> 32.0 °C, 30 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Leitungswasser -> Verdampfer",
+        "ok": true,
+        "detail": "24.0 °C -> 5.0 °C, 697 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Kondensator -> Luft",
+        "ok": true,
+        "detail": "45.0 °C -> 32.0 °C, 891 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 3.911 W/K"
+      },
+      {
+        "check": "Wärme wird dem Leitungswasser entzogen",
+        "ok": true,
+        "detail": "netto 697 W"
+      },
+      {
+        "check": "Austritt kälter als Umgebungsluft",
+        "ok": true,
+        "detail": "Leitungswasser raus 12.0 °C, Luft 32.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Verdichterwirkung ist optimistisch. Der Gesamtwirkungsgrad von 0,64 (COP_Verdichter 3,6, etwa 52 % Carnot) ist für einen ca. 5 cm³ kleinen, PV-direkt betriebenen DC-Inverterverdichter mit 200 W eher der obere Rand. Realistisch sind 0,5 bis 0,55, also 240 bis 260 W elektrisch. Zusammen mit dem Lüfter kommt man dann auf etwa 280 W. Behebung: mit einem realen Kennfeld (z. B. Secop/Embraco R290) rechnen und den Strom als Bereich von 224 bis 300 W angeben.",
+      "Die PV-Auslegung hat null Reserve. Die 224 W PV entsprechen exakt den 224 W Bedarf. MPPT- und Wandlerverluste (5 bis 8 %), Verschmutzung und Streuung der Einstrahlung sind nicht berücksichtigt. Schon leichte Bewölkung oder ein warmer Tag mit 40 °C und Kondensator bei 52 °C unterdeckt den Bedarf. Behebung: 1,5 bis 2 Module oder eine kleine Pufferbatterie bzw. ein Netzanschluss als Backup, und ein Auslegungsfall für 38 bis 40 °C ergänzen.",
+      "Die Aussagen zum Kondensator sind teils widersprüchlich. Der Text nennt '6 K Kondensatorreserve' als knapp, tatsächlich liegen 13 K zur Eintritts- und 7 K zur Austrittsluft. Die U-Wert-Annahme von 40 W/m²K auf der Lamellenfläche ist nicht begründet. Die Rückströmung warmer Abluft und die Aufheizung durch die PV-Abwärme (1056 W direkt daneben) sind nur qualitativ behandelt. Behebung: Kondensatorfläche und Luftführung mit Aufschlag (+20 bis 30 %) auslegen. Den COP-Verlust bei 3 bis 5 K wärmerer Ansaugluft beziffern.",
+      "Der Verdampfer ist zu knapp gerechnet. Ein doppelwandiger Plattentauscher mit Leckageanzeige hat bei laminarer Strömung von 50 l/h (Re ≈ 30) und Kanalfehlverteilung deutlich kleinere U-Werte als 500 W/m²K. Für Trinkwasser fordert das grob den doppelten Flächenbedarf. Die 0,12 m² sind dafür knapp, und der Zwischenkreis-Aufschlag (2 K, 8 % COP) ist nur pauschal geschätzt. Der Frostschutz ist nicht ausgearbeitet: Bei Stillstand der Strömung läuft der Verdichter weiter. Behebung: Fläche und Verdampfungstemperatur für die doppelwandige Variante neu rechnen, Durchfluss-Freigabe und Niederdruck-Abschaltung fest vorsehen.",
+      "Der Betrieb mit zeitweiser Entnahme fehlt. Die Rechnung gilt für stationären Dauerdurchfluss von 50 l/h. Bei realer Zapfung sind ein Pufferspeicher, Taktverhalten und Legionellenschutz nötig. Der Speicher wird nur als Option erwähnt. Behebung: einen Speicher mit Größe, Verlusten und Betriebsweise in die Hauptauslegung aufnehmen.",
+      "Die 24-h-Bilanz ist grob. Die Nachtleistung von ca. 150 W ist geschätzt und nicht durchgerechnet. Die Kosten für Batterie und 3 Module fehlen in der Wirtschaftlichkeit, es werden nur 1,35 €/Tag Netzstrom genannt. Der Kompromiss zwischen Stromverbrauch und dem Wunsch nach 'sehr wenig Strom' ist nicht optimiert. Behebung: Nachtfall und Batterie/Speicher nachrechnen, und einen größeren Kondensator mit niedrigerer Kondensationstemperatur (z. B. 38 °C, COP 4,5 bis 5, ca. 150 W) als Variante zeigen.",
+      "Die Verwerfung der Sorption stützt sich auf zwei nicht ganz konsistente Zahlen. Im Desorber wird p/p_s mit 0,128 angegeben, für 45 °C Kondensation ergäbe sich rechnerisch etwa 0,166. Der Vergleich ist aber nur für Silikagel bei luftgekühlten 5 °C Verdampfung belastbar. Auch die Erdvorkühlung (60 bis 80 m Rohr, Stagnations- und Hygieneproblem im Erdreich) ist nur als Größenordnung gegeben. Behebung: Rechnung für Sorption und Erde mit angeben oder deutlicher als Abschätzung kennzeichnen.",
+      "Der Verdichter hat nichts mehr mit Verdunstungskälte durch Wasser zu tun. Die Lösung ersetzt das Wasser durch R290 und damit die Grundidee der Aufgabe. Das ist physikalisch nachvollziehbar, aber die Brennbarkeit (Füllmenge ca. 100 g nahe an der 150-g-Grenze) und der Wartungsaufwand sind gegenüber dem Ausgangswunsch ein erheblicher Kompromiss."
+    ],
+    "staerken": [
+      "Die Kernaussage ist physikalisch korrekt: Ein einstufiger geschlossener Kreis ist ein Wärmerohr ohne Nettokühlung, und die Kondensationswärme muss bei einer Temperatur oberhalb der Umgebung abgegeben werden. Das ist nur mit Arbeit (Verdichter) möglich.",
+      "Die Antwort auf 'Wo bleibt die Kondensationswärme?' ist eindeutig: 891 W gehen im Kondensator bei 45 °C an die 32 °C warme Luft (697 W Wasserwärme plus 194 W Arbeit). Die Bilanz ist geschlossen, PV-Abwärme und Hilfsantriebe sind mitgerechnet.",
+      "Die zentralen Zahlen sind konsistent und nachprüfbar: Kühllast 697 W, Massenstrom R290 ca. 2,6 g/s, Saugvolumen ca. 0,22 l/s, ΔT_log-Werte, Luftmenge 0,128 m³/s, Sättigungsdrücke, Kühlgrenze 22 °C, Taupunkt 17 °C, Wasserverlust im offenen Fall ca. 1 l/h.",
+      "Die untere Schranke aus dem 2. Hauptsatz (ca. 68 W) und die Einordnung gegen den realen Bedarf von 224 W sind ehrlich. Auch der Stromverbrauch ist vollständig beziffert (Lüfter, Regelung), statt 'fast stromfrei' zu behaupten.",
+      "Wasserdampf als Kältemittel wird sauber untersucht (ca. 150 m³/h, Druckverhältnis 11) und mit nachvollziehbarer Begründung verworfen. Nachthimmelsstrahlung und Erdreich sind als Ergänzung bzw. Vorkühlung eingeordnet.",
+      "Der Bezug zur Turm-Idee ist verständlich (Verdampferturm, Kondensatorturm, Verdichter und Drossel statt Regen). Die Grenzen werden benannt: Frostwächter, EN 1717, Legionellen, R290-Brennbarkeit, Schatten für den Kondensator, wolkenabhängige Leistung.",
+      "Es gibt Varianten für Auslauftemperaturen, eine Erdvorkühlung und einen 24-h-Betrieb mit Tageskosten, dazu eine grobe Kostenschätzung und Wartungshinweise."
+    ]
   }
 ]
