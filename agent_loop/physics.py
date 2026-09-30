@@ -9,8 +9,8 @@ beilegen. Dieser Prüfer rechnet nach, statt dem Modell zu glauben:
     nach kalt.
   * 2. Hauptsatz (global): die Entropieerzeugung gegenüber allen
     Umgebungsreservoiren ist >= 0.
-  * Nutzen: dem Leitungswasser wird wirklich Wärme entzogen, und es kommt
-    kälter heraus als die Umgebungsluft.
+  * Nutzen: dem Nutz-Knoten (Leitungswasser, Wohnung …) wird netto Wärme
+    entzogen, und er ist kälter als die Außenluft.
   * Geschlossener Kreislauf: praktisch kein Wasserverlust.
 
 Format des JSON-Blocks (```json ... ```):
@@ -23,7 +23,7 @@ Format des JSON-Blocks (```json ... ```):
     {"von": "<name>", "nach": "<name>", "W": <Leistung>,
      "art": "waerme" | "strahlung" | "arbeit" | "stoff"}
   ],
-  "nutzen": {"knoten": "<Leitungswasser-Knoten>", "T_ein_C": .., "T_aus_C": .., "kuehlleistung_W": ..},
+  "nutzen": {"knoten": "<Nutz-Knoten>", "T_ein_C": .., "T_aus_C": .., "kuehlleistung_W": ..},
   "luft_T_C": <Umgebungslufttemperatur>,
   "wasserverlust_l_pro_tag": <Zahl>
 }
@@ -134,17 +134,17 @@ def check(answer: str) -> CheckResult:
         extracted = sum(f["W"] for f in flows if f["von"] == target and f["art"] in ("waerme", "strahlung")) - sum(
             f["W"] for f in flows if f["nach"] == target and f["art"] in ("waerme", "strahlung")
         )
-        result.add("Wärme wird dem Leitungswasser entzogen", extracted > 0, f"netto {extracted:.0f} W")
+        result.add(f"Netto-Wärmeentzug am Nutzknoten '{target}'", extracted > 0, f"netto {extracted:.0f} W")
         try:
             t_out = float(nutzen["T_aus_C"])
             t_air = float(data["luft_T_C"])
             result.add(
-                "Austritt kälter als Umgebungsluft",
+                "Nutztemperatur unter Außenluft",
                 t_out < t_air,
-                f"Leitungswasser raus {t_out:.1f} °C, Luft {t_air:.1f} °C",
+                f"{target} {t_out:.1f} °C, Luft {t_air:.1f} °C",
             )
         except (KeyError, TypeError, ValueError):
-            result.add("Austritt kälter als Umgebungsluft", False, "'nutzen.T_aus_C' oder 'luft_T_C' fehlt.")
+            result.add("Nutztemperatur unter Außenluft", False, "'nutzen.T_aus_C' oder 'luft_T_C' fehlt.")
 
     # Geschlossener Kreislauf
     try:

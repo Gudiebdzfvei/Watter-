@@ -54,13 +54,13 @@ OUTPUT_FORMAT = """
   "stroeme": [
     {"von": "<name>", "nach": "<name>", "W": <Leistung, positiv>, "art": "waerme" | "strahlung" | "arbeit" | "stoff"}
   ],
-  "nutzen": {"knoten": "<Leitungswasser-Knoten>", "T_ein_C": <°C>, "T_aus_C": <°C>, "kuehlleistung_W": <W>},
+  "nutzen": {"knoten": "<Nutz-Knoten, z. B. Leitungswasser oder Wohnung>", "T_ein_C": <°C>, "T_aus_C": <°C>, "kuehlleistung_W": <W>},
   "luft_T_C": <°C>,
   "wasserverlust_l_pro_tag": <Liter>
 }
 ```
 Regeln für die Bilanz: "umgebung" sind unendlich große Reservoire (Luft,
-Himmel, Sonne, Erdreich, das Leitungswasser). "komponente" sind deine Bauteile;
+Himmel, Sonne, Erdreich, Leitungswasser, Wohnung). "komponente" sind deine Bauteile;
 für jede muss rein = raus gelten. "waerme" und "strahlung" müssen von warm nach
 kalt zeigen (Netto-Strahlung). Latente Wärme, die mit Dampf/Kondensat zwischen
 Bauteilen wandert, ist "stoff". Die Bilanz wird automatisch nachgerechnet.

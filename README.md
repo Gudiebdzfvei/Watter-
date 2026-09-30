@@ -27,7 +27,7 @@ Stopp: Zielpunktzahl erreicht | keine Verbesserung mehr | Rundenlimit
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=...        # oder: eingeloggtes Claude Code (--backend cli)
-python run.py tasks/v3-muskelkraft-dusche.md --out runs/v3 --max-rounds 6 --target 8.5
+python run.py tasks/v3-muskelkraft-wohnung.md --out runs/v3 --max-rounds 6 --target 8.5
 ```
 
 Mit `--max-new-rounds N` läuft ein Aufruf höchstens N Runden. Derselbe Befehl
