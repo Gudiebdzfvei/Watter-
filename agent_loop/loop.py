@@ -31,7 +31,7 @@ einem JSON-Objekt, ohne Text davor oder danach."""
 
 RUBRIC = {
     "physik": ("Physikalisch korrekt, keine verbotenen Wärmeflüsse, realistische Wirkungsgrade/COP", 0.25),
-    "kondensationswaerme": ("Löst das Kernproblem: wohin geht die Kondensationswärme, und warum funktioniert das", 0.20),
+    "kondensationswaerme": ("Löst das Kernproblem der Aufgabe: wohin geht die Wärme (Wärmesenke, z. B. Kondensationswärme), und warum funktioniert das", 0.20),
     "vorgaben": ("Hält ALLE harten Vorgaben der Aufgabe ein (z. B. Arbeitsmittel, Strom, Größe); jede Verletzung ergibt höchstens 3 Punkte", 0.15),
     "machbarkeit": ("Baubar mit realen Materialien, Maße, Flächen, grobe Kosten, Wartung", 0.15),
     "quantifizierung": ("Nachvollziehbare Rechnung: Kühlleistung, Temperaturen, Flächen, Tag/Nacht", 0.15),
