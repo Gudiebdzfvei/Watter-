@@ -75,6 +75,11 @@ class Round:
     judge: dict
     score: float
 
+    @property
+    def rank(self) -> tuple[float, float]:
+        # Bei gleich gedeckelten Punktzahlen entscheidet die ungedeckelte.
+        return (round(self.score, 2), raw_score(self.judge))
+
 
 def _extract_json(text: str) -> dict:
     match = re.search(r"\{.*\}", text, flags=re.DOTALL)
@@ -114,8 +119,12 @@ Antworte als JSON:
     raise AssertionError("unreachable")
 
 
+def raw_score(judgement: dict) -> float:
+    return sum(judgement["punkte"][k] * w for k, (_, w) in RUBRIC.items())
+
+
 def weighted_score(judgement: dict, physics_result: physics.CheckResult) -> float:
-    score = sum(judgement["punkte"][k] * w for k, (_, w) in RUBRIC.items())
+    score = raw_score(judgement)
     # Wer die Physik-Prüfung nicht besteht oder Vorgaben verletzt, kann nicht "gut genug" sein.
     if not physics_result.passed or judgement["punkte"]["vorgaben"] < MIN_VORGABEN:
         return min(score, 5.0)
@@ -157,9 +166,10 @@ def _resume(out_dir: Path, log) -> tuple[Round | None, int, list]:
     best: Round | None = None
     stale = 0
     for h in history:
-        if best is None or h["score"] > best.score:
+        judgement = {"punkte": h["punkte"], "schwaechen": h["schwaechen"], "staerken": h["staerken"]}
+        candidate = (round(h["score"], 2), raw_score(judgement))
+        if best is None or candidate > best.rank:
             answer = (out_dir / f"runde_{h['runde']}.md").read_text(encoding="utf-8")
-            judgement = {"punkte": h["punkte"], "schwaechen": h["schwaechen"], "staerken": h["staerken"]}
             best, stale = Round(h["runde"], answer, physics.check(answer), judgement, h["score"]), 0
         else:
             stale += 1
@@ -213,7 +223,7 @@ def run(
         )
         (out_dir / "verlauf.json").write_text(json.dumps(history, indent=2, ensure_ascii=False), encoding="utf-8")
 
-        if best is None or score > best.score:
+        if best is None or rnd.rank > best.rank:
             best, stale = rnd, 0
         else:
             stale += 1
