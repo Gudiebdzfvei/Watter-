@@ -302,5 +302,78 @@
       "Die Rangfolge der Maßnahmen ist ehrlich: Nachtlüftung und Außenverschattung zuerst, das Wassergerät bringt ≈ −2 K an der Spitze und ≈ −1 K im Mittel. Das Ziel ≤ 26 °C wird knapp verfehlt, und das steht im Text. Speicher gegen Dauerdurchfluss ist mit einer nachprüfbaren Rechnung (≈ 1,1 kWh in 10 h) entschieden.",
       "Der Text enthält Stückliste (Summe stimmt ≈ 570 €), Ausbaustufen, Bauanleitung, Messroutine (Regelgröße T_aus), Saisonende, Korrosionsaspekte und Hinweise zu Vermieter, Satzung, Trockenheitsverbot und Abrechnung."
     ]
+  },
+  {
+    "runde": 5,
+    "score": 7.7,
+    "punkte": {
+      "physik": 8.0,
+      "kondensationswaerme": 8.0,
+      "vorgaben": 7.0,
+      "machbarkeit": 7.0,
+      "quantifizierung": 8.0,
+      "klarheit": 8.0
+    },
+    "physik_bestanden": true,
+    "physik": [
+      {
+        "check": "Bilanz lesbar",
+        "ok": true,
+        "detail": "3 Knoten, 2 Ströme"
+      },
+      {
+        "check": "Energiebilanz 'Heizkoerper'",
+        "ok": true,
+        "detail": "rein 204 W, raus 204 W"
+      },
+      {
+        "check": "Wärmerichtung Wohnung -> Heizkoerper",
+        "ok": true,
+        "detail": "26.8 °C -> 19.3 °C, 204 W (waerme)"
+      },
+      {
+        "check": "Wärmerichtung Heizkoerper -> Leitungswasser",
+        "ok": true,
+        "detail": "19.3 °C -> 15.0 °C, 204 W (waerme)"
+      },
+      {
+        "check": "Entropieerzeugung >= 0",
+        "ok": true,
+        "detail": "S_gen = 0.028 W/K"
+      },
+      {
+        "check": "Netto-Wärmeentzug am Nutzknoten 'Wohnung'",
+        "ok": true,
+        "detail": "netto 204 W"
+      },
+      {
+        "check": "Nutztemperatur unter Außenluft",
+        "ok": true,
+        "detail": "Wohnung 26.8 °C, Luft 30.0 °C"
+      },
+      {
+        "check": "Geschlossener Wasserkreislauf",
+        "ok": true,
+        "detail": "0 l/Tag (erlaubt <= 0.5 l/Tag)"
+      }
+    ],
+    "schwaechen": [
+      "Die Hauptzahl 211 W beruht auf einem frei gewählten Faktor 0,7 auf die Norm-Wärmeleistung. Der Exponent 1,3 wird von ΔT ≈ 50 K auf 3–10 K extrapoliert. Bei kleinem ΔT steigt der Strahlungsanteil und der Exponent sinkt, der Faktor kann also in beide Richtungen danebenliegen. Die Stratifikation im Panel bei 25 l/h (Wasser kurzgeschlossen oder geschichtet) ist nicht belegt. Die Bandbreite 169–256 W wird genannt, aber nicht hergeleitet. Behebung: UA aus Literatur oder Herstellerdaten zur Kühlleistung von Heizkörpern im Kühlbetrieb ableiten, oder vor dem Kauf an einem Heizkörper einen Messversuch mit Durchfluss und ΔT machen.",
+      "Der Lüfter-Zusatz ist zu knapp und unbelegt abgeschätzt (UA +25 %, Leistung +15 %, −0,2 K). Erzwungene Konvektion an Konvektorblechen erhöht UA meist deutlich stärker. Gerade sie würde den teuren Engpass senken, nämlich die Wassermenge pro kWh, da das Wasser wärmer austritt. Die Aufgabe erlaubt ausdrücklich wenige Watt. Behebung: Lüfter-Variante mit Luftgeschwindigkeit, h-Wert und daraus UA rechnen. Dann den Wasserbedarf bei gleicher Kälte neu angeben, vermutlich 100 statt 250 l/Tag.",
+      "Die Wirtschaftlichkeit ist schlecht und die Weiterverwendung schwach. Es fallen 250 l/Tag für nur 2 kWh an. Davon sind nur etwa 100 l von Hand verwertbar, etwa 150 l gehen in den Abfluss. Das ist der Verbrauch eines ganzen Haushalts. 560 € Investition für −0,9 K im Mittel und −1,9 K an der Spitze passen nicht zu 'Budget möglichst niedrig'. Der Kurzfazit-Wert 0,33 €/kWh ist nur bei vollständiger Wiederverwendung erreichbar. Behebung: Fallschlauch automatisch in WC-Spülkasten oder Waschbecken-Siphon leiten statt per Eimer. Eine abgespeckte Stufe unter 300 € mit vorhandenen Kübeln ausarbeiten.",
+      "Die rechtliche Hürde wird nur als 'vorher nachfragen' behandelt. Durchlaufkühlung mit Trinkwasser ist in vielen Wasserversorgungssatzungen und AVBWasserV-Auslegungen ausdrücklich unzulässig oder genehmigungspflichtig. Das kann das ganze Konzept kippen und gehört an den Anfang als K.-o.-Kriterium. Behebung: Es als Go/No-Go vor der Stückliste nennen und einen Fallback ohne Durchlauf nennen, zum Beispiel ein Speicher-Konzept oder ein reines Nacht- und Verschattungspaket.",
+      "Die Praxistauglichkeit der Aufstellung ist optimistisch. Nötig sind Wandhahn und Abfluss ≤ 3 m vom Heizkörper, dazu ein 3 m langer DN32-Überlaufschlauch quer durch die Wohnung (Stolperfalle, Gefälle). Hinzu kommen etwa 95 kg gefüllte Heizkörper, ein 14 kg schwerer Kopfbehälter auf dem Gestell und ein 42 kg schwerer Kübel. In einem normalen Wohn- oder Schlafzimmer ohne Wasseranschluss ist das kaum umsetzbar. Behebung: Standort realistisch in Küche oder Bad-Nähe annehmen, Schlauchführung und Gefälle skizzieren, oder kleinere Variante mit 1–2 Heizkörpern als Standardfall.",
+      "Die Hygiene ist nur teilweise gelöst. Gebrauchte Heizkörper mit Biofilm stehen über Nacht gefüllt bei Raumtemperatur (24–26 °C). Das ist knapp an der Legionellen-Wachstumsgrenze ab 25 °C, und die Aussage 'bleibt < 25 °C' gilt dann nicht mehr. Das Wasser aus dem Kübel wird trotzdem für WC-Spülung, Wischen und Zierpflanzen genutzt. Behebung: Heizkörper nachts entleeren oder neue Heizkörper empfehlen. Die Weiterverwendung auf WC-Spülung beschränken, nicht auf Handwäsche.",
+      "Kleinere Inkonsistenzen in den Zahlen und Formulierungen. 'Die Anfangstemperatur klingt mit etwa 70 % ab' ist falsch formuliert. Nach der Tabelle bleiben etwa 70 % stehen (0,7 K Wirkung bei 1 K Start). 'Nachts halb so wirksam' passt nicht zu 6,3 gegenüber 9,5 Wh/l, das sind etwa 66 %. Die 'Kälte kostet 0,33–0,74 €/kWh' passt nicht zu 'drei- bis sechsmal so viel wie Klimagerät' (0,55–0,74). Im JSON ist 19,3 °C als mittlere Wassertemperatur des Kühlers angegeben, arithmetisch liegt sie bei etwa 18,6 °C. Die Oberfläche soll nur 0,3 K darüber liegen. Behebung: Formulierungen und Werte angleichen.",
+      "Im Text stehen Verweise auf frühere Versionen ('331 W der Vorversion', 'frühere Angabe +0,8 K war zu hoch'). Die gehören nicht in ein Endergebnis und verwirren. Die Wärmelast (G = 17,6 W/K, C = 1 kWh/K, Sonne, Start 25,5 °C) ist plausibel, aber komplett angenommen. Flächen der Außenwand und des Dachs fehlen. Behebung: Versionshinweise entfernen, die Wärmelast kurz aus U-Werten und Flächen herleiten."
+    ],
+    "staerken": [
+      "Die Trinkwassertrennung ist sauber gelöst: freier Auslauf mit Luftstrecke ≥ 20 mm wie im WC-Spülkasten, dazu EA-Ventil, Durchflussbegrenzer, Überlauf und Wassermelder. Niederdruck (≈ 0,05 bar) macht Lecks harmlos. Die Hygienefrage wird ehrlich beantwortet, auch mit dem Verbot, das Wasser für Trinken, Duschen oder Waschmaschine zu nutzen.",
+      "Die Nachrechnung mit ε-NTU ist korrekt und intern konsistent. Ich habe nachgeprüft: 211 W, 256 W, 263 W bei 12 °C, 158 W bei 18 °C, 75 W und 134 W für die Einstiegsstufen, 860/ΔT l/kWh sowie Kv ≈ 0,11 bei 0,054 bar. Wasserbilanz als Obergrenze, Durchfluss-Tabelle und der Nachweis, dass mehr Wasser nur sublinear mehr Leistung bringt, sind stark.",
+      "Die Kondensationsfrage wird physikalisch sauber behandelt: Taupunkte, Zerlegung in sensibel und latent, Kondensat in g/h (85 g/h bei Schwüle stimmt mit 58 W Latentleistung überein). Die Doppelzählung der latenten Leistung wird korrigiert. Kondensat-Wannen und Dämmung der kalten Leitungen sind vorgesehen. Die Entfeuchtung wird ehrlich als Komfortgewinn und nicht als Temperaturgewinn eingeordnet.",
+      "Die Raumbilanz ist nachvollziehbar und mit der Energiebilanz stimmig. Ich habe grob nachgerechnet: ≈ +4,9 K ohne Gerät, ≈ +3 K mit Gerät. Es gibt Sensitivitäten für Startwert, Zulauftemperatur, Laufzeit und Leichtbau. Die Rangfolge Nachtlüftung, Außenverschattung, Wassergerät wird ehrlich genannt. Das Ziel ≤ 26 °C wird nicht geschönt, sondern als knapp verfehlt ausgewiesen.",
+      "Sehr ehrliche Grenzen und Messprotokoll: Nachmessen per Q = 1,163 × l/h × ΔT mit klaren Schwellen (< 170 W schlechter, > 240 W Modell bestätigt). Die Aussagen, dass es für Dachgeschoss und Zulauf ≥ 20 °C nicht taugt und wann das Gerät aus bleibt, sind klar. Die Kosten pro kWh werden offen gegen Klimageräte verglichen.",
+      "Die Stückliste mit Preisen summiert sich korrekt auf ≈ 560 €. Die Bauanleitung ist vollständig und schrittweise: Spülen, Dichtheitsprüfung, Kopfbehälter, Dosieren über die Ablauftemperatur 22–24 °C, Betrieb und Wartung. Die Anforderung an Durchfluss, Antrieb und Ausbaustufen ist nachvollziehbar. Die JSON-Bilanz erfüllt die Prüfregeln: 0 l/Tag Verdunstung, Wärmerichtung korrekt, Nutzknoten netto 204 W."
+    ]
   }
 ]
